@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container-fluid">
 
-    <h1 >PRES</h1>
+    <h1>PRES</h1>
 
   </div>
 </template>

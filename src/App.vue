@@ -11,9 +11,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
+
+            <!-- LIST DES ITEMS -->
             <li class="nav-item" v-for="route in routes">
               <a class="nav-link" @click="goto(route)">{{ route.title }}</a>
             </li>
+            <!-- LIST DES ITEMS -->
+
           </ul>
         </div>
       </div>
