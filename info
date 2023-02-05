@@ -1,0 +1,6 @@
+index.html -> app.js -> App.vue -> routerApp
+index.html -> main.js -> Main.vue -> router/index
+
+
+
+
