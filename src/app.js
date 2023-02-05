@@ -6,6 +6,9 @@ import router from './routerApp'
 
 import './assets/app.css'
 
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
+
 const app = createApp(App)
 
 app.use(createPinia())

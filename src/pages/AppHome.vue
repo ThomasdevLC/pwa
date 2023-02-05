@@ -1,17 +1,17 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
-</script>
-
 <template>
-  <div class="greetings">
-    <h1 class="green">GSTAT APV</h1>
+  <div>
+
+    <h1 >GSTAT APV</h1>
+
+    <button
+        class="btn btn-primary"
+        data-bs-target="#collapseTarget"
+        data-bs-toggle="collapse">
+      Bootstrap collapse
+    </button>
+    <div class="collapse py-2" id="collapseTarget">
+      This is the toggle-able content!
+    </div>
 
   </div>
 </template>
