@@ -1,5 +1,8 @@
 <template>
   <h1>Home</h1>
+  <h2>{{ post.title }}</h2>
+  <p>{{ post.body }}</p>
+  <p v-if="error">{{ error }}</p>
 </template>
 
 <script>
@@ -10,9 +13,10 @@ export default {
   setup() {
     const id = ref("3");
 
-    const { test } = getTest(id.value);
+    const { test, post, error } = getTest(id.value);
 
     test();
+    return { post, error };
   },
 };
 </script>
