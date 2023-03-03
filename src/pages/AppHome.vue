@@ -1,22 +1,20 @@
 <template>
-  <div class="container-fluid">
-
-    <h1>HOME</h1>
-
-    <button
-        class="btn btn-primary"
-        data-bs-target="#collapseTarget"
-        data-bs-toggle="collapse">
-      Bootstrap collapse
-    </button>
-
-    <div class="collapse py-2" id="collapseTarget">
-      This is the toggle-able content!
-    </div>
-
-  </div>
+  <h1>Home</h1>
 </template>
 
-<style scoped>
+<script>
+import { ref } from "vue";
+import getTest from "../modules/api";
 
-</style>
+export default {
+  setup() {
+    const id = ref("3");
+
+    const { test } = getTest(id.value);
+
+    test();
+  },
+};
+</script>
+
+<style></style>
