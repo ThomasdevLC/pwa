@@ -1,8 +1,7 @@
 <template>
   <h1>Home</h1>
-  <h2>{{ post.title }}</h2>
-  <p>{{ post.body }}</p>
-  <p v-if="error">{{ error }}</p>
+
+  <h2>{{ post.fullName }}</h2>
 </template>
 
 <script>

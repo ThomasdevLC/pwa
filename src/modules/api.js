@@ -8,9 +8,9 @@ const getTest = (id) => {
   const test = async () => {
     try {
       let resp = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts/" + id
+        "https://test.gstat.fr/api/pwa/vendorStat/2023/2/1283"
       );
-      console.log(resp);
+      console.log(resp.data);
 
       post.value = await resp.data;
     } catch (err) {
