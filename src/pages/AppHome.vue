@@ -1,22 +1,45 @@
 <template>
-  <div class="container-fluid">
+  <h1>Home</h1>
 
-    <h1>HOME</h1>
+  <h2>{{ post.fullName }}</h2>
 
-    <button
-        class="btn btn-primary"
-        data-bs-target="#collapseTarget"
-        data-bs-toggle="collapse">
-      Bootstrap collapse
-    </button>
+  <!-- TOTAL  -->
 
-    <div class="collapse py-2" id="collapseTarget">
-      This is the toggle-able content!
-    </div>
+  <p>TOTAL</p>
+  <p>{{ post.month.stat.nb_total }}</p>
+  <p>{{ post.month.stat.tx_pres_fm }} %</p>
+  <p>{{ post.month.stat.tx_fm }} %</p>
+  <p>{{ post.month.stat.tx_ce }} %</p>
 
-  </div>
+  <!-- VN  -->
+  <p>VN</p>
+  <p>{{ post.month.stat.nb_vn }}</p>
+  <p>{{ post.month.stat.tx_pres_fm_vn }} %</p>
+  <p>{{ post.month.stat.tx_fm_vn }} %</p>
+  <p>{{ post.month.stat.tx_ce_vn }} %</p>
+
+  <!-- VO  -->
+  <p>VO</p>
+  <p>{{ post.month.stat.nb_vo }}</p>
+  <p>{{ post.month.stat.tx_pres_fm_vo }} %</p>
+  <p>{{ post.month.stat.tx_fm_vo }} %</p>
+  <p>{{ post.month.stat.tx_ce_vo }} %</p>
 </template>
 
-<style scoped>
+<script>
+import { computed, ref } from "vue";
+import getTest from "../modules/api";
 
-</style>
+export default {
+  setup() {
+    const id = ref("3");
+
+    const { test, post, error } = getTest(id.value);
+
+    test();
+    return { post, error };
+  },
+};
+</script>
+
+<style></style>
