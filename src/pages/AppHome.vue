@@ -1,6 +1,6 @@
 <template>
   <h1>Home</h1>
-  <!-- <label>Vendeur:</label>
+  <label>Vendeur:</label>
   <input v-model="id" type="text" required />
 
   <select id="month" name="month" v-model="month" @change="handleRequest">
@@ -17,7 +17,7 @@
     <option value="10">Octobre</option>
     <option value="11">Novembre</option>
     <option value="12">Décembre</option>
-  </select> -->
+  </select>
 
   <div v-if="name">
     <h2>{{ name }}</h2>
@@ -52,24 +52,26 @@
 import { ref, onMounted } from "vue";
 import getData from "../modules/api";
 
-onMounted(() => {
-  getStats();
-});
-
 const name = ref(null);
 const stat = ref(null);
 const id = ref("1283");
 const year = ref("2023");
 const month = ref("2");
 
-console.log(name);
-
-function getStats() {
+const getStats = () => {
   getData(year.value, month.value, id.value).then((res) => {
     stat.value = res.month.stat;
     name.value = res.fullName;
   });
-}
+};
+
+onMounted(() => {
+  getStats();
+});
+
+const handleRequest = async () => {
+  getStats();
+};
 </script>
 
 <style></style>
