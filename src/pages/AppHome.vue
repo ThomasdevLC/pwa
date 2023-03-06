@@ -1,7 +1,8 @@
 <template>
   <h1>Home</h1>
-  <input type="text" />
-  <select id="year" name="year">
+  <label>Vendeur:</label>
+  <input v-model="id" type="text" required />
+  <select id="year" name="year" v-model="year" @change="handleRequest">
     <option>Année</option>
     <option value="2018">2018</option>
     <option value="2019">2019</option>
@@ -10,7 +11,7 @@
     <option value="2022">2022</option>
     <option value="2023">2023</option>
   </select>
-  <select id="month" name="month">
+  <select id="month" name="month" v-model="month" @change="handleRequest">
     <option>Mois</option>
     <option value="1">Janvier</option>
     <option value="2">Février</option>
@@ -23,7 +24,7 @@
     <option value="9">Septembre</option>
     <option value="10">Octobre</option>
     <option value="11">Novembre</option>
-    <option value="12">Déecembre</option>
+    <option value="12">Décembre</option>
   </select>
 
   <div v-if="stats">
@@ -58,7 +59,7 @@ import getDatas from "../modules/api";
 
 export default {
   setup() {
-    const id = ref("1282");
+    const id = ref("1283");
     const year = ref("2023");
     const month = ref("2");
 
@@ -70,7 +71,11 @@ export default {
 
     statDatas();
 
-    return { stats, error };
+    const handleRequest = async () => {
+      await statDatas();
+    };
+
+    return { stats, error, id, year, month, handleRequest };
   },
 };
 </script>

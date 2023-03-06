@@ -8,7 +8,6 @@ const getDatas = (year, month, id) => {
   const statDatas = async () => {
     try {
       let resp = await axios.get(
-        // "https://test.gstat.fr/api/pwa/vendorStat/2023/2/1283"
         `https://test.gstat.fr/api/pwa/vendorStat/${year}/${month}/${id}`
       );
       console.log(resp.data);
