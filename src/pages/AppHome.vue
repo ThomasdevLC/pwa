@@ -3,20 +3,19 @@
   <label>Vendeur:</label>
   <input v-model="id" type="text" required />
 
-  <select id="month" name="month" v-model="month" @change="handleRequest">
-    <option>Mois</option>
-    <option value="1">Janvier</option>
-    <option value="2">Février</option>
-    <option value="3">Mars</option>
-    <option value="4">Avril</option>
-    <option value="5">Mai</option>
-    <option value="6">Juin</option>
-    <option value="7">Juilet</option>
-    <option value="8">Août</option>
-    <option value="9">Septembre</option>
-    <option value="10">Octobre</option>
-    <option value="11">Novembre</option>
-    <option value="12">Décembre</option>
+  <select
+    id="month"
+    name="month"
+    v-model="selectedMonth"
+    @change="handleRequest"
+  >
+    <option v-for="(month, index) in months" :value="index" :key="index">
+      {{ month }}
+    </option>
+  </select>
+
+  <select id="year" name="year" v-model="selectedYear" @change="handleRequest">
+    <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
   </select>
 
   <div v-if="name">
@@ -54,14 +53,29 @@ import getData from "../modules/api";
 
 const name = ref(null);
 const stat = ref(null);
-const id = ref("1283");
-const year = ref("2023");
-const month = ref("2");
+const id = ref("1280");
+const months = ref([
+  "Janvier",
+  "Février",
+  "Mars",
+  "Avril",
+  "Mai",
+  "Juin",
+  "Juillet",
+  "Août",
+  "Septembre",
+  "Octobre",
+  "Novembre",
+  "Décembre",
+]);
+const selectedMonth = ref(new Date().getMonth());
+const years = ref(["2023", "2022", "2021", "2020"]);
+const selectedYear = ref(new Date().getFullYear());
 
 const getStats = () => {
   getData(year.value, month.value, id.value).then((res) => {
-    stat.value = res.month.stat;
     name.value = res.fullName;
+    stat.value = res.month.stat;
   });
 };
 
