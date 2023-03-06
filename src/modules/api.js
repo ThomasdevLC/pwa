@@ -1,25 +1,26 @@
 import axios from "axios";
 import { ref } from "vue";
 
-const getTest = (id) => {
-  const post = ref([]);
+const getDatas = (year, month, id) => {
+  const stats = ref([]);
   const error = ref(null);
 
-  const test = async () => {
+  const statDatas = async () => {
     try {
       let resp = await axios.get(
-        "https://test.gstat.fr/api/pwa/vendorStat/2023/2/1283"
+        // "https://test.gstat.fr/api/pwa/vendorStat/2023/2/1283"
+        `https://test.gstat.fr/api/pwa/vendorStat/${year}/${month}/${id}`
       );
       console.log(resp.data);
 
-      post.value = await resp.data;
+      stats.value = await resp.data;
     } catch (err) {
       console.error(err);
       error.value = err.message;
     }
   };
 
-  return { post, error, test };
+  return { stats, error, statDatas };
 };
 
-export default getTest;
+export default getDatas;
