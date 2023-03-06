@@ -19,8 +19,11 @@
     <option value="12">Décembre</option>
   </select> -->
 
+  <div v-if="name">
+    <h2>{{ name }}</h2>
+  </div>
+
   <div v-if="stat">
-    <h2>{{ stat.fullName }}</h2>
     <!-- TOTAL  -->
 
     <p>TOTAL</p>
@@ -53,14 +56,18 @@ onMounted(() => {
   getStats();
 });
 
+const name = ref(null);
 const stat = ref(null);
 const id = ref("1283");
 const year = ref("2023");
 const month = ref("2");
 
+console.log(name);
+
 function getStats() {
   getData(year.value, month.value, id.value).then((res) => {
     stat.value = res.month.stat;
+    name.value = res.fullName;
   });
 }
 </script>
