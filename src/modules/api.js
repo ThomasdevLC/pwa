@@ -9,7 +9,6 @@ const getData = async (year, month, id) => {
     if (!response.data) {
       throw Error("Pas de données disponibles");
     }
-
     return response.data;
   } catch (error) {
     throw error;

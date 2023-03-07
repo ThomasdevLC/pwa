@@ -1,59 +1,61 @@
 <template>
-  <label>Vendeur:</label>
-  <input
-    v-model="id"
-    type="text"
-    @keydown.enter.prevent="handleRequest"
-    required
-  />
-
-  <select
-    id="month"
-    name="month"
-    v-model="selectedMonth"
-    @change="handleRequest"
-  >
-    <option v-for="(month, index) in months" :value="index" :key="index">
-      {{ month }}
-    </option>
-  </select>
-
-  <select id="year" name="year" v-model="selectedYear" @change="handleRequest">
-    <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
-  </select>
-  <div v-if="error">{{ error }}</div>
   <div v-if="name">
     <h2>{{ name }}</h2>
   </div>
 
-  <!-- TEST -->
-  <div>
-    <pre>{{ selectedMonth }}</pre>
-    <pre>{{ selectedYear }}</pre>
-    <pre>{{ id }}</pre>
+  <div class="search">
+    <input
+      v-model="id"
+      type="text"
+      @keydown.enter.prevent="handleRequest"
+      required
+    />
+
+    <select
+      id="month"
+      name="month"
+      v-model="selectedMonth"
+      @change="handleRequest"
+    >
+      <option v-for="(month, index) in months" :value="index" :key="index">
+        {{ month }}
+      </option>
+    </select>
+
+    <select
+      id="year"
+      name="year"
+      v-model="selectedYear"
+      @change="handleRequest"
+    >
+      <option v-for="year in years" :value="year" :key="year">
+        {{ year }}
+      </option>
+    </select>
+    <div v-if="error">{{ error }}</div>
   </div>
 
   <div v-if="stat">
     <!-- TOTAL  -->
 
-    <div class="numbers">
+    <!-- <div class="numbers">
       <div v-if="stat.nb_total">
         <h3>TOTAL</h3>
-        <p>{{ stat.nb_total }}</p>
+        <p>VN{{ stat.nb_total }}</p>
         <p>{{ stat.tx_pres_fm }} %</p>
         <p>{{ stat.tx_fm }} %</p>
         <p>{{ stat.tx_ce }} %</p>
       </div>
-    </div>
+    </div> -->
 
     <div class="numbers">
       <!-- VN  -->
       <div v-if="stat.nb_vn">
         <h3>VN</h3>
-        <p>{{ stat.nb_vn }}</p>
-        <p>{{ stat.tx_pres_fm_vn }} %</p>
-        <p>{{ stat.tx_fm_vn }} %</p>
-        <p>{{ stat.tx_ce_vn }} %</p>
+        <p>Total : {{ stat.nb_vn }}</p>
+        <p>Présentation FM : {{ stat.tx_pres_fm_vn }} %</p>
+        <p>Pénétration FM : {{ stat.tx_fm_vn }} %</p>
+        <p>Pénétration CE : {{ stat.tx_ce_vn }} %</p>
       </div>
     </div>
 
@@ -61,10 +63,10 @@
       <!-- VO  -->
       <div v-if="stat.nb_vo">
         <h3>VO</h3>
-        <p>{{ stat.nb_vo }}</p>
-        <p>{{ stat.tx_pres_fm_vo }} %</p>
-        <p>{{ stat.tx_fm_vo }} %</p>
-        <p>{{ stat.tx_ce_vo }} %</p>
+        <p>Total : {{ stat.nb_vo }}</p>
+        <p>Présentation FM :{{ stat.tx_pres_fm_vo }} %</p>
+        <p>Pénétration FM :{{ stat.tx_fm_vo }} %</p>
+        <p>Pénétration CE :{{ stat.tx_ce_vo }} %</p>
       </div>
     </div>
   </div>
@@ -106,6 +108,8 @@ const getStats = async () => {
     );
     name.value = res.fullName;
     stat.value = res.month.stat;
+    error.value = null;
+
     console.log("test home", res);
   } catch (err) {
     console.log("err home", err);
@@ -124,6 +128,21 @@ const handleRequest = async () => {
 </script>
 
 <style>
+.search {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: left;
+}
+input,
+select {
+  display: block;
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #eee;
+}
+
 .numbers {
   margin: 0 40px 30px;
   padding-bottom: 30px;
