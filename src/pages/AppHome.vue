@@ -1,6 +1,11 @@
 <template>
   <label>Vendeur:</label>
-  <input v-model="id" type="text" required />
+  <input
+    v-model="id"
+    type="text"
+    @keydown.enter.prevent="handleRequest"
+    required
+  />
 
   <select
     id="month"
@@ -65,7 +70,7 @@ import getData from "../modules/api";
 
 const name = ref(null);
 const stat = ref(null);
-const id = ref("1283");
+const id = ref("");
 const months = ref({
   1: "Janvier",
   2: "Février",
@@ -83,6 +88,7 @@ const months = ref({
 const selectedMonth = ref(new Date().getMonth());
 const years = ref(["2023", "2022", "2021", "2020"]);
 const selectedYear = ref(new Date().getFullYear());
+
 const error = ref(null);
 
 const getStats = async () => {
