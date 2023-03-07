@@ -65,7 +65,7 @@
 
 <script setup>
 import Chart from "chart.js/auto";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import getData from "../modules/api";
 
 const name = ref(null);
@@ -88,8 +88,12 @@ const months = ref({
 const selectedMonth = ref(new Date().getMonth());
 const years = ref(["2023", "2022", "2021", "2020"]);
 const selectedYear = ref(new Date().getFullYear());
-
 const error = ref(null);
+
+const chartVn = ref();
+
+console.log("chart", chartVn);
+console.log("stat", stat);
 
 const getStats = async () => {
   try {
@@ -100,9 +104,14 @@ const getStats = async () => {
     );
     name.value = res.fullName;
     stat.value = res.month.stat;
+    chartVn.value = [
+      res.month.stat.tx_pres_fm_vn,
+      res.month.stat.tx_fm_vn,
+      res.month.stat.tx_ce_vn,
+    ];
     error.value = null;
-
     console.log("test home", res);
+    return chartVn;
   } catch (err) {
     console.log("err home", err);
     error.value = err.message;
@@ -112,9 +121,7 @@ const getStats = async () => {
 
 onMounted(() => {
   getStats();
-});
 
-onMounted(() => {
   const ctx = document.getElementById("myChart");
   const myChart = new Chart(ctx, {
     type: "bar",
