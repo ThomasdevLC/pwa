@@ -37,29 +37,35 @@
     <!-- TOTAL  -->
 
     <div class="numbers">
-      <h3>TOTAL</h3>
-      <p>{{ stat.nb_total }}</p>
-      <p>{{ stat.tx_pres_fm }} %</p>
-      <p>{{ stat.tx_fm }} %</p>
-      <p>{{ stat.tx_ce }} %</p>
+      <div v-if="stat.nb_total">
+        <h3>TOTAL</h3>
+        <p>{{ stat.nb_total }}</p>
+        <p>{{ stat.tx_pres_fm }} %</p>
+        <p>{{ stat.tx_fm }} %</p>
+        <p>{{ stat.tx_ce }} %</p>
+      </div>
     </div>
 
     <div class="numbers">
       <!-- VN  -->
-      <h3>VN</h3>
-      <p>{{ stat.nb_vn }}</p>
-      <p>{{ stat.tx_pres_fm_vn }} %</p>
-      <p>{{ stat.tx_fm_vn }} %</p>
-      <p>{{ stat.tx_ce_vn }} %</p>
+      <div v-if="stat.nb_vn">
+        <h3>VN</h3>
+        <p>{{ stat.nb_vn }}</p>
+        <p>{{ stat.tx_pres_fm_vn }} %</p>
+        <p>{{ stat.tx_fm_vn }} %</p>
+        <p>{{ stat.tx_ce_vn }} %</p>
+      </div>
     </div>
 
     <div class="numbers">
       <!-- VO  -->
-      <h3>VO</h3>
-      <p>{{ stat.nb_vo }}</p>
-      <p>{{ stat.tx_pres_fm_vo }} %</p>
-      <p>{{ stat.tx_fm_vo }} %</p>
-      <p>{{ stat.tx_ce_vo }} %</p>
+      <div v-if="stat.nb_vo">
+        <h3>VO</h3>
+        <p>{{ stat.nb_vo }}</p>
+        <p>{{ stat.tx_pres_fm_vo }} %</p>
+        <p>{{ stat.tx_fm_vo }} %</p>
+        <p>{{ stat.tx_ce_vo }} %</p>
+      </div>
     </div>
   </div>
 </template>
@@ -108,9 +114,9 @@ const getStats = async () => {
   }
 };
 
-onMounted(() => {
-  getStats();
-});
+// onMounted(() => {
+//   getStats();
+// });
 
 const handleRequest = async () => {
   getStats();
