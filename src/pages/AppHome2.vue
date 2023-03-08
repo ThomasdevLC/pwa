@@ -41,26 +41,42 @@
       <div v-if="stat.nb_vn">
         <h3>VN</h3>
         <p>Total : {{ stat.nb_vn }}</p>
-        <table class="charts-css bar show-labels data-spacing-5">
+        <table
+          class="charts-css bar show-labels data-spacing-5 labels-align-start show-data-axes"
+        >
           <tbody>
             <tr>
-              <th scope="row">Prés FM :</th>
-              <td :style="'--size: calc(' + stat.tx_pres_fm_vn + '  / 100 )'">
-                <span class="data"> {{ stat.tx_pres_fm_vn }} %&nbsp </span>
+              <th scope="row">Pré FM :</th>
+              <td
+                :style="
+                  '--size: calc(' +
+                  stat.tx_pres_fm_vn +
+                  '  / 100 ); --color: orange;'
+                "
+              >
+                <span class="data"> {{ stat.tx_pres_fm_vn }} </span>
               </td>
             </tr>
             <tr>
-              <th scope="row">Péné FM :</th>
+              <th scope="row">Pén FM :</th>
 
-              <td :style="'--size: calc(' + stat.tx_fm_vn + ' / 100 )'">
-                {{ stat.tx_fm_vn }} %&nbsp
+              <td
+                :style="
+                  '--size: calc(' + stat.tx_fm_vn + ' / 100 ); --color: orange;'
+                "
+              >
+                <span class="data"> {{ stat.tx_fm_vn }} </span>
               </td>
             </tr>
             <tr>
-              <th scope="row">Péné CE:</th>
+              <th scope="row">Péné CE :</th>
 
-              <td :style="'--size: calc(' + stat.tx_ce_vn + ' / 100 )'">
-                {{ stat.tx_ce_vn }} %&nbsp
+              <td
+                :style="
+                  '--size: calc(' + stat.tx_ce_vn + ' / 100 ); --color: orange;'
+                "
+              >
+                <span class="data"> {{ stat.tx_ce_vn }} </span>
               </td>
             </tr>
           </tbody>
@@ -73,9 +89,50 @@
       <div v-if="stat.nb_vo">
         <h3>VO</h3>
         <p>Total : {{ stat.nb_vo }}</p>
-        <p>Présentation FM :{{ stat.tx_pres_fm_vo }} %</p>
-        <p>Pénétration FM :{{ stat.tx_fm_vo }} %</p>
-        <p>Pénétration CE :{{ stat.tx_ce_vo }} %</p>
+
+        <table
+          id="my-chart"
+          class="charts-css bar show-labels labels-align-start data-spacing-5 labels-align-start show-data-axes"
+        >
+          <tbody>
+            <tr>
+              <th class="title" scope="row">Prés FM %</th>
+              <td
+                :style="
+                  '--size: calc(' +
+                  stat.tx_pres_fm_vo +
+                  '  / 100 ); --color: orange; '
+                "
+              >
+                <span class="data"> {{ stat.tx_pres_fm_vo }} </span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Péné FM %</th>
+
+              <td
+                :style="
+                  '--size: calc(' + stat.tx_fm_vo + ' / 100 ); --color: orange;'
+                "
+              >
+                <span class="data"> {{ stat.tx_fm_vo }} </span>
+              </td>
+            </tr>
+            <tr>
+              <th class="title" scope="row">Péné CE %</th>
+
+              <td
+                :style="
+                  ';--size: calc(' +
+                  stat.tx_ce_vo +
+                  ' / 100 ); --color: orange ; '
+                "
+              >
+                <span class="data"> {{ stat.tx_ce_vo }} </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -140,6 +197,7 @@ const handleRequest = async () => {
   max-width: 480px;
   margin: 0 auto;
   text-align: left;
+  margin-bottom: 50px;
 }
 input,
 select {
@@ -152,9 +210,11 @@ select {
 }
 
 .numbers {
-  margin: 30px 30px;
+  padding: 30px 30px;
   padding-bottom: 30px;
   border-bottom: 1px dashed #e7e7e7;
+  max-width: 700px;
+  margin: auto;
 }
 .numbers h3 {
   display: inline-block;
@@ -177,10 +237,11 @@ select {
   transform: rotateZ(-1deg);
 }
 
-#labels-example-4.column {
-  height: 250px;
-  max-width: 500px;
-  margin: 0 auto;
-  --labels-size: 4rem;
+#my-chart.bar {
+  --labels-size: 100px;
+}
+
+.data {
+  padding: 0px 5px;
 }
 </style>
