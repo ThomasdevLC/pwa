@@ -41,22 +41,26 @@
       <div v-if="stat.nb_vn">
         <h3>VN</h3>
         <p>Total : {{ stat.nb_vn }}</p>
-        <table class="charts-css bar">
+        <table class="charts-css bar show-labels data-spacing-5">
           <tbody>
             <tr>
-              <th scope="column">2nd year</th>
-              <td :style="'--size: calc(' + stat.tx_pres_fm_vn + ' / 100 )'">
-                {{ stat.tx_pres_fm_vn }} %
+              <th scope="row">Prés FM :</th>
+              <td :style="'--size: calc(' + stat.tx_pres_fm_vn + '  / 100 )'">
+                <span class="data"> {{ stat.tx_pres_fm_vn }} %&nbsp </span>
               </td>
             </tr>
             <tr>
+              <th scope="row">Péné FM :</th>
+
               <td :style="'--size: calc(' + stat.tx_fm_vn + ' / 100 )'">
-                {{ stat.tx_fm_vn }} %
+                {{ stat.tx_fm_vn }} %&nbsp
               </td>
             </tr>
             <tr>
+              <th scope="row">Péné CE:</th>
+
               <td :style="'--size: calc(' + stat.tx_ce_vn + ' / 100 )'">
-                {{ stat.tx_ce_vn }} %
+                {{ stat.tx_ce_vn }} %&nbsp
               </td>
             </tr>
           </tbody>
@@ -84,7 +88,7 @@ import getData from "../modules/api";
 
 const name = ref(null);
 const stat = ref(null);
-const id = ref("1285");
+const id = ref("1283");
 const months = ref({
   1: "Janvier",
   2: "Février",
@@ -148,7 +152,7 @@ select {
 }
 
 .numbers {
-  margin: 0 40px 30px;
+  margin: 30px 30px;
   padding-bottom: 30px;
   border-bottom: 1px dashed #e7e7e7;
 }
@@ -171,5 +175,12 @@ select {
   padding-right: 130px;
   left: -30px;
   transform: rotateZ(-1deg);
+}
+
+#labels-example-4.column {
+  height: 250px;
+  max-width: 500px;
+  margin: 0 auto;
+  --labels-size: 4rem;
 }
 </style>
