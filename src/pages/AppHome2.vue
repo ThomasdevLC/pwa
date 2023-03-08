@@ -41,9 +41,26 @@
       <div v-if="stat.nb_vn">
         <h3>VN</h3>
         <p>Total : {{ stat.nb_vn }}</p>
-        <p>Présentation FM : {{ stat.tx_pres_fm_vn }} %</p>
-        <p>Pénétration FM : {{ stat.tx_fm_vn }} %</p>
-        <p>Pénétration CE : {{ stat.tx_ce_vn }} %</p>
+        <table class="charts-css bar">
+          <tbody>
+            <tr>
+              <th scope="column">2nd year</th>
+              <td :style="'--size: calc(' + stat.tx_pres_fm_vn + ' / 100 )'">
+                {{ stat.tx_pres_fm_vn }} %
+              </td>
+            </tr>
+            <tr>
+              <td :style="'--size: calc(' + stat.tx_fm_vn + ' / 100 )'">
+                {{ stat.tx_fm_vn }} %
+              </td>
+            </tr>
+            <tr>
+              <td :style="'--size: calc(' + stat.tx_ce_vn + ' / 100 )'">
+                {{ stat.tx_ce_vn }} %
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -61,7 +78,7 @@
 </template>
 
 <script setup>
-import Chart from "chart.js/auto";
+import "charts.css";
 import { ref, onMounted, computed } from "vue";
 import getData from "../modules/api";
 
@@ -86,7 +103,6 @@ const selectedMonth = ref(new Date().getMonth());
 const years = ref(["2023", "2022", "2021", "2020"]);
 const selectedYear = ref(new Date().getFullYear());
 const error = ref(null);
-const myChart = ref(null);
 
 const getStats = async () => {
   try {
