@@ -168,7 +168,7 @@ const months = ref({
   11: "Novembre",
   12: "Décembre",
 });
-const selectedMonth = ref(new Date().getMonth());
+const selectedMonth = ref(new Date().getMonth() + 1);
 const years = ref(["2023", "2022", "2021", "2020"]);
 const selectedYear = ref(new Date().getFullYear());
 const error = ref(null);
@@ -203,8 +203,6 @@ const percentageCalc = computed(() => {
   const percentage = Math.round((total.value / objectives.value) * 100);
   return Math.min(percentage, 100);
 });
-
-percentage.value = percentageCalc;
 
 percentage.value = percentageCalc;
 
