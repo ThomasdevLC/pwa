@@ -40,7 +40,15 @@
       <!-- VN  -->
       <div v-if="stat.nb_vn">
         <h3>VN</h3>
+
         <p>Total : {{ stat.nb_vn }}</p>
+        <div
+          class="pie animate no-round"
+          :style="{ '--p': percentage.value, '--c': 'orange' }"
+        >
+          {{ percentage.value }}%
+        </div>
+
         <table
           class="charts-css bar show-labels data-spacing-5 labels-align-start show-data-axes"
         >
@@ -143,9 +151,9 @@ import "charts.css";
 import { ref, onMounted, computed } from "vue";
 import getData from "../modules/api";
 
-const name = ref(null);
-const stat = ref(null);
+// infos id + date
 const id = ref("1283");
+const name = ref(null);
 const months = ref({
   1: "Janvier",
   2: "Février",
@@ -165,6 +173,12 @@ const years = ref(["2023", "2022", "2021", "2020"]);
 const selectedYear = ref(new Date().getFullYear());
 const error = ref(null);
 
+// infos stats
+const stat = ref(null);
+const total = ref(null);
+const objectives = ref(null);
+const percentage = ref(null);
+
 const getStats = async () => {
   try {
     const res = await getData(
@@ -174,6 +188,8 @@ const getStats = async () => {
     );
     name.value = res.fullName;
     stat.value = res.month.stat;
+    objectives.value = res.month.objectives.total;
+    total.value = res.month.stat.nb_vn;
     error.value = null;
     console.log("test home", res);
   } catch (err) {
@@ -182,6 +198,15 @@ const getStats = async () => {
     stat.value = null;
   }
 };
+
+const percentageCalc = computed(() => {
+  const percentage = Math.round((total.value / objectives.value) * 100);
+  return Math.min(percentage, 100);
+});
+
+percentage.value = percentageCalc;
+
+percentage.value = percentageCalc;
 
 onMounted(() => {
   getStats();
@@ -243,5 +268,71 @@ select {
 
 .data {
   padding: 0px 5px;
+}
+
+@property --p {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+.pie {
+  --p: 20;
+  --b: 22px;
+  --c: #ff8800;
+  --w: 150px;
+
+  width: var(--w);
+  aspect-ratio: 1;
+  position: relative;
+  display: inline-grid;
+  margin: 5px;
+  place-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.pie:before,
+.pie:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.pie:before {
+  inset: 0;
+  background: radial-gradient(farthest-side, var(--c) 98%, #0000) top/var(--b)
+      var(--b) no-repeat,
+    conic-gradient(var(--c) calc(var(--p) * 1%), #0000 0);
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    #0000 calc(99% - var(--b)),
+    #000 calc(100% - var(--b))
+  );
+  mask: radial-gradient(
+    farthest-side,
+    #0000 calc(99% - var(--b)),
+    #000 calc(100% - var(--b))
+  );
+}
+.pie:after {
+  inset: calc(50% - var(--b) / 2);
+  background: var(--c);
+  transform: rotate(calc(var(--p) * 3.6deg))
+    translateY(calc(50% - var(--w) / 2));
+}
+.animate {
+  animation: p 1s 0.5s both;
+}
+.no-round:before {
+  background-size: 0 0, auto;
+  border: 3px solid rgb(211, 198, 198);
+}
+.no-round:after {
+  content: none;
+}
+@keyframes p {
+  from {
+    --p: 0;
+  }
 }
 </style>
