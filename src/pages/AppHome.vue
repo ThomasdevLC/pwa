@@ -16,13 +16,6 @@
       />
 
       <select
-        id="month"
-        name="month"
-        v-model="selectedMonth"
-        @change="handleRequest"
-      ></select>
-
-      <select
         id="year"
         name="year"
         v-model="selectedYear"
