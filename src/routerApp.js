@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import AppHome from "./pages/AppHome.vue";
 import AppHome2 from "./pages/AppHome2.vue";
 import AppStat from "./pages/AppStat.vue";
 import AppPres from "./pages/AppPres.vue";
@@ -9,6 +10,11 @@ const routerApp = createRouter({
     {
       path: "/",
       name: "home",
+      component: AppHome,
+    },
+    {
+      path: "/2",
+      name: "home2",
       component: AppHome2,
     },
     {

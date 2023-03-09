@@ -3,7 +3,7 @@
 
   <div v-else>
     <div>
-      <h2>{{ data.fullName }} {{ data.typeToString }}</h2>
+      <h2>{{ data.fullName }} {{ data.typeToString }} Mensuel</h2>
       <h2>{{ data.storeToString }}</h2>
     </div>
 
@@ -39,7 +39,10 @@
       <div v-if="error">{{ error }}</div>
     </div>
 
-    <div v-if="stat">
+    <div class="numbers">
+      <!-- TOTAL  -->
+
+      <h3>TOTAL : {{ stat.nb_total }}</h3>
       <div class="radial">
         <div
           class="pie animate no-round"
@@ -48,111 +51,103 @@
           {{ percentage.value }}%
         </div>
       </div>
-      <div class="numbers">
-        <!-- VN  -->
-        <div v-if="stat.nb_vn">
-          <h3>VN : {{ stat.nb_vn }}</h3>
+      <!-- VN  -->
+      <div v-if="stat.nb_vn">
+        <h3>VN : {{ stat.nb_vn }}</h3>
 
-          <table
-            class="charts-css bar show-labels data-spacing-5 labels-align-start show-data-axes"
-          >
-            <tbody>
-              <tr>
-                <th scope="row">Pré FM :</th>
-                <td
-                  :style="
-                    '--size: calc(' +
-                    stat.tx_pres_fm_vn +
-                    '  / 100 ); --color: orange;'
-                  "
-                >
-                  <span class="data"> {{ stat.tx_pres_fm_vn }} </span>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Pén FM :</th>
+        <table
+          class="charts-css bar show-labels data-spacing-5 labels-align-start show-data-axes"
+        >
+          <tbody>
+            <tr>
+              <th scope="row">Pré FM :</th>
+              <td
+                :style="
+                  '--size: calc(' +
+                  stat.tx_pres_fm_vn +
+                  '  / 100 ); --color: orange;'
+                "
+              >
+                <span class="data"> {{ stat.tx_pres_fm_vn }} </span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Pén FM :</th>
 
-                <td
-                  :style="
-                    '--size: calc(' +
-                    stat.tx_fm_vn +
-                    ' / 100 ); --color: orange;'
-                  "
-                >
-                  <span class="data"> {{ stat.tx_fm_vn }} </span>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Péné CE :</th>
+              <td
+                :style="
+                  '--size: calc(' + stat.tx_fm_vn + ' / 100 ); --color: orange;'
+                "
+              >
+                <span class="data"> {{ stat.tx_fm_vn }} </span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Péné CE :</th>
 
-                <td
-                  :style="
-                    '--size: calc(' +
-                    stat.tx_ce_vn +
-                    ' / 100 ); --color: orange;'
-                  "
-                >
-                  <span class="data"> {{ stat.tx_ce_vn }} </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              <td
+                :style="
+                  '--size: calc(' + stat.tx_ce_vn + ' / 100 ); --color: orange;'
+                "
+              >
+                <span class="data"> {{ stat.tx_ce_vn }} </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-
-      <div class="numbers">
-        <!-- VO  -->
-        <div v-if="stat.nb_vo">
-          <h3>VO : {{ stat.nb_vo }}</h3>
-          <table
-            id="my-chart"
-            class="charts-css bar show-labels labels-align-start data-spacing-5 labels-align-start show-data-axes"
-          >
-            <tbody>
-              <tr>
-                <th class="title" scope="row">Prés FM %</th>
-                <td
-                  :style="
-                    '--size: calc(' +
-                    stat.tx_pres_fm_vo +
-                    '  / 100 ); --color: orange; '
-                  "
-                >
-                  <span class="data"> {{ stat.tx_pres_fm_vo }} </span>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Péné FM %</th>
-
-                <td
-                  :style="
-                    '--size: calc(' +
-                    stat.tx_fm_vo +
-                    ' / 100 ); --color: orange;'
-                  "
-                >
-                  <span class="data"> {{ stat.tx_fm_vo }} </span>
-                </td>
-              </tr>
-              <tr>
-                <th class="title" scope="row">Péné CE %</th>
-
-                <td
-                  :style="
-                    ';--size: calc(' +
-                    stat.tx_ce_vo +
-                    ' / 100 ); --color: orange ; '
-                  "
-                >
-                  <span class="data"> {{ stat.tx_ce_vo }} </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <pre> {{ data }}  </pre>
     </div>
+
+    <div class="numbers">
+      <!-- VO  -->
+      <div v-if="stat.nb_vo">
+        <h3>VO : {{ stat.nb_vo }}</h3>
+        <table
+          id="my-chart"
+          class="charts-css bar show-labels labels-align-start data-spacing-5 labels-align-start show-data-axes"
+        >
+          <tbody>
+            <tr>
+              <th class="title" scope="row">Prés FM %</th>
+              <td
+                :style="
+                  '--size: calc(' +
+                  stat.tx_pres_fm_vo +
+                  '  / 100 ); --color: orange; '
+                "
+              >
+                <span class="data"> {{ stat.tx_pres_fm_vo }} </span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Péné FM %</th>
+
+              <td
+                :style="
+                  '--size: calc(' + stat.tx_fm_vo + ' / 100 ); --color: orange;'
+                "
+              >
+                <span class="data"> {{ stat.tx_fm_vo }} </span>
+              </td>
+            </tr>
+            <tr>
+              <th class="title" scope="row">Péné CE %</th>
+
+              <td
+                :style="
+                  ';--size: calc(' +
+                  stat.tx_ce_vo +
+                  ' / 100 ); --color: orange ; '
+                "
+              >
+                <span class="data"> {{ stat.tx_ce_vo }} </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <pre> {{ data }}  </pre>
   </div>
 </template>
 
