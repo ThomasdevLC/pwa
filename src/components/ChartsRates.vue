@@ -35,4 +35,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#my-chart.bar {
+  --labels-size: 100px;
+}
+
+.data {
+  padding: 0px 5px;
+}
+</style>
