@@ -41,52 +41,12 @@
 
     <div class="numbers">
       <TotalCharts :total="stat.nb_total" :percentage="percentage.value" />
-
-      <!-- VN  -->
-      <div v-if="stat.nb_vn">
-        <h3>VN : {{ stat.nb_vn }}</h3>
-
-        <table
-          class="charts-css bar show-labels data-spacing-5 labels-align-start show-data-axes"
-        >
-          <tbody>
-            <tr>
-              <th scope="row">Pré FM :</th>
-              <td
-                :style="
-                  '--size: calc(' +
-                  stat.tx_pres_fm_vn +
-                  '  / 100 ); --color: orange;'
-                "
-              >
-                <span class="data"> {{ stat.tx_pres_fm_vn }} </span>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Pén FM :</th>
-
-              <td
-                :style="
-                  '--size: calc(' + stat.tx_fm_vn + ' / 100 ); --color: orange;'
-                "
-              >
-                <span class="data"> {{ stat.tx_fm_vn }} </span>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Péné CE :</th>
-
-              <td
-                :style="
-                  '--size: calc(' + stat.tx_ce_vn + ' / 100 ); --color: orange;'
-                "
-              >
-                <span class="data"> {{ stat.tx_ce_vn }} </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <VnCharts
+        :totalVn="stat.nb_vn"
+        :txPres="stat.tx_pres_fm_vn"
+        :txFm="stat.tx_fm_vn"
+        :txCe="stat.tx_ce_vn"
+      />
     </div>
 
     <div class="numbers">
@@ -148,9 +108,10 @@ import { ref, onMounted, computed } from "vue";
 import getData from "../modules/api";
 import TestBtn from "../components/TestBtn.vue";
 import TotalCharts from "../components/TotalCharts.vue";
+import VnCharts from "../components/VnCharts.vue";
 
 export default {
-  components: { TestBtn, TotalCharts },
+  components: { TestBtn, TotalCharts, VnCharts },
 
   setup() {
     // infos id + date
