@@ -1,7 +1,9 @@
 <template>
+  <button @click="$emit('someEvent', date)">click me</button>
+
   <div class="search">
     <input
-      v-model="id"
+      v-model="date.id"
       type="text"
       @keydown.enter.prevent="$emit('change', date)"
       required
@@ -10,7 +12,7 @@
     <select
       id="month"
       name="month"
-      v-model="selectedMonth"
+      v-model="date.month"
       @change="$emit('change', date)"
     >
       <option v-for="(month, index) in months" :value="index" :key="index">
@@ -21,7 +23,7 @@
     <select
       id="year"
       name="year"
-      v-model="selectedYear"
+      v-model="date.year"
       @change="$emit('change', date)"
     >
       <option v-for="year in years" :value="year" :key="year">
@@ -34,7 +36,7 @@
 <script>
 import { ref } from "vue";
 export default {
-  emits: ["change"],
+  emits: ["someEvent", "change"],
 
   setup() {
     const id = ref("1283");
@@ -52,10 +54,14 @@ export default {
       11: "Novembre",
       12: "Décembre",
     });
-    const selectedMonth = ref(new Date().getMonth() + 1);
     const years = ref(["2023", "2022", "2021", "2020"]);
-    const selectedYear = ref(new Date().getFullYear());
-    return { id, months, selectedMonth, years, selectedYear };
+
+    const date = ref({
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+      id: "1283",
+    });
+    return { id, months, years, date };
   },
 };
 </script>

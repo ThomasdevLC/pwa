@@ -39,7 +39,7 @@
       <div v-if="error">{{ error }}</div>
     </div>
 
-    <TimeSelector @change="getStats" />
+    <TimeSelector @someEvent="toto" @change="toto" />
 
     <div class="numbers">
       <ChartsTotal :total="stat.nb_total" :percentage="percentage.value" />
@@ -105,7 +105,26 @@ export default {
     const objectives = ref(null);
     const percentage = ref(null);
 
-    const getStats = async () => {
+    const toto = (date) => {
+      console.log("TOTO", date.year);
+      const res = getData(date.year, date.month, date.id)
+        .then((res) => {
+          console.log("TOTtataO", res);
+          data.value = res;
+          stat.value = res.month.stat;
+          objectives.value = res.month.objectives.total;
+          total.value = res.month.stat.nb_total;
+          error.value = null;
+        })
+        .catch((err) => {
+          console.log("err home", err);
+          error.value = err.message;
+          stat.value = null;
+        });
+    };
+
+    const getStats = async (date) => {
+      // console.log("DATE", date.year);
       try {
         const res = await getData(
           selectedYear.value,
@@ -155,6 +174,7 @@ export default {
       percentageCalc,
       getStats,
       handleRequest,
+      toto,
     };
   },
 };
