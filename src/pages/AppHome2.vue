@@ -48,58 +48,17 @@
         :txCe="stat.tx_ce_vn"
       />
     </div>
-
     <div class="numbers">
-      <!-- VO  -->
-      <div v-if="stat.nb_vo">
-        <h3>VO : {{ stat.nb_vo }}</h3>
-        <table
-          id="my-chart"
-          class="charts-css bar show-labels labels-align-start data-spacing-5 labels-align-start show-data-axes"
-        >
-          <tbody>
-            <tr>
-              <th class="title" scope="row">Prés FM %</th>
-              <td
-                :style="
-                  '--size: calc(' +
-                  stat.tx_pres_fm_vo +
-                  '  / 100 ); --color: orange; '
-                "
-              >
-                <span class="data"> {{ stat.tx_pres_fm_vo }} </span>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Péné FM %</th>
-
-              <td
-                :style="
-                  '--size: calc(' + stat.tx_fm_vo + ' / 100 ); --color: orange;'
-                "
-              >
-                <span class="data"> {{ stat.tx_fm_vo }} </span>
-              </td>
-            </tr>
-            <tr>
-              <th class="title" scope="row">Péné CE %</th>
-
-              <td
-                :style="
-                  ';--size: calc(' +
-                  stat.tx_ce_vo +
-                  ' / 100 ); --color: orange ; '
-                "
-              >
-                <span class="data"> {{ stat.tx_ce_vo }} </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <VoCharts
+        :totalVo="stat.nb_vo"
+        :txPres="stat.tx_pres_fm_vo"
+        :txFm="stat.tx_fm_vo"
+        :txCe="stat.tx_ce_vo"
+      />
     </div>
-    <pre> {{ data }}  </pre>
   </div>
+
+  <pre> {{ data }}  </pre>
 </template>
 
 <script>
@@ -109,9 +68,10 @@ import getData from "../modules/api";
 import TestBtn from "../components/TestBtn.vue";
 import TotalCharts from "../components/TotalCharts.vue";
 import VnCharts from "../components/VnCharts.vue";
+import VoCharts from "../components/VoCharts.vue";
 
 export default {
-  components: { TestBtn, TotalCharts, VnCharts },
+  components: { TestBtn, TotalCharts, VnCharts, VoCharts },
 
   setup() {
     // infos id + date
