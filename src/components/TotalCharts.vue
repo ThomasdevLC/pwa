@@ -1,20 +1,18 @@
 <template>
-  <div class="numbers">
-    <h3>TOTAL : {{ stat.nb_total }}</h3>
-    <div class="radial">
-      <div
-        class="pie animate no-round"
-        :style="{ '--p': percentage.value, '--c': 'orange' }"
-      >
-        {{ percentage.value }}%
-      </div>
+  <h3>TOTAL : {{ total }}</h3>
+  <div class="radial">
+    <div
+      class="pie animate no-round"
+      :style="{ '--p': percentage, '--c': 'orange' }"
+    >
+      {{ percentage }}%
     </div>
   </div>
 </template>
 
-<script setup>
+<script>
 export default {
-  props: ["playlists"],
+  props: ["total", "percentage"],
 };
 </script>
 

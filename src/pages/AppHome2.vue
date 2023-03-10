@@ -40,17 +40,8 @@
     </div>
 
     <div class="numbers">
-      <!-- TOTAL  -->
+      <TotalCharts :total="stat.nb_total" :percentage="percentage.value" />
 
-      <h3>TOTAL : {{ stat.nb_total }}</h3>
-      <div class="radial">
-        <div
-          class="pie animate no-round"
-          :style="{ '--p': percentage.value, '--c': 'orange' }"
-        >
-          {{ percentage.value }}%
-        </div>
-      </div>
       <!-- VN  -->
       <div v-if="stat.nb_vn">
         <h3>VN : {{ stat.nb_vn }}</h3>
@@ -151,72 +142,97 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import "charts.css";
 import { ref, onMounted, computed } from "vue";
 import getData from "../modules/api";
+import TestBtn from "../components/TestBtn.vue";
+import TotalCharts from "../components/TotalCharts.vue";
 
-// infos id + date
-const id = ref("1283");
-const data = ref(null);
-const months = ref({
-  1: "Janvier",
-  2: "Février",
-  3: "Mars",
-  4: "Avril",
-  5: "Mai",
-  6: "Juin",
-  7: "Juillet",
-  8: "Août",
-  9: "Septembre",
-  10: "Octobre",
-  11: "Novembre",
-  12: "Décembre",
-});
-const selectedMonth = ref(new Date().getMonth() + 1);
-const years = ref(["2023", "2022", "2021", "2020"]);
-const selectedYear = ref(new Date().getFullYear());
-const error = ref(null);
+export default {
+  components: { TestBtn, TotalCharts },
 
-// infos stats
-const stat = ref(null);
-const total = ref(null);
-const objectives = ref(null);
-const percentage = ref(null);
+  setup() {
+    // infos id + date
+    const id = ref("1283");
+    const data = ref(null);
+    const months = ref({
+      1: "Janvier",
+      2: "Février",
+      3: "Mars",
+      4: "Avril",
+      5: "Mai",
+      6: "Juin",
+      7: "Juillet",
+      8: "Août",
+      9: "Septembre",
+      10: "Octobre",
+      11: "Novembre",
+      12: "Décembre",
+    });
+    const selectedMonth = ref(new Date().getMonth() + 1);
+    const years = ref(["2023", "2022", "2021", "2020"]);
+    const selectedYear = ref(new Date().getFullYear());
+    const error = ref(null);
 
-const getStats = async () => {
-  try {
-    const res = await getData(
-      selectedYear.value,
-      selectedMonth.value,
-      id.value
-    );
-    data.value = res;
-    stat.value = res.month.stat;
-    objectives.value = res.month.objectives.total;
-    total.value = res.month.stat.nb_total;
-    error.value = null;
-    console.log("test home", res);
-  } catch (err) {
-    console.log("err home", err);
-    error.value = err.message;
-    stat.value = null;
-  }
-};
+    // infos stats
+    const stat = ref(null);
+    const total = ref(null);
+    const objectives = ref(null);
+    const percentage = ref(null);
 
-const percentageCalc = computed(() => {
-  const percentage = Math.round((total.value / objectives.value) * 100);
-  return Math.min(percentage, 100);
-});
+    const getStats = async () => {
+      try {
+        const res = await getData(
+          selectedYear.value,
+          selectedMonth.value,
+          id.value
+        );
+        data.value = res;
+        stat.value = res.month.stat;
+        objectives.value = res.month.objectives.total;
+        total.value = res.month.stat.nb_total;
+        error.value = null;
+        console.log("test home", res);
+      } catch (err) {
+        console.log("err home", err);
+        error.value = err.message;
+        stat.value = null;
+      }
+    };
 
-percentage.value = percentageCalc;
+    const percentageCalc = computed(() => {
+      const percentage = Math.round((total.value / objectives.value) * 100);
+      return Math.min(percentage, 100);
+    });
 
-onMounted(() => {
-  getStats();
-});
+    percentage.value = percentageCalc;
 
-const handleRequest = async () => {
-  getStats();
+    onMounted(() => {
+      getStats();
+    });
+
+    const handleRequest = async () => {
+      getStats();
+    };
+
+    return {
+      id,
+      data,
+      months,
+      selectedMonth,
+      years,
+      selectedYear,
+      error,
+      stat,
+      total,
+      objectives,
+      percentage,
+      percentageCalc,
+      getStats,
+      handleRequest,
+    };
+  },
 };
 </script>
 
