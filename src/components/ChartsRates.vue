@@ -1,5 +1,5 @@
 <template>
-  <h3>VO : {{ totalVo }}</h3>
+  <h3>{{ title }} : {{ total }}</h3>
   <table
     id="my-chart"
     class="charts-css bar show-labels labels-align-start data-spacing-5 labels-align-start show-data-axes"
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  props: ["totalVo", "txPres", "txFm", "txCe"],
+  props: ["title", "total", "txPres", "txFm", "txCe"],
 };
 </script>
 

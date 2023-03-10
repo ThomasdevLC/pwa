@@ -40,17 +40,19 @@
     </div>
 
     <div class="numbers">
-      <TotalCharts :total="stat.nb_total" :percentage="percentage.value" />
-      <VnCharts
-        :totalVn="stat.nb_vn"
+      <ChartsTotal :total="stat.nb_total" :percentage="percentage.value" />
+      <ChartsRates
+        title="VN"
+        :total="stat.nb_vn"
         :txPres="stat.tx_pres_fm_vn"
         :txFm="stat.tx_fm_vn"
         :txCe="stat.tx_ce_vn"
       />
     </div>
     <div class="numbers">
-      <VoCharts
-        :totalVo="stat.nb_vo"
+      <ChartsRates
+        title="VO"
+        :total="stat.nb_vo"
         :txPres="stat.tx_pres_fm_vo"
         :txFm="stat.tx_fm_vo"
         :txCe="stat.tx_ce_vo"
@@ -65,13 +67,12 @@
 import "charts.css";
 import { ref, onMounted, computed } from "vue";
 import getData from "../modules/api";
-import TestBtn from "../components/TestBtn.vue";
-import TotalCharts from "../components/TotalCharts.vue";
-import VnCharts from "../components/VnCharts.vue";
-import VoCharts from "../components/VoCharts.vue";
+import ChartsTotal from "../components/ChartsTotal.vue";
+import ChartsRates from "../components/ChartsRates.vue";
+// import TimeSelector from "../components/TimeSelector.vue";
 
 export default {
-  components: { TestBtn, TotalCharts, VnCharts, VoCharts },
+  components: { ChartsTotal, ChartsRates },
 
   setup() {
     // infos id + date
