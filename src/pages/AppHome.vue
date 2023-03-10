@@ -141,7 +141,6 @@ import getData from "../modules/api";
 // infos id + date
 const id = ref("1283");
 const data = ref(null);
-const yearStats = ref("year");
 const years = ref(["2023", "2022", "2021", "2020"]);
 const selectedYear = ref(new Date().getFullYear());
 const error = ref(null);
@@ -152,7 +151,7 @@ const total = ref(null);
 
 const getStats = async () => {
   try {
-    const res = await getData(selectedYear.value, yearStats.value, id.value);
+    const res = await getData(selectedYear.value, "year", id.value);
     data.value = res;
     stat.value = res.select.stat;
     console.log("stat", stat.value);
