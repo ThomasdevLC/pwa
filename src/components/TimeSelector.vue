@@ -1,6 +1,4 @@
 <template>
-  <button @click="$emit('someEvent', date)">click me</button>
-
   <div class="search">
     <input
       v-model="date.id"
@@ -34,9 +32,9 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 export default {
-  emits: ["someEvent", "change"],
+  emits: ["change"],
 
   setup() {
     const id = ref("1283");
@@ -54,6 +52,7 @@ export default {
       11: "Novembre",
       12: "Décembre",
     });
+
     const years = ref(["2023", "2022", "2021", "2020"]);
 
     const date = ref({
@@ -61,6 +60,9 @@ export default {
       month: new Date().getMonth() + 1,
       id: "1283",
     });
+
+    onMounted(() => {});
+
     return { id, months, years, date };
   },
 };

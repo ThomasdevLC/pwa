@@ -1,8 +1,10 @@
 <template>
-  <div v-if="!data">LOADER</div>
+  <div>
+    <TimeSelector @someEvent="toto" @change="toto" />
+  </div>
 
-  <div v-else>
-    <div>
+  <div v-if="data">
+    <!-- <div>
       <h2>{{ data.fullName }} {{ data.typeToString }} Mensuel</h2>
       <h2>{{ data.storeToString }}</h2>
     </div>
@@ -37,9 +39,7 @@
         </option>
       </select>
       <div v-if="error">{{ error }}</div>
-    </div>
-
-    <TimeSelector @someEvent="toto" @change="toto" />
+    </div> -->
 
     <div class="numbers">
       <ChartsTotal :total="stat.nb_total" :percentage="percentage.value" />
@@ -106,42 +106,22 @@ export default {
     const percentage = ref(null);
 
     const toto = (date) => {
-      console.log("TOTO", date.year);
-      const res = getData(date.year, date.month, date.id)
+      console.log("TOTO", date.month);
+      getData(date.year, date.month, date.id)
         .then((res) => {
-          console.log("TOTtataO", res);
+          console.log("RES TOTO", res);
           data.value = res;
           stat.value = res.month.stat;
           objectives.value = res.month.objectives.total;
           total.value = res.month.stat.nb_total;
           error.value = null;
         })
+
         .catch((err) => {
           console.log("err home", err);
           error.value = err.message;
           stat.value = null;
         });
-    };
-
-    const getStats = async (date) => {
-      // console.log("DATE", date.year);
-      try {
-        const res = await getData(
-          selectedYear.value,
-          selectedMonth.value,
-          id.value
-        );
-        data.value = res;
-        stat.value = res.month.stat;
-        objectives.value = res.month.objectives.total;
-        total.value = res.month.stat.nb_total;
-        error.value = null;
-        console.log("test home", res);
-      } catch (err) {
-        console.log("err home", err);
-        error.value = err.message;
-        stat.value = null;
-      }
     };
 
     const percentageCalc = computed(() => {
@@ -151,29 +131,18 @@ export default {
 
     percentage.value = percentageCalc;
 
-    onMounted(() => {
-      getStats();
-    });
-
-    const handleRequest = async () => {
-      getStats();
-    };
+    onMounted(() => {});
 
     return {
       id,
       data,
-      months,
-      selectedMonth,
-      years,
-      selectedYear,
       error,
       stat,
       total,
       objectives,
       percentage,
       percentageCalc,
-      getStats,
-      handleRequest,
+      // handleRequest,
       toto,
     };
   },
