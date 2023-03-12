@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#"></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -39,6 +39,13 @@ export default {
           title: "Home",
           name: "home",
           path: "/",
+          icon: "",
+          visible: true,
+        },
+        {
+          title: "Home2",
+          name: "home2",
+          path: "/2",
           icon: "",
           visible: true,
         },
