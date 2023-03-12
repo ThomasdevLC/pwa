@@ -1,9 +1,16 @@
 <template>
+  <div v-if="data">
+    <h2>{{ data.fullName }} {{ data.typeToString }} Mensuel</h2>
+    <h2>{{ data.storeToString }}</h2>
+  </div>
   <div>
     <TimeSelector @date-change="getStat" />
   </div>
 
   <div v-if="data">
+    <div v-if="yearStat === 'year'" class="numbers">
+      <h3>TOTAL : {{ stat.nb_total }}</h3>
+    </div>
     <div v-if="yearStat !== 'year'" class="numbers">
       <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
     </div>
