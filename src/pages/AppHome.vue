@@ -43,7 +43,7 @@
 
 <script>
 import "charts.css";
-import getData from "../modules/api";
+import { getData } from "../modules/api";
 import TimeSelector from "../components/TimeSelector.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
@@ -69,10 +69,8 @@ export default {
   },
   methods: {
     getStat(date) {
-      console.log(date);
       getData(date.year, date.month, date.id)
         .then((res) => {
-          console.log("RES TOTO", res);
           this.data = res;
           this.yearStat = date.month;
           date.month === "year"
