@@ -8,7 +8,6 @@
         <div
           class="rate-level"
           :style="{
-            width: txPres,
             transform: `scale(calc(${txPres}), 1)`,
             backgroundColor: '#ff8800',
           }"
@@ -22,7 +21,6 @@
         <div
           class="rate-level"
           :style="{
-            width: txFm,
             transform: `scale(calc(${txFm}), 1)`,
             backgroundColor: '#ff8800',
           }"
@@ -36,7 +34,6 @@
         <div
           class="rate-level"
           :style="{
-            width: txCe,
             transform: `scale(calc(${txCe}), 1)`,
             backgroundColor: '#ff8800',
           }"

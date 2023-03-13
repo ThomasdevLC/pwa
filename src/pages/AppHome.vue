@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import "charts.css";
 import { getData } from "../modules/api";
 import TimeSelector from "../components/TimeSelector.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";

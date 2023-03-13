@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button @click="increment">Count is: {{ count }}</button>
+    <!-- <div    class="test-select">
+<v-select :options="vendors"><v-select>
+    </div> -->
 
     <pre> vendeur {{ vendors }}</pre>
     <pre> stores {{ stores }}</pre>
@@ -18,12 +20,10 @@ export default {
 
   data() {
     return {
-      count: 0,
       vendors: null,
       stores: null,
       selectedVendor: null,
       selectedStore: null,
-      data: null,
       error: null,
     };
   },
@@ -56,3 +56,6 @@ export default {
   },
 };
 </script>
+<style>
+@import "vue-select/dist/vue-select.css";
+</style>
