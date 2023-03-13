@@ -10,6 +10,7 @@
           :style="{
             width: txPres,
             transform: `scale(calc(${txPres}), 1)`,
+            backgroundColor: '#ff8800',
           }"
         ></div>
       </div>
@@ -20,7 +21,11 @@
       <div class="rate">
         <div
           class="rate-level"
-          :style="{ width: txFm, transform: `scale(calc(${txFm}), 1)` }"
+          :style="{
+            width: txFm,
+            transform: `scale(calc(${txFm}), 1)`,
+            backgroundColor: '#ff8800',
+          }"
         ></div>
       </div>
     </div>
@@ -30,7 +35,11 @@
       <div class="rate">
         <div
           class="rate-level"
-          :style="{ width: txCe, transform: `scale(calc(${txCe}), 1)` }"
+          :style="{
+            width: txCe,
+            transform: `scale(calc(${txCe}), 1)`,
+            backgroundColor: '#ff8800',
+          }"
         ></div>
       </div>
     </div>
@@ -76,7 +85,6 @@ h3 {
 }
 
 .rate-level {
-  background: #ff8800;
   height: 12px;
   transform-origin: left;
   transition: all 0.6s ease-in-out;
