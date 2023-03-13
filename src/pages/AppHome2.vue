@@ -70,7 +70,7 @@ import "charts.css";
 import { ref, onMounted, computed } from "vue";
 import getData from "../modules/api";
 import ChartsTotal from "../components/ChartsTotal.vue";
-import ChartsRates from "../components/ChartsRates.vue";
+import ChartsRates from "../components/ChartsRates2.vue";
 import TimeSelector from "../components/TimeSelector.vue";
 
 export default {

@@ -6,6 +6,7 @@
   <div>
     <TimeSelector @date-change="getStat" />
   </div>
+  <div v-if="error">{{ error }}</div>
 
   <div v-if="data">
     <div v-if="yearStat === 'year'" class="numbers">
@@ -18,18 +19,18 @@
       <ChartsRates
         title="VN"
         :total="stat.nb_vn"
-        :txPres="stat.tx_pres_fm_vn"
-        :txFm="stat.tx_fm_vn"
-        :txCe="stat.tx_ce_vn"
+        :txPres="`${stat.tx_pres_fm_vn}%`"
+        :txFm="`${stat.tx_fm_vn}%`"
+        :txCe="`${stat.tx_ce_vn}%`"
       />
     </div>
     <div class="numbers">
       <ChartsRates
         title="VO"
         :total="stat.nb_vo"
-        :txPres="stat.tx_pres_fm_vo"
-        :txFm="stat.tx_fm_vo"
-        :txCe="stat.tx_ce_vo"
+        :txPres="`${stat.tx_pres_fm_vo}%`"
+        :txFm="`${stat.tx_fm_vo}%`"
+        :txCe="`${stat.tx_ce_vo}%`"
       />
     </div>
   </div>
@@ -85,7 +86,7 @@ export default {
         .catch((err) => {
           console.log("err home", err);
           this.error = err.message;
-          this.stat = null;
+          // this.stat = null;
         });
     },
   },
