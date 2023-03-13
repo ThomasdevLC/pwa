@@ -79,7 +79,7 @@ h3 {
   background: #ff8800;
   height: 12px;
   transform-origin: left;
-  transition: transform 285ms;
+  transition: all 0.6s ease-in-out;
   transform: scale(0, 1);
 }
 </style>
