@@ -9,11 +9,13 @@
   <div v-if="error">{{ error }}</div>
 
   <div v-if="data">
-    <div v-if="yearStat === 'year'" class="numbers">
-      <h3>TOTAL : {{ stat.nb_total }}</h3>
-    </div>
-    <div v-if="yearStat !== 'year'" class="numbers">
-      <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
+    <div class="total">
+      <div v-if="yearStat === 'year'" class="numbers">
+        <h3>TOTAL : {{ stat.nb_total }}</h3>
+      </div>
+      <div v-if="yearStat !== 'year'" class="numbers">
+        <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
+      </div>
     </div>
     <div class="numbers">
       <ChartsRates
@@ -75,7 +77,9 @@ export default {
           date.month === "year"
             ? (this.stat = res.select.stat)
             : (this.stat = res.month.stat);
-          this.objectives = res.month.objectives.total;
+          date.month === "year"
+            ? (this.objectives = null)
+            : (this.objectives = res.month.objectives.total);
           this.total = res.month.stat.nb_total;
           this.error = null;
           console.log(this.stat);
@@ -105,6 +109,11 @@ select {
   box-sizing: border-box;
   padding: 10px;
   border: 1px solid #eee;
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
 }
 
 .numbers {

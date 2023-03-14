@@ -7,7 +7,6 @@
       <div
         class="rate-level"
         :style="{
-          width: width,
           transform: `scale(calc(${scale}), 1)`,
           backgroundColor: '#ff8800',
         }"
@@ -18,21 +17,11 @@
 
 <script>
 export default {
-  props: ["name", "score", "width", "scale"],
+  props: ["name", "score", "scale"],
 };
 </script>
 
 <style>
-.center {
-  width: 100%;
-}
-
-h3 {
-  margin: 0;
-  padding: 0;
-  color: #333;
-}
-
 .rateBox {
   width: 100%;
   margin: 20px 0;
