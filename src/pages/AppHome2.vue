@@ -3,7 +3,7 @@
     <input
       v-model="userId"
       type="text"
-      @keydown.enter.prevent="getUser(userId)"
+      @keydown.enter="getUser(userId)"
       required
     />
 
@@ -13,7 +13,7 @@
       :options="stores"
       label="store_name"
       :reduce="(v) => v.store_id"
-      :clearable="false"
+      :clearable="true"
       @update:modelValue="storesChange"
     />
 
@@ -23,7 +23,7 @@
       :options="vendorsList"
       label="fullName"
       :reduce="(v) => v.id"
-      :clearable="false"
+      :clearable="true"
     />
 
     <pre> vendeur SELECTIONNE {{ selectedVendor }}</pre>
@@ -63,19 +63,9 @@ export default {
     };
   },
 
-  computed: {
-    matchingStores() {
-      return this.stores.filter(
-        (store) => this.user.stores.includes(store.store_id),
-        console.log(this.stores.store_name)
-      );
-    },
-  },
-
   watch: {
     user(val) {
       console.log("WATCH", val);
-
       this.stores = [...this.stores].filter((store) =>
         this.user.stores.includes(store.store_id)
       );
@@ -83,8 +73,9 @@ export default {
 
     selectedStore(val) {
       console.log("WATCH", val);
-
-      this.vendorsList = [...this.vendors];
+      this.vendorsList = [...this.vendors].filter(
+        (vendor) => this.stores.store_id === vendor.store
+      );
     },
   },
 
@@ -113,8 +104,8 @@ export default {
         });
     },
 
-    getUser(id) {
-      userApi(id)
+    getUser(userId) {
+      userApi(userId)
         .then((res) => {
           console.log(" userApi res", res);
           this.user = res;
