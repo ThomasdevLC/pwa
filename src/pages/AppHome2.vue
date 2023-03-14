@@ -74,7 +74,7 @@ export default {
     selectedStore(val) {
       console.log("WATCH", val);
       this.vendorsList = [...this.vendors].filter(
-        (vendor) => this.stores.store_id === vendor.store
+        (vendors) => this.selectedStore === vendors.store
       );
     },
   },
