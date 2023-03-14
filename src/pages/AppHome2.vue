@@ -19,16 +19,18 @@
       :clearable="false"
     />
 
+    <pre>user : {{ user }}</pre>
+
     <pre> vendeur SELECTIONNE {{ selectedVendor }}</pre>
     <pre> store SELECTIONNE {{ selectedStore }}</pre>
-    <pre> stores {{ stores }}</pre>
-    <pre> stores {{ stores }}</pre>
+    <!-- <pre> stores {{ stores }}</pre> -->
+    <!-- <pre> stores {{ stores }}</pre> -->
   </div>
 </template>
 
 <script>
 import vSelect from "vue-select";
-import { vendorsApi, storesApi } from "../modules/api";
+import { vendorsApi, storesApi, userApi } from "../modules/api";
 
 export default {
   components: { vSelect },
@@ -36,10 +38,14 @@ export default {
   mounted() {
     this.getVendors();
     this.getStores();
+    userApi().then((res) => {
+      this.user = res;
+    });
   },
 
   data() {
     return {
+      user: null,
       vendors: null,
       stores: null,
       selectedVendor: null,

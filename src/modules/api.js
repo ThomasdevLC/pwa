@@ -39,4 +39,18 @@ const storesApi = async () => {
   }
 };
 
-export { getData, vendorsApi, storesApi };
+const userApi = async () => {
+  try {
+    const response = await axios.get(`https://test.gstat.fr/api/pwa/user/4`);
+    console.log("test api", response);
+
+    if (!response.data) {
+      throw Error("Pas de données disponibles");
+    }
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { getData, vendorsApi, storesApi, userApi };
