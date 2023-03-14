@@ -46,7 +46,7 @@ export default {
 .rate-level {
   height: 12px;
   transform-origin: left;
-  transition: all 0.6s ease-in-out;
+  transition: all 0.5s ease-in-out;
   transform: scale(0, 1);
 }
 </style>
