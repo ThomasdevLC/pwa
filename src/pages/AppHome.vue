@@ -9,11 +9,13 @@
   <div v-if="error">{{ error }}</div>
 
   <div v-if="data">
-    <div v-if="yearStat === 'year'" class="numbers">
-      <h3>TOTAL : {{ stat.nb_total }}</h3>
-    </div>
-    <div v-if="yearStat !== 'year'" class="numbers">
-      <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
+    <div class="total">
+      <div v-if="yearStat === 'year'" class="numbers">
+        <h3>TOTAL : {{ stat.nb_total }}</h3>
+      </div>
+      <div v-if="yearStat !== 'year'" class="numbers">
+        <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
+      </div>
     </div>
     <div class="numbers">
       <ChartsRates
@@ -42,8 +44,7 @@
 </template>
 
 <script>
-import "charts.css";
-import getData from "../modules/api";
+import { getData } from "../modules/api";
 import TimeSelector from "../components/TimeSelector.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
@@ -69,16 +70,16 @@ export default {
   },
   methods: {
     getStat(date) {
-      console.log(date);
       getData(date.year, date.month, date.id)
         .then((res) => {
-          console.log("RES TOTO", res);
           this.data = res;
           this.yearStat = date.month;
           date.month === "year"
             ? (this.stat = res.select.stat)
             : (this.stat = res.month.stat);
-          this.objectives = res.month.objectives.total;
+          date.month === "year"
+            ? (this.objectives = null)
+            : (this.objectives = res.month.objectives.total);
           this.total = res.month.stat.nb_total;
           this.error = null;
           console.log(this.stat);
@@ -108,6 +109,11 @@ select {
   box-sizing: border-box;
   padding: 10px;
   border: 1px solid #eee;
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
 }
 
 .numbers {
