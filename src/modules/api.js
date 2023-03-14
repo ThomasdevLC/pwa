@@ -18,7 +18,6 @@ const getData = async (year, month, id) => {
 const vendorsApi = async () => {
   try {
     const response = await axios.get(`https://test.gstat.fr/api/pwa/vendors`);
-    console.log("vendors api", response);
     if (!response.data) {
       throw Error("Pas de données disponibles");
     }
@@ -31,7 +30,6 @@ const vendorsApi = async () => {
 const storesApi = async () => {
   try {
     const response = await axios.get(`https://test.gstat.fr/api/pwa/stores`);
-    console.log("stores api", response);
     if (!response.data) {
       throw Error("Pas de données disponibles");
     }

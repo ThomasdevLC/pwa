@@ -1,8 +1,6 @@
 <template>
   <div>
-    <!-- <div    class="test-select">
-<v-select :options="vendors"><v-select>
-    </div> -->
+    <vSelect :options="['Canada', 'USA', 'Poland']" />
 
     <pre> vendeur {{ vendors }}</pre>
     <pre> stores {{ stores }}</pre>
@@ -10,9 +8,12 @@
 </template>
 
 <script>
+import vSelect from "vue-select";
 import { vendorsApi, storesApi } from "../modules/api";
 
 export default {
+  components: { vSelect },
+
   mounted() {
     this.getVendors();
     this.getStores();
