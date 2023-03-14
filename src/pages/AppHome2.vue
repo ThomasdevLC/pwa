@@ -1,5 +1,12 @@
 <template>
   <div>
+    <input
+      v-model="userId"
+      type="text"
+      @keydown.enter.prevent="getUser(userId)"
+      required
+    />
+
     <vSelect
       v-if="stores"
       v-model="selectedStore"
@@ -19,12 +26,14 @@
       :clearable="false"
     />
 
-    <pre>user : {{ user }}</pre>
-
     <pre> vendeur SELECTIONNE {{ selectedVendor }}</pre>
     <pre> store SELECTIONNE {{ selectedStore }}</pre>
-    <!-- <pre> stores {{ stores }}</pre> -->
-    <!-- <pre> stores {{ stores }}</pre> -->
+    <div class="prediv">
+      <pre>user : {{ user }}</pre>
+
+      <pre> stores {{ stores }}</pre>
+      <pre> vendors {{ vendors }}</pre>
+    </div>
   </div>
 </template>
 
@@ -38,13 +47,12 @@ export default {
   mounted() {
     this.getVendors();
     this.getStores();
-    userApi().then((res) => {
-      this.user = res;
-    });
+    this.getUser();
   },
 
   data() {
     return {
+      userId: "",
       user: null,
       vendors: null,
       stores: null,
@@ -55,9 +63,27 @@ export default {
     };
   },
 
+  computed: {
+    matchingStores() {
+      return this.stores.filter(
+        (store) => this.user.stores.includes(store.store_id),
+        console.log(this.stores.store_name)
+      );
+    },
+  },
+
   watch: {
+    user(val) {
+      console.log("WATCH", val);
+
+      this.stores = [...this.stores].filter((store) =>
+        this.user.stores.includes(store.store_id)
+      );
+    },
+
     selectedStore(val) {
       console.log("WATCH", val);
+
       this.vendorsList = [...this.vendors];
     },
   },
@@ -67,7 +93,6 @@ export default {
       vendorsApi()
         .then((res) => {
           console.log(" vendorsApi res", res);
-
           this.vendors = res;
         })
         .catch((err) => {
@@ -75,12 +100,26 @@ export default {
           this.error = err.message;
         });
     },
+
     getStores() {
       storesApi()
         .then((res) => {
           console.log(" storesApi res", res);
-
           this.stores = res;
+        })
+        .catch((err) => {
+          console.log("err home", err);
+          this.error = err.message;
+        });
+    },
+
+    getUser(id) {
+      userApi(id)
+        .then((res) => {
+          console.log(" userApi res", res);
+          this.user = res;
+
+          console.log(this.stores);
         })
         .catch((err) => {
           console.log("err home", err);
@@ -96,4 +135,8 @@ export default {
 </script>
 <style>
 @import "vue-select/dist/vue-select.css";
+
+.prediv {
+  display: flex;
+}
 </style>

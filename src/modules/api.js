@@ -39,9 +39,11 @@ const storesApi = async () => {
   }
 };
 
-const userApi = async () => {
+const userApi = async (id) => {
   try {
-    const response = await axios.get(`https://test.gstat.fr/api/pwa/user/4`);
+    const response = await axios.get(
+      `https://test.gstat.fr/api/pwa/user/${id}`
+    );
     console.log("test api", response);
 
     if (!response.data) {
