@@ -1,8 +1,27 @@
 <template>
   <div>
-    <vSelect :options="['Canada', 'USA', 'Poland']" />
+    <vSelect
+      v-if="stores"
+      v-model="selectedStore"
+      :options="stores"
+      label="store_name"
+      :reduce="(v) => v.store_id"
+      :clearable="false"
+      @update:modelValue="storesChange"
+    />
 
-    <pre> vendeur {{ vendors }}</pre>
+    <vSelect
+      v-if="vendorsList"
+      v-model="selectedVendor"
+      :options="vendorsList"
+      label="fullName"
+      :reduce="(v) => v.id"
+      :clearable="false"
+    />
+
+    <pre> vendeur SELECTIONNE {{ selectedVendor }}</pre>
+    <pre> store SELECTIONNE {{ selectedStore }}</pre>
+    <pre> stores {{ stores }}</pre>
     <pre> stores {{ stores }}</pre>
   </div>
 </template>
@@ -25,8 +44,16 @@ export default {
       stores: null,
       selectedVendor: null,
       selectedStore: null,
+      vendorsList: null,
       error: null,
     };
+  },
+
+  watch: {
+    selectedStore(val) {
+      console.log("WATCH", val);
+      this.vendorsList = [...this.vendors];
+    },
   },
 
   methods: {
@@ -53,6 +80,10 @@ export default {
           console.log("err home", err);
           this.error = err.message;
         });
+    },
+
+    storesChange() {
+      console.log(this.selectedStore);
     },
   },
 };
