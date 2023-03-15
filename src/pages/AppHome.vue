@@ -3,6 +3,10 @@
     <h2>{{ data.fullName }} {{ data.typeToString }} Mensuel</h2>
     <h2>{{ data.storeToString }}</h2>
   </div>
+
+  <div>
+    <StoreVendorSelector @id-change="getVendorId" />
+  </div>
   <div>
     <TimeSelector @date-change="getStat" />
   </div>
@@ -48,9 +52,10 @@ import { getData } from "../modules/api";
 import TimeSelector from "../components/TimeSelector.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
+import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 
 export default {
-  components: { TimeSelector, ChartsTotal, ChartsRates },
+  components: { TimeSelector, ChartsTotal, ChartsRates, StoreVendorSelector },
   mounted() {},
   data() {
     return {
@@ -60,6 +65,7 @@ export default {
       objectives: null,
       total: null,
       yearStat: null,
+      vendorId: null,
     };
   },
   computed: {
@@ -70,7 +76,9 @@ export default {
   },
   methods: {
     getStat(date) {
-      getData(date.year, date.month, date.id)
+      console.log("ID", this.vendorId);
+
+      getData(date.year, date.month, this.vendorId)
         .then((res) => {
           this.data = res;
           this.yearStat = date.month;
@@ -89,6 +97,11 @@ export default {
           this.error = err.message;
           // this.stat = null;
         });
+    },
+
+    getVendorId(selectedVendor) {
+      console.log("ID", selectedVendor);
+      this.vendorId = selectedVendor;
     },
   },
 };

@@ -30,11 +30,6 @@
 
     <pre> VENDEUR SELECTIONNE {{ selectedVendor }}</pre>
     <pre> STORE SELECTIONNE {{ selectedStore }}</pre>
-    <div class="prediv">
-      <pre>user : {{ user }}</pre>
-      <pre> stores {{ stores }}</pre>
-      <pre> vendorsList {{ vendorsList }}</pre>
-    </div>
   </div>
 </template>
 
@@ -49,6 +44,7 @@ export default {
     this.getVendors();
     this.getStores();
     this.getUser();
+    this.$emit("id-change", this.selectedVendor);
   },
 
   data() {
@@ -127,6 +123,7 @@ export default {
 
     idChange() {
       console.log(this.selectedVendor);
+      this.$emit("id-change", this.selectedVendor);
     },
   },
 };

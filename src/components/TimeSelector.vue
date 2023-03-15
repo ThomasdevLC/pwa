@@ -1,29 +1,19 @@
 <template>
   <div class="search">
     <input
-        v-model="date.id"
-        type="text"
-        @keydown.enter.prevent="changeDate"
-        required
+      v-model="date.id"
+      type="text"
+      @keydown.enter.prevent="changeDate"
+      required
     />
 
-    <select
-        id="month"
-        name="month"
-        v-model="date.month"
-        @change="changeDate"
-    >
+    <select id="month" name="month" v-model="date.month" @change="changeDate">
       <option v-for="(month, index) in months" :value="index" :key="index">
         {{ month }}
       </option>
     </select>
 
-    <select
-        id="year"
-        name="year"
-        v-model="date.year"
-        @change="changeDate"
-    >
+    <select id="year" name="year" v-model="date.year" @change="changeDate">
       <option v-for="year in years" :value="year" :key="year">
         {{ year }}
       </option>
@@ -34,12 +24,12 @@
 <script>
 export default {
   mounted() {
-    this.$emit('date-change', this.date)
+    // this.$emit("date-change", this.date);
   },
   data() {
     return {
       months: {
-        'year': "Annuel",
+        year: "Annuel",
         1: "Janvier",
         2: "Février",
         3: "Mars",
@@ -59,14 +49,12 @@ export default {
         month: new Date().getMonth() + 1,
         id: "1283",
       },
-    }
+    };
   },
   methods: {
     changeDate() {
-      this.$emit('date-change', this.date)
-    }
+      this.$emit("date-change", this.date);
+    },
   },
-}
+};
 </script>
-
-
