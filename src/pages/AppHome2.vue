@@ -5,6 +5,7 @@
       type="text"
       @keydown.enter="getUser(userId)"
       required
+      :clearable="true"
     />
 
     <vSelect
@@ -26,13 +27,13 @@
       :clearable="true"
     />
 
-    <pre> vendeur SELECTIONNE {{ selectedVendor }}</pre>
-    <pre> store SELECTIONNE {{ selectedStore }}</pre>
+    <pre> VENDEUR SELECTIONNE {{ selectedVendor }}</pre>
+    <pre> STORE SELECTIONNE {{ selectedStore }}</pre>
     <div class="prediv">
       <pre>user : {{ user }}</pre>
-
       <pre> stores {{ stores }}</pre>
-      <pre> vendors {{ vendors }}</pre>
+      <pre> vendorsList {{ vendorsList }}</pre>
+      <pre> vendor {{ singleVendor }}</pre>
     </div>
   </div>
 </template>
@@ -59,6 +60,7 @@ export default {
       selectedVendor: null,
       selectedStore: null,
       vendorsList: null,
+      singleVendor: null,
       error: null,
     };
   },
@@ -66,6 +68,7 @@ export default {
   watch: {
     user(val) {
       console.log("WATCH", val);
+
       this.stores = [...this.stores].filter((store) =>
         this.user.stores.includes(store.store_id)
       );
@@ -75,6 +78,13 @@ export default {
       console.log("WATCH", val);
       this.vendorsList = [...this.vendors].filter(
         (vendors) => this.selectedStore === vendors.store
+      );
+    },
+
+    selectedVendor(val) {
+      console.log("WATCH", val);
+      this.singleVendor = [...this.vendorsList].filter(
+        (vendor) => this.selectedVendor === vendor.id
       );
     },
   },
