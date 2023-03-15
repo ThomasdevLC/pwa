@@ -122,7 +122,6 @@ export default {
     },
 
     idChange() {
-      console.log(this.selectedVendor);
       this.$emit("id-change", this.selectedVendor);
     },
   },

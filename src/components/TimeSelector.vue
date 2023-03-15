@@ -1,12 +1,5 @@
 <template>
   <div class="search">
-    <input
-      v-model="date.id"
-      type="text"
-      @keydown.enter.prevent="changeDate"
-      required
-    />
-
     <select id="month" name="month" v-model="date.month" @change="changeDate">
       <option v-for="(month, index) in months" :value="index" :key="index">
         {{ month }}
@@ -24,7 +17,7 @@
 <script>
 export default {
   mounted() {
-    // this.$emit("date-change", this.date);
+    this.$emit("date-change", this.date);
   },
   data() {
     return {
@@ -47,7 +40,6 @@ export default {
       date: {
         year: new Date().getFullYear(),
         month: new Date().getMonth() + 1,
-        id: "1283",
       },
     };
   },

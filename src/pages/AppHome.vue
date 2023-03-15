@@ -77,7 +77,6 @@ export default {
   methods: {
     getStat(date) {
       console.log("ID", this.vendorId);
-
       getData(date.year, date.month, this.vendorId)
         .then((res) => {
           this.data = res;
@@ -102,6 +101,11 @@ export default {
     getVendorId(selectedVendor) {
       console.log("ID", selectedVendor);
       this.vendorId = selectedVendor;
+      let date = {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
+      };
+      this.getStat(date);
     },
   },
 };
