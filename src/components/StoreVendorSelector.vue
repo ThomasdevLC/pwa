@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div v-if="user">
+      <h3>Bonjour : {{ user.name }} {{ user.surname }}</h3>
+    </div>
+
     <input
       v-model="userId"
       type="text"
@@ -28,7 +32,9 @@
       @update:modelValue="idChange"
     />
 
-    <!-- <pre> VENDEUR SELECTIONNE {{ selectedVendor }}</pre>
+    <!-- <pre> user connecté {{ user }}</pre> -->
+    <!-- <pre> vendorsList {{ vendorsList }}</pre>
+    <pre> VENDEUR SELECTIONNE {{ selectedVendor }}</pre>
     <pre> STORE SELECTIONNE {{ selectedStore }}</pre> -->
   </div>
 </template>
@@ -61,25 +67,18 @@ export default {
   },
 
   watch: {
-    user(val) {
-      console.log("WATCH", val);
-
+    user(user) {
       this.stores = [...this.stores].filter((store) =>
-        this.user.stores.includes(store.store_id)
+        user.stores.includes(store.store_id)
       );
 
-      this.stores.length === 1
-        ? (this.selectedStore = this.stores[0])
-        : this.stores;
-    },
+      this.selectedStore = user.singleStore ? user.store : null;
+      this.storesChange();
 
-    selectedStore(val) {
-      console.log("WATCH", val);
-      this.vendorsList = [...this.vendors].filter(
-        (vendors) => this.selectedStore === vendors.store
-      );
-
-      this.selectedVendor = null;
+      if ((user.role = "Vendor")) {
+        this.selectedVendor = user.id;
+        this.idChange();
+      }
     },
   },
 
@@ -101,8 +100,6 @@ export default {
         .then((res) => {
           // console.log(" storesApi res", res);
           this.stores = res;
-
-          // ICI ON SELECTIONNE
         })
         .catch((err) => {
           console.log("err home", err);
@@ -123,7 +120,13 @@ export default {
     },
 
     storesChange() {
-      console.log(this.selectedStore);
+      console.log("storesChange", this.selectedStore);
+
+      this.vendorsList = [...this.vendors].filter(
+        (vendor) => this.selectedStore === vendor.store
+      );
+
+      this.selectedVendor = null;
     },
 
     idChange() {

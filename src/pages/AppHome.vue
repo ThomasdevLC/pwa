@@ -1,8 +1,8 @@
 <template>
-  <div v-if="data">
+  <!-- <div v-if="data">
     <h2>{{ data.fullName }} {{ data.typeToString }} Mensuel</h2>
     <h2>{{ data.storeToString }}</h2>
-  </div>
+  </div> -->
 
   <div>
     <StoreVendorSelector @id-change="getVendorId" />
@@ -42,9 +42,9 @@
   </div>
 
   <!-- TEST -->
-  <div>
+  <!-- <div>
     <pre> {{ data }}  </pre>
-  </div>
+  </div> -->
 </template>
 
 <script>
