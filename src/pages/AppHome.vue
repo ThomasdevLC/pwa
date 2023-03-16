@@ -21,7 +21,7 @@
         <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
       </div>
     </div>
-    <div class="numbers">
+    <div v-if="stat.nb_vn" class="numbers">
       <ChartsRates
         title="VN"
         :total="stat.nb_vn"
@@ -30,7 +30,7 @@
         :txCe="`${stat.tx_ce_vn}%`"
       />
     </div>
-    <div class="numbers">
+    <div v-if="stat.nb_vo" class="numbers">
       <ChartsRates
         title="VO"
         :total="stat.nb_vo"

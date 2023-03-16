@@ -28,8 +28,8 @@
       @update:modelValue="idChange"
     />
 
-    <pre> VENDEUR SELECTIONNE {{ selectedVendor }}</pre>
-    <pre> STORE SELECTIONNE {{ selectedStore }}</pre>
+    <!-- <pre> VENDEUR SELECTIONNE {{ selectedVendor }}</pre>
+    <pre> STORE SELECTIONNE {{ selectedStore }}</pre> -->
   </div>
 </template>
 
@@ -67,6 +67,10 @@ export default {
       this.stores = [...this.stores].filter((store) =>
         this.user.stores.includes(store.store_id)
       );
+
+      this.stores.length === 1
+        ? (this.selectedStore = this.stores[0])
+        : this.stores;
     },
 
     selectedStore(val) {
@@ -74,6 +78,7 @@ export default {
       this.vendorsList = [...this.vendors].filter(
         (vendors) => this.selectedStore === vendors.store
       );
+
       this.selectedVendor = null;
     },
   },
