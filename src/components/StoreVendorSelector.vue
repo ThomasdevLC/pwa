@@ -32,7 +32,6 @@
       @update:modelValue="idChange"
     />
 
-    <!-- <pre> user connecté {{ stores }}</pre> -->
     <!-- <pre> user connecté {{ user }}</pre> -->
     <!-- <pre> vendorsList {{ vendorsList }}</pre>
     <pre> VENDEUR SELECTIONNE {{ selectedVendor }}</pre>
