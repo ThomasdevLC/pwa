@@ -8,7 +8,7 @@
     <StoreVendorSelector @id-change="getVendorId" />
   </div>
   <div>
-    <TimeSelector @date-change="getStat" />
+    <TimeSelector2 @date-change="getStat" />
   </div>
   <div v-if="error">{{ error }}</div>
 
@@ -49,13 +49,13 @@
 
 <script>
 import { getData } from "../modules/api";
-import TimeSelector from "../components/TimeSelector.vue";
+import TimeSelector2 from "../components/TimeSelector2.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
 import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 
 export default {
-  components: { TimeSelector, ChartsTotal, ChartsRates, StoreVendorSelector },
+  components: { TimeSelector2, ChartsTotal, ChartsRates, StoreVendorSelector },
   mounted() {},
   data() {
     return {

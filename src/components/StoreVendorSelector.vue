@@ -32,6 +32,7 @@
       @update:modelValue="idChange"
     />
 
+    <!-- <pre> user connecté {{ stores }}</pre> -->
     <!-- <pre> user connecté {{ user }}</pre> -->
     <!-- <pre> vendorsList {{ vendorsList }}</pre>
     <pre> VENDEUR SELECTIONNE {{ selectedVendor }}</pre>
@@ -78,6 +79,8 @@ export default {
       if ((user.role = "Vendor")) {
         this.selectedVendor = user.id;
         this.idChange();
+      } else {
+        this.selectedVendor = null;
       }
     },
   },
@@ -135,7 +138,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 @import "vue-select/dist/vue-select.css";
 
 .prediv {
