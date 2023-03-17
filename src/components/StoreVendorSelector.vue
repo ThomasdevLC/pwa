@@ -142,6 +142,10 @@ export default {
 <style scoped>
 @import "vue-select/dist/vue-select.css";
 
+.vSelect {
+  cursor: pointer;
+}
+
 .prediv {
   display: flex;
 }

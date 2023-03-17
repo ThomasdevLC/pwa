@@ -42,13 +42,14 @@
   </div>
 
   <!-- TEST -->
-  <div>
+  <!-- <div>
     <pre> {{ data }}  </pre>
-  </div>
+  </div> -->
 </template>
 
 <script>
-import { getData } from "../modules/api";
+// import { getData } from "../modules/api";
+import fetchData from "../modules/api2";
 import TimeSelector2 from "../components/TimeSelector2.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
@@ -76,7 +77,7 @@ export default {
   },
   methods: {
     getStat(date) {
-      getData(date.year, date.month, this.vendorId)
+      fetchData("vendorStat", date.year, date.month, this.vendorId)
         .then((res) => {
           this.data = res;
           this.yearStat = date.month;
