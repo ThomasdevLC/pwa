@@ -22,6 +22,7 @@ import vSelect from "vue-select";
 
 export default {
   components: { vSelect },
+  emits: ["date-change"],
 
   mounted() {
     this.$emit("date-change", this.date);

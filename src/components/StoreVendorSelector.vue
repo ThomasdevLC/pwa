@@ -42,7 +42,8 @@
 
 <script>
 import vSelect from "vue-select";
-import { vendorsApi, storesApi, userApi } from "../modules/api";
+// import { vendorsApi, storesApi, userApi } from "../modules/api";
+import fetchData from "../modules/api3";
 
 export default {
   components: { vSelect },
@@ -88,7 +89,7 @@ export default {
 
   methods: {
     getVendors() {
-      vendorsApi()
+      fetchData("vendors")
         .then((res) => {
           // console.log(" vendorsApi res", res);
           this.vendors = res;
@@ -100,7 +101,7 @@ export default {
     },
 
     getStores() {
-      storesApi()
+      fetchData("stores")
         .then((res) => {
           // console.log(" storesApi res", res);
           this.stores = res;
@@ -112,7 +113,8 @@ export default {
     },
 
     getUser(userId) {
-      userApi(userId)
+      let data = [userId];
+      fetchData("user", data)
         .then((res) => {
           // console.log(" userApi res", res);
           this.user = res;
