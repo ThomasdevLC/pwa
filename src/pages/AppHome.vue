@@ -42,9 +42,9 @@
   </div>
 
   <!-- TEST -->
-  <!-- <div>
+  <div>
     <pre> {{ data }}  </pre>
-  </div> -->
+  </div>
 </template>
 
 <script>
@@ -86,9 +86,12 @@ export default {
           date.month === "year"
             ? (this.objectives = null)
             : (this.objectives = res.month.objectives.total);
-          this.total = res.month.stat.nb_total;
+
+          date.month === "year"
+            ? (this.total = null)
+            : (this.total = res.month.stat.nb_total);
+
           this.error = null;
-          console.log(this.stat);
         })
         .catch((err) => {
           console.log("err home", err);
