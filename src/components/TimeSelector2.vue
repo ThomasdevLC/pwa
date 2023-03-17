@@ -25,7 +25,7 @@ export default {
   emits: ["date-change"],
 
   mounted() {
-    this.$emit("date-change", this.date);
+    // this.$emit("date-change", this.date);
   },
   data() {
     return {
