@@ -76,7 +76,6 @@ export default {
   },
   methods: {
     getStat(date) {
-      console.log("ID", this.vendorId);
       getData(date.year, date.month, this.vendorId)
         .then((res) => {
           this.data = res;

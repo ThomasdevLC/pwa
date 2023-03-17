@@ -2,6 +2,7 @@
   <div>
     <div v-if="user">
       <h3>Bonjour : {{ user.name }} {{ user.surname }}</h3>
+      <h5>{{ user.role }}</h5>
     </div>
 
     <input
@@ -75,11 +76,12 @@ export default {
       this.selectedStore = user.singleStore ? user.store : null;
       this.storesChange();
 
-      if ((user.role = "Vendor")) {
+      if (user.role === "Vendor") {
         this.selectedVendor = user.id;
         this.idChange();
       } else {
         this.selectedVendor = null;
+        console.log("Vendor", this.selectedVendor);
       }
     },
   },
