@@ -1,20 +1,34 @@
 <template>
-  <vSelect
-    :options="months"
-    label="name"
-    :reduce="(v) => v.id"
-    :clearable="false"
-    v-model="date.month"
-    @update:modelValue="changeDate"
-  />
-  <vSelect
-    :options="years"
-    label="name"
-    :reduce="(v) => v.id"
-    :clearable="false"
-    v-model="date.year"
-    @update:modelValue="changeDate"
-  />
+  <div class="timeselect">
+    <div class="search__box">
+      <div class="search__box__icon">
+        <i class="fa-solid fa-calendar-days"></i>
+      </div>
+      <vSelect
+        class="search__box__select"
+        :options="months"
+        label="name"
+        :reduce="(v) => v.id"
+        :clearable="false"
+        v-model="date.month"
+        @update:modelValue="changeDate"
+      />
+    </div>
+    <div class="search__box">
+      <div class="search__box__icon">
+        <i class="fa-solid fa-calendar-days"></i>
+      </div>
+      <vSelect
+        class="search__box__select"
+        :options="years"
+        label="name"
+        :reduce="(v) => v.id"
+        :clearable="false"
+        v-model="date.year"
+        @update:modelValue="changeDate"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -66,6 +80,47 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 @import "vue-select/dist/vue-select.css";
+
+.timeselect {
+  display: flex;
+}
+
+.search__box {
+  display: flex;
+  &__select {
+    height: 32px;
+    width: 400px;
+    background: black;
+    border-radius: 0px 6px 6px 0px;
+    margin-bottom: 10px;
+  }
+  &__icon {
+    height: 32px;
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 6px 0 0 6px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.search__box__select {
+  --vs-controls-color: var(--gray);
+  --vs-search-input-bg: black;
+
+  --vs-dropdown-bg: black;
+  --vs-dropdown-color: var(--gray);
+  --vs-dropdown-option-color: var(--gray);
+
+  --vs-selected-bg: var(--purple);
+  --vs-selected-color: white;
+
+  --vs-search-input-color: white;
+
+  --vs-dropdown-option--active-bg: var(--purple);
+  --vs-dropdown-option--active-color: white;
+}
 </style>

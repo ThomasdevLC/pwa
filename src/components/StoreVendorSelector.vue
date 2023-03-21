@@ -23,7 +23,7 @@
       />
     </div>
 
-    <div class="search__box">
+    <div v-if="vendorsList" class="search__box">
       <div class="search__box__icon">
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
@@ -160,15 +160,15 @@ input {
 .search__box {
   display: flex;
   &__select {
+    height: 32px;
+    width: 100%;
     background: black;
     border-radius: 0px 6px 6px 0px;
     margin-bottom: 10px;
-    height: 32px;
-    width: 100%;
   }
   &__icon {
-    background: black;
     height: 32px;
+    background: black;
     color: white;
     padding: 10px;
     border-radius: 6px 0 0 6px;
@@ -179,23 +179,18 @@ input {
 
 .search__box__select {
   --vs-controls-color: var(--gray);
-  // --vs-border-color: var(--gray);
   --vs-search-input-bg: black;
 
-  --vs-border-width: 1px;
+  --vs-dropdown-bg: black;
+  --vs-dropdown-color: var(--gray);
+  --vs-dropdown-option-color: var(--gray);
 
-  --vs-dropdown-bg: #282c34;
-  --vs-dropdown-color: #cc99cd;
-  --vs-dropdown-option-color: #cc99cd;
-
-  --vs-selected-bg: #664cc3;
+  --vs-selected-bg: var(--purple);
   --vs-selected-color: white;
 
-  --vs-search-input-color: #eeeeee;
+  --vs-search-input-color: white;
 
-  --vs-dropdown-option--active-bg: #664cc3;
-  --vs-dropdown-option--active-color: #eeeeee;
-
-  --vs-border-radius: 6px;
+  --vs-dropdown-option--active-bg: var(--purple);
+  --vs-dropdown-option--active-color: white;
 }
 </style>
