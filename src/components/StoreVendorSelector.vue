@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="search">
     <input
       v-model="userId"
       type="text"
@@ -7,28 +7,37 @@
       required
       :clearable="true"
     />
+    <div class="search__box">
+      <div class="search__box__icon">
+        <i class="fa-solid fa-warehouse"></i>
+      </div>
+      <vSelect
+        class="search__box__select"
+        v-if="stores"
+        v-model="selectedStore"
+        :options="stores"
+        label="store_name"
+        :reduce="(v) => v.store_id"
+        placeholder="concession"
+        @update:modelValue="storesChange"
+      />
+    </div>
 
-    <vSelect
-      v-if="stores"
-      v-model="selectedStore"
-      :options="stores"
-      label="store_name"
-      :reduce="(v) => v.store_id"
-      :clearable="true"
-      placeholder="concession"
-      @update:modelValue="storesChange"
-    />
-
-    <vSelect
-      v-if="vendorsList"
-      v-model="selectedVendor"
-      :options="vendorsList"
-      label="fullName"
-      :reduce="(v) => v.id"
-      :clearable="true"
-      placeholder="vendeur"
-      @update:modelValue="idChange"
-    />
+    <div class="search__box">
+      <div class="search__box__icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <vSelect
+        class="search__box__select"
+        v-if="vendorsList"
+        v-model="selectedVendor"
+        :options="vendorsList"
+        label="fullName"
+        :reduce="(v) => v.id"
+        placeholder="vendeur"
+        @update:modelValue="idChange"
+      />
+    </div>
 
     <!-- <pre> user connecté {{ user }}</pre> -->
     <!-- <pre> vendorsList {{ vendorsList }}</pre>
@@ -138,10 +147,55 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 @import "vue-select/dist/vue-select.css";
 
-.prediv {
+input {
+  color: var(--gray);
+  background: var(--primary);
+  border: none;
+  outline: none;
+}
+
+.search__box {
   display: flex;
+  &__select {
+    background: black;
+    border-radius: 0px 6px 6px 0px;
+    margin-bottom: 10px;
+    height: 32px;
+    width: 100%;
+  }
+  &__icon {
+    background: black;
+    height: 32px;
+    color: white;
+    padding: 10px;
+    border-radius: 6px 0 0 6px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.search__box__select {
+  --vs-controls-color: var(--gray);
+  // --vs-border-color: var(--gray);
+  --vs-search-input-bg: black;
+
+  --vs-border-width: 1px;
+
+  --vs-dropdown-bg: #282c34;
+  --vs-dropdown-color: #cc99cd;
+  --vs-dropdown-option-color: #cc99cd;
+
+  --vs-selected-bg: #664cc3;
+  --vs-selected-color: white;
+
+  --vs-search-input-color: #eeeeee;
+
+  --vs-dropdown-option--active-bg: #664cc3;
+  --vs-dropdown-option--active-color: #eeeeee;
+
+  --vs-border-radius: 6px;
 }
 </style>

@@ -135,9 +135,9 @@ export default {
   margin: 0 auto;
   max-width: 1200px;
   padding: 20px;
+  background: var(--primary);
 
   &__user {
-    background: #eee;
     display: flex;
 
     &__image {
@@ -165,12 +165,6 @@ export default {
   }
 }
 
-.search {
-  max-width: 480px;
-  margin: 0 auto;
-  text-align: left;
-  margin-bottom: 50px;
-}
 input,
 select {
   display: block;
