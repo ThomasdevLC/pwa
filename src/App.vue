@@ -36,14 +36,14 @@ export default {
     routes() {
       return [
         {
-          title: "Home",
+          title: "Vendeurs",
           name: "home",
           path: "/",
           icon: "",
           visible: true,
         },
         {
-          title: "Home2",
+          title: "Concesssions",
           name: "home2",
           path: "/2",
           icon: "",

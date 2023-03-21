@@ -1,10 +1,5 @@
 <template>
   <div>
-    <div v-if="user">
-      <h3>Bonjour : {{ user.name }} {{ user.surname }}</h3>
-      <h5>{{ user.role }}</h5>
-    </div>
-
     <input
       v-model="userId"
       type="text"
@@ -59,7 +54,7 @@ export default {
 
   data() {
     return {
-      userId: "",
+      userId: "1283",
       user: null,
       vendors: null,
       stores: null,

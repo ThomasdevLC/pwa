@@ -1,9 +1,18 @@
 <template>
-  <div class="container">
-    <!-- <div v-if="data">
-    <h2>{{ data.fullName }} {{ data.typeToString }} Mensuel</h2>
-    <h2>{{ data.storeToString }}</h2>
-  </div> -->
+  <div class="home">
+    <div v-if="data">
+      <div class="home__user">
+        <div v-for="image in images" :key="image">
+          <img class="home__user__image" :src="image" />
+        </div>
+        <div class="home__user__infos">
+          <p class="home__user__infos__name">Bonjour, {{ data.name }} <br /></p>
+          <p class="home__user__infos__store">
+            {{ data.storeToString }}
+          </p>
+        </div>
+      </div>
+    </div>
 
     <div>
       <StoreVendorSelector @id-change="getVendorId" />
@@ -45,8 +54,8 @@
 
     <!-- TEST -->
     <!-- <div>
-    <pre> {{ data }}  </pre>
-  </div> -->
+      <pre> {{ data }}  </pre>
+    </div> -->
   </div>
 </template>
 
@@ -58,6 +67,7 @@ import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsTotal2 from "../components/ChartsTotal2.vue";
 import ChartsRates from "../components/ChartsRates.vue";
 import StoreVendorSelector from "../components/StoreVendorSelector.vue";
+import Img1 from "../assets/photos/vendor.jpg";
 
 export default {
   components: { TimeSelector2, ChartsTotal, ChartsRates, StoreVendorSelector },
@@ -71,6 +81,7 @@ export default {
       total: null,
       yearStat: null,
       vendorId: null,
+      images: [Img1],
       currentDate: {
         year: new Date().getFullYear(),
         month: new Date().getMonth() + 1,
@@ -119,7 +130,41 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.home {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+
+  &__user {
+    background: #eee;
+    display: flex;
+
+    &__image {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--secondary);
+      padding: 2px;
+    }
+
+    &__infos {
+      padding: 5px 0 0 20px;
+
+      &__name {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      &__store {
+        font-size: 12px;
+        color: var(--gray);
+      }
+    }
+  }
+}
+
 .search {
   max-width: 480px;
   margin: 0 auto;
