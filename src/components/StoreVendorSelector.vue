@@ -20,6 +20,7 @@
       label="store_name"
       :reduce="(v) => v.store_id"
       :clearable="true"
+      placeholder="concession"
       @update:modelValue="storesChange"
     />
 
@@ -30,6 +31,7 @@
       label="fullName"
       :reduce="(v) => v.id"
       :clearable="true"
+      placeholder="vendeur"
       @update:modelValue="idChange"
     />
 
@@ -103,7 +105,7 @@ export default {
     getStores() {
       fetchData("stores")
         .then((res) => {
-          // console.log(" storesApi res", res);
+          console.log(" storesApi res", res);
           this.stores = res;
         })
         .catch((err) => {
@@ -143,10 +145,6 @@ export default {
 </script>
 <style scoped>
 @import "vue-select/dist/vue-select.css";
-
-.vSelect {
-  cursor: pointer;
-}
 
 .prediv {
   display: flex;

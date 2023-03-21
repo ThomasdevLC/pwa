@@ -1,50 +1,53 @@
 <template>
-  <!-- <div v-if="data">
+  <div class="container">
+    <!-- <div v-if="data">
     <h2>{{ data.fullName }} {{ data.typeToString }} Mensuel</h2>
     <h2>{{ data.storeToString }}</h2>
   </div> -->
 
-  <div>
-    <StoreVendorSelector @id-change="getVendorId" />
-  </div>
-  <div>
-    <TimeSelector2 @date-change="getStat" />
-  </div>
-  <div v-if="error">{{ error }}</div>
+    <div>
+      <StoreVendorSelector @id-change="getVendorId" />
+    </div>
+    <div>
+      <TimeSelector2 @date-change="getStat" :currentDate="currentDate" />
+    </div>
+    <div v-if="error">{{ error }}</div>
 
-  <div v-if="data">
-    <div class="total">
-      <div v-if="yearStat === 'year'" class="numbers">
-        <h3>TOTAL : {{ stat.nb_total }}</h3>
+    <div v-if="data">
+      <div class="total">
+        <div v-if="yearStat === 'year'" class="numbers">
+          <h3>TOTAL : {{ stat.nb_total }}</h3>
+        </div>
+        <div v-if="yearStat !== 'year'" class="numbers">
+          <!-- <ChartsTotal :total="stat.nb_total" :percentage="percentage" /> -->
+          <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
+        </div>
       </div>
-      <div v-if="yearStat !== 'year'" class="numbers">
-        <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
+      <div v-if="stat.nb_vn" class="numbers">
+        <ChartsRates
+          title="VN"
+          :total="stat.nb_vn"
+          :txPres="`${stat.tx_pres_fm_vn}%`"
+          :txFm="`${stat.tx_fm_vn}%`"
+          :txCe="`${stat.tx_ce_vn}%`"
+        />
+      </div>
+      <div v-if="stat.nb_vo" class="numbers">
+        <ChartsRates
+          title="VO"
+          :total="stat.nb_vo"
+          :txPres="`${stat.tx_pres_fm_vo}%`"
+          :txFm="`${stat.tx_fm_vo}%`"
+          :txCe="`${stat.tx_ce_vo}%`"
+        />
       </div>
     </div>
-    <div v-if="stat.nb_vn" class="numbers">
-      <ChartsRates
-        title="VN"
-        :total="stat.nb_vn"
-        :txPres="`${stat.tx_pres_fm_vn}%`"
-        :txFm="`${stat.tx_fm_vn}%`"
-        :txCe="`${stat.tx_ce_vn}%`"
-      />
-    </div>
-    <div v-if="stat.nb_vo" class="numbers">
-      <ChartsRates
-        title="VO"
-        :total="stat.nb_vo"
-        :txPres="`${stat.tx_pres_fm_vo}%`"
-        :txFm="`${stat.tx_fm_vo}%`"
-        :txCe="`${stat.tx_ce_vo}%`"
-      />
-    </div>
-  </div>
 
-  <!-- TEST -->
-  <!-- <div>
+    <!-- TEST -->
+    <!-- <div>
     <pre> {{ data }}  </pre>
   </div> -->
+  </div>
 </template>
 
 <script>
@@ -52,6 +55,7 @@
 import fetchData from "../modules/api3";
 import TimeSelector2 from "../components/TimeSelector2.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
+import ChartsTotal2 from "../components/ChartsTotal2.vue";
 import ChartsRates from "../components/ChartsRates.vue";
 import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 
@@ -67,6 +71,10 @@ export default {
       total: null,
       yearStat: null,
       vendorId: null,
+      currentDate: {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
+      },
     };
   },
   computed: {
@@ -105,11 +113,7 @@ export default {
     getVendorId(selectedVendor) {
       console.log("ID", selectedVendor);
       this.vendorId = selectedVendor;
-      let date = {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-      };
-      this.getStat(date);
+      this.getStat(this.currentDate);
     },
   },
 };

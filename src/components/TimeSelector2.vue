@@ -22,6 +22,7 @@ import vSelect from "vue-select";
 
 export default {
   components: { vSelect },
+  props: ["currentDate"],
   emits: ["date-change"],
 
   mounted() {

@@ -2,8 +2,8 @@
   <div class="center">
     <h3>{{ title }} : {{ total }}</h3>
     <ChartsBar name="Prés FM" :score="txPres" :scale="txPres" />
-    <ChartsBar name="Pén FM" :score="txFm" :scale="txFm" />
-    <ChartsBar name="Pén CE" :score="txCe" :scale="txCe" />
+    <ChartsBar name="FM" :score="txFm" :scale="txFm" />
+    <ChartsBar name="CE" :score="txCe" :scale="txCe" />
   </div>
 </template>
 
@@ -20,6 +20,8 @@ export default {
 <style>
 .center {
   width: 100%;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 h3 {
