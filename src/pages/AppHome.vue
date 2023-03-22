@@ -174,37 +174,4 @@ select {
   padding: 10px;
   border: 1px solid #eee;
 }
-
-.total {
-  display: flex;
-  flex-direction: row;
-}
-
-.numbers {
-  padding: 30px 30px;
-  padding-bottom: 30px;
-  border-bottom: 1px dashed #e7e7e7;
-  max-width: 700px;
-  margin: auto;
-}
-.numbers h3 {
-  display: inline-block;
-  position: relative;
-  font-size: 26px;
-  color: white;
-  margin-bottom: 10px;
-  width: 200px;
-}
-.numbers h3::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: #ff8800;
-  position: absolute;
-  z-index: -1;
-  padding-right: 130px;
-  left: -30px;
-  transform: rotateZ(-1deg);
-}
 </style>

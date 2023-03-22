@@ -1,11 +1,8 @@
 <template>
-  <h3>TOTAL : {{ total }}</h3>
+  <h3>Total : {{ total }}</h3>
   <div class="radial">
-    <div
-      class="pie animate no-round"
-      :style="{ '--p': percentage, '--c': 'orange' }"
-    >
-      {{ percentage }}%
+    <div class="pie animate no-round" :style="{ '--p': percentage }">
+      <p>{{ percentage }}%</p>
     </div>
   </div>
 </template>
@@ -17,10 +14,14 @@ export default {
 </script>
 
 <style>
+.radial {
+  display: flex;
+  justify-content: center;
+}
 .pie {
   --p: 20;
-  --b: 22px;
-  --c: #ff8800;
+  --b: 15px;
+  --c: var(--secondary);
   --w: 150px;
 
   width: var(--w);
