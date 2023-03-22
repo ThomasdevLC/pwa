@@ -1,17 +1,18 @@
 <template>
-  <div class="rateBox">
-    <p>{{ name }}</p>
-    <p>{{ score }}</p>
-
-    <div class="rate">
-      <div
-        class="rate-level"
-        :style="{
-          transform: `scale(calc(${scale}), 1)`,
-          backgroundColor: '#2bebc8',
-        }"
-      ></div>
+  <div class="bar">
+    <p class="bar__title">{{ name }}</p>
+    <div class="bar__container">
+      <div class="bar__container__rate">
+        <div
+          class="bar__container__level"
+          :style="{
+            transform: `scale(calc(${scale}), 1)`,
+            backgroundColor: `var(--secondary)`,
+          }"
+        ></div>
+      </div>
     </div>
+    <p class="bar__score">{{ score }}</p>
   </div>
 </template>
 
@@ -21,30 +22,31 @@ export default {
 };
 </script>
 
-<style>
-.rateBox {
-  width: 100%;
-  margin: 20px 0;
-}
-.rateBox p {
-  margin: 0 0 10px;
-  font-weight: 500;
-}
-.rateBox p:nth-child(2) {
-  float: right;
-  position: relative;
-  top: -35px;
-}
+<style scoped lang="scss">
+.bar {
+  &__title {
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+  &__score {
+    margin-left: auto;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
 
-.rate {
-  background: lightgray;
-}
+  &__container {
+    &__rate {
+      background: var(--gray);
+      border-radius: 0 6px 6px 0px;
+    }
 
-.rate-level {
-  height: 22px;
-  border-radius: 0 8px 8px 0px;
-  transform-origin: left;
-  transition: all 0.5s ease-in-out;
-  transform: scale(0, 1);
+    &__level {
+      height: 20px;
+      border-radius: 0 6px 6px 0px;
+      transform-origin: left;
+      transition: all 0.5s ease-in-out;
+      transform: scale(0, 1);
+    }
+  }
 }
 </style>

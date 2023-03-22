@@ -85,6 +85,7 @@ export default {
 
 .timeselect {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .search__box {

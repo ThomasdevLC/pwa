@@ -136,7 +136,7 @@ export default {
   max-width: 1200px;
   padding: 20px;
   background: var(--primary);
-
+  height: 100%;
   &__user {
     display: flex;
 

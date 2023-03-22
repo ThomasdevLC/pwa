@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="charts">
     <h3>{{ title }} : {{ total }}</h3>
     <ChartsBar name="Prés" :score="txPres" :scale="txPres" />
     <ChartsBar name="Fm" :score="txFm" :scale="txFm" />
@@ -17,4 +17,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.charts {
+  margin: 30px 0 30px 0;
+}
+</style>
