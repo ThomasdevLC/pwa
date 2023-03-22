@@ -27,7 +27,6 @@ export default {
   margin: 20px 0;
 }
 .rateBox p {
-  color: black;
   margin: 0 0 10px;
   font-weight: 500;
 }

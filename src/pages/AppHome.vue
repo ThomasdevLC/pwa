@@ -34,7 +34,7 @@
       </div>
       <div v-if="stat.nb_vn" class="numbers">
         <ChartsRates
-          title="VN"
+          title="Vn"
           :total="stat.nb_vn"
           :txPres="`${stat.tx_pres_fm_vn}%`"
           :txFm="`${stat.tx_fm_vn}%`"
@@ -43,7 +43,7 @@
       </div>
       <div v-if="stat.nb_vo" class="numbers">
         <ChartsRates
-          title="VO"
+          title="Vo"
           :total="stat.nb_vo"
           :txPres="`${stat.tx_pres_fm_vo}%`"
           :txFm="`${stat.tx_fm_vo}%`"

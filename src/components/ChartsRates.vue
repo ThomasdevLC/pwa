@@ -1,9 +1,9 @@
 <template>
-  <div class="center">
+  <div>
     <h3>{{ title }} : {{ total }}</h3>
-    <ChartsBar name="Prés FM" :score="txPres" :scale="txPres" />
-    <ChartsBar name="FM" :score="txFm" :scale="txFm" />
-    <ChartsBar name="CE" :score="txCe" :scale="txCe" />
+    <ChartsBar name="Prés" :score="txPres" :scale="txPres" />
+    <ChartsBar name="Fm" :score="txFm" :scale="txFm" />
+    <ChartsBar name="Ce" :score="txCe" :scale="txCe" />
   </div>
 </template>
 
@@ -17,16 +17,4 @@ export default {
 };
 </script>
 
-<style>
-.center {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-h3 {
-  margin: 0;
-  padding: 0;
-  color: #333;
-}
-</style>
+<style></style>
