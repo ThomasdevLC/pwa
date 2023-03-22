@@ -26,12 +26,12 @@ export default {
 .bar {
   &__title {
     font-weight: 400;
-    margin-bottom: 0;
+    line-height: 1;
   }
   &__score {
     margin-left: auto;
     font-weight: 400;
-    margin-bottom: 0;
+    line-height: 1;
   }
 
   &__container {

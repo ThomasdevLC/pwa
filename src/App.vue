@@ -81,11 +81,4 @@ export default {
 };
 </script>
 
-<style>
-body {
-  margin: 0 auto;
-  max-width: 1200px;
-  background: #1e1f22;
-  min-height: 100vh;
-}
-</style>
+<style></style>
