@@ -180,6 +180,7 @@ input {
 .search__box__select {
   --vs-controls-color: var(--gray);
   --vs-search-input-bg: black;
+  --vs-border-width: 0px;
 
   --vs-dropdown-bg: black;
   --vs-dropdown-color: var(--gray);
