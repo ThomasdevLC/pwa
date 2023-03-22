@@ -5,7 +5,7 @@
         <i class="fa-solid fa-calendar-days"></i>
       </div>
       <vSelect
-        class="search__box__select"
+        class="search__box__select search__box__select-month"
         :options="months"
         label="name"
         :reduce="(v) => v.id"
@@ -15,11 +15,11 @@
       />
     </div>
     <div class="search__box">
-      <div class="search__box__icon">
+      <!-- <div class="search__box__icon">
         <i class="fa-solid fa-calendar-days"></i>
-      </div>
+      </div> -->
       <vSelect
-        class="search__box__select"
+        class="search__box__select search__box__select-year"
         :options="years"
         label="name"
         :reduce="(v) => v.id"
@@ -89,11 +89,12 @@ export default {
 
 .search__box {
   display: flex;
+  width: 100%;
+
   &__select {
+    width: 100%;
     height: 32px;
-    width: 400px;
     background: black;
-    border-radius: 0px 6px 6px 0px;
     margin-bottom: 10px;
   }
   &__icon {
@@ -105,6 +106,13 @@ export default {
     display: flex;
     justify-content: center;
   }
+}
+
+.search__box__select-month {
+  border-radius: 0px;
+}
+.search__box__select-year {
+  border-radius: 0 6px 6px 0;
 }
 
 .search__box__select {
