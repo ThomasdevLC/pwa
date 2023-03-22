@@ -19,6 +19,6 @@ export default {
 
 <style>
 .charts {
-  margin: 30px 0 30px 0;
+  margin-top: 30px;
 }
 </style>

@@ -24,15 +24,15 @@
 
     <div v-if="data">
       <div class="total">
-        <div v-if="yearStat === 'year'" class="numbers">
+        <div v-if="yearStat === 'year'">
           <h3>TOTAL : {{ stat.nb_total }}</h3>
         </div>
-        <div v-if="yearStat !== 'year'" class="numbers">
+        <div v-if="yearStat !== 'year'">
           <!-- <ChartsTotal :total="stat.nb_total" :percentage="percentage" /> -->
           <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
         </div>
       </div>
-      <div v-if="stat.nb_vn" class="numbers">
+      <div v-if="stat.nb_vn">
         <ChartsRates
           title="Vn"
           :total="stat.nb_vn"
@@ -41,7 +41,9 @@
           :txCe="`${stat.tx_ce_vn}%`"
         />
       </div>
-      <div v-if="stat.nb_vo" class="numbers">
+
+      <div class="separator" v-if="stat.nb_vo"></div>
+      <div v-if="stat.nb_vo">
         <ChartsRates
           title="Vo"
           :total="stat.nb_vo"
@@ -136,7 +138,7 @@ export default {
   max-width: 1200px;
   padding: 20px;
   background: var(--primary);
-  height: 100%;
+  min-height: 100vh;
   &__user {
     display: flex;
 
@@ -165,13 +167,16 @@ export default {
   }
 }
 
-input,
-select {
+.separator {
+  border-bottom: 1px solid var(--gray);
+  width: 70%;
+  margin: 30px auto;
+}
+
+input {
   display: block;
   margin: 10px 0;
   width: 100%;
   box-sizing: border-box;
-  padding: 10px;
-  border: 1px solid #eee;
 }
 </style>
