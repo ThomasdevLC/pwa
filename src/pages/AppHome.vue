@@ -152,6 +152,7 @@ export default {
   min-height: 100vh;
   &__user {
     display: flex;
+    margin-bottom: 20px;
 
     &__image {
       width: 72px;

@@ -13,27 +13,29 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 ul {
   display: flex;
   justify-content: space-between;
   color: var(--gray);
-  margin: 30px 0 20px 0;
-  padding: 0;
+  margin: auto;
+  max-width: 350px;
 }
 
 li {
-  background: var(--gray-second);
   text-align: center;
-  min-width: 200px;
   border-radius: 6px;
-  height: 50px;
+  height: 45px;
+  min-width: 170px;
+  font-size: 20px;
   display: grid;
   place-items: center;
+  background: none;
 }
 
 li:hover {
   cursor: pointer;
   color: white;
+  background: var(--gray-second);
 }
 </style>

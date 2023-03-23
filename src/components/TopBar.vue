@@ -28,7 +28,7 @@ export default {
   margin-bottom: 20px;
 
   &__logo {
-    width: 30%;
+    height: 35px;
   }
   &__buttons {
     display: flex;
@@ -42,6 +42,7 @@ export default {
       border-radius: 6px;
       display: grid;
       place-items: center;
+      cursor: pointer;
     }
 
     &__connect {
@@ -53,6 +54,7 @@ export default {
       display: grid;
       place-items: center;
       margin-left: 20px;
+      cursor: pointer;
     }
   }
 }
