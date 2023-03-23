@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <TopBar />
     <div v-if="data">
       <div class="home__user">
         <div v-for="image in images" :key="image">
@@ -13,6 +14,7 @@
         </div>
       </div>
     </div>
+    <NavSection />
 
     <div>
       <StoreVendorSelector @id-change="getVendorId" />
@@ -25,7 +27,7 @@
     <div v-if="data">
       <div class="total">
         <div v-if="yearStat === 'year'">
-          <h3>TOTAL : {{ stat.nb_total }}</h3>
+          <h3>Total : {{ stat.nb_total }}</h3>
         </div>
         <div v-if="yearStat !== 'year'">
           <!-- <ChartsTotal :total="stat.nb_total" :percentage="percentage" /> -->
@@ -64,6 +66,8 @@
 <script>
 // import { getData } from "../modules/api";
 import fetchData from "../modules/api3";
+import TopBar from "../components/TopBar.vue";
+import NavSection from "../components/NavSection.vue";
 import TimeSelector2 from "../components/TimeSelector2.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsTotal2 from "../components/ChartsTotal2.vue";
@@ -72,7 +76,14 @@ import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 import Img1 from "../assets/photos/vendor.jpg";
 
 export default {
-  components: { TimeSelector2, ChartsTotal, ChartsRates, StoreVendorSelector },
+  components: {
+    TopBar,
+    NavSection,
+    StoreVendorSelector,
+    TimeSelector2,
+    ChartsTotal,
+    ChartsRates,
+  },
   mounted() {},
   data() {
     return {
