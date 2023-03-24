@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"></a>
         <button
@@ -15,16 +15,16 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <!-- LIST DES ITEMS -->
-            <li class="nav-item" v-for="route in routes" :key="route.title">
+          <ul class="navbar-nav"> -->
+    <!-- LIST DES ITEMS -->
+    <!-- <li class="nav-item" v-for="route in routes" :key="route.title">
               <a class="nav-link" @click="goto(route)">{{ route.title }}</a>
-            </li>
-            <!-- LIST DES ITEMS -->
-          </ul>
+            </li> -->
+    <!-- LIST DES ITEMS -->
+    <!-- </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
 
     <RouterView />
   </div>

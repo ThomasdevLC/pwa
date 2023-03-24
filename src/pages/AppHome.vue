@@ -30,7 +30,6 @@
           <h3>Total : {{ stat.nb_total }}</h3>
         </div>
         <div v-if="yearStat !== 'year'">
-          <!-- <ChartsTotal :total="stat.nb_total" :percentage="percentage" /> -->
           <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
         </div>
       </div>
@@ -70,7 +69,6 @@ import TopBar from "../components/TopBar.vue";
 import NavSection from "../components/NavSection.vue";
 import TimeSelector2 from "../components/TimeSelector2.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
-import ChartsTotal2 from "../components/ChartsTotal2.vue";
 import ChartsRates from "../components/ChartsRates.vue";
 import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 import Img1 from "../assets/photos/vendor.jpg";
