@@ -40,7 +40,7 @@ export default {
   emits: ["date-change"],
 
   mounted() {
-    // this.$emit("date-change", this.date);
+    this.$emit("date-change", this.date);
   },
   data() {
     return {
@@ -66,10 +66,7 @@ export default {
         { id: "2021", name: "2021" },
         { id: "2020", name: "2020" },
       ],
-      date: {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-      },
+      date: this.currentDate,
     };
   },
   methods: {
