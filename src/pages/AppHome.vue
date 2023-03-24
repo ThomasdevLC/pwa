@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <TopBar />
-    <div v-if="data">
+    <div v-if="SelectedUser">
       <UserInfos
         :name="SelectedUser.name"
         :store="SelectedUser.storeToString"

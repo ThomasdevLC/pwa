@@ -123,7 +123,6 @@ export default {
       let data = [userId];
       fetchData("user", data)
         .then((res) => {
-          // console.log(" userApi res", res);
           this.user = res;
           this.$emit("user-change", this.user);
           console.log("user-change", this.user);
