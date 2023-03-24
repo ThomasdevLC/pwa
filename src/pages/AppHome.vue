@@ -2,22 +2,18 @@
   <div class="home">
     <TopBar />
     <div v-if="data">
-      <div class="home__user">
-        <div v-for="image in images" :key="image">
-          <img class="home__user__image" :src="image" />
-        </div>
-        <div class="home__user__infos">
-          <p class="home__user__infos__name">Bonjour, {{ data.name }} <br /></p>
-          <p class="home__user__infos__store">
-            {{ data.storeToString }}
-          </p>
-        </div>
-      </div>
+      <UserInfos
+        :name="SelectedUser.name"
+        :store="SelectedUser.storeToString"
+      />
     </div>
     <NavSection />
 
     <div>
-      <StoreVendorSelector @id-change="getVendorId" />
+      <StoreVendorSelector
+        @id-change="getVendorId"
+        @user-change="getSelectedUser"
+      />
     </div>
     <div>
       <TimeSelector2 @date-change="getStat" :currentDate="currentDate" />
@@ -66,16 +62,18 @@
 // import { getData } from "../modules/api";
 import fetchData from "../modules/api3";
 import TopBar from "../components/TopBar.vue";
-import NavSection from "../components/NavSection.vue";
+import UserInfos from "../components/UserInfos.vue";
+import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 import TimeSelector2 from "../components/TimeSelector2.vue";
+import NavSection from "../components/NavSection.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
-import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 import Img1 from "../assets/photos/vendor.jpg";
 
 export default {
   components: {
     TopBar,
+    UserInfos,
     NavSection,
     StoreVendorSelector,
     TimeSelector2,
@@ -92,7 +90,8 @@ export default {
       total: null,
       yearStat: null,
       vendorId: null,
-      images: [Img1],
+      image: Img1,
+      SelectedUser: null,
       currentDate: {
         year: new Date().getFullYear(),
         month: new Date().getMonth() + 1,
@@ -132,6 +131,11 @@ export default {
         });
     },
 
+    getSelectedUser(user) {
+      this.SelectedUser = user;
+      console.log("SelectedUser", this.SelectedUser);
+    },
+
     getVendorId(selectedVendor) {
       console.log("ID", selectedVendor);
       this.vendorId = selectedVendor;
@@ -148,33 +152,6 @@ export default {
   padding: 20px;
   background: var(--primary);
   min-height: 100vh;
-  &__user {
-    display: flex;
-    margin-bottom: 20px;
-
-    &__image {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--secondary);
-      padding: 2px;
-    }
-
-    &__infos {
-      padding: 5px 0 0 20px;
-
-      &__name {
-        font-size: 16px;
-        margin: 0;
-      }
-
-      &__store {
-        font-size: 12px;
-        color: var(--gray);
-      }
-    }
-  }
 }
 
 .separator {

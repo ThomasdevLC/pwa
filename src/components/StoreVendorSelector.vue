@@ -58,6 +58,7 @@ export default {
     this.getVendors();
     this.getStores();
     this.getUser();
+    this.$emit("user-change", this.user);
     this.$emit("id-change", this.selectedVendor);
   },
 
@@ -109,7 +110,7 @@ export default {
     getStores() {
       fetchData("stores")
         .then((res) => {
-          console.log(" storesApi res", res);
+          // console.log(" storesApi res", res);
           this.stores = res;
         })
         .catch((err) => {
@@ -124,6 +125,8 @@ export default {
         .then((res) => {
           // console.log(" userApi res", res);
           this.user = res;
+          this.$emit("user-change", this.user);
+          console.log("user-change", this.user);
         })
         .catch((err) => {
           console.log("err home", err);
@@ -165,6 +168,7 @@ input {
     background: black;
     border-radius: 0px 6px 6px 0px;
     margin-bottom: 10px;
+    font-weight: 300;
   }
   &__icon {
     height: 32px;

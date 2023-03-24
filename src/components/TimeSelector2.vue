@@ -97,6 +97,7 @@ export default {
     height: 32px;
     background: black;
     margin-bottom: 10px;
+    font-weight: 300;
   }
   &__icon {
     height: 32px;
