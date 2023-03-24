@@ -19,6 +19,7 @@ ul {
   justify-content: space-between;
   color: var(--gray);
   margin: auto;
+  padding: 0;
   max-width: 350px;
 }
 

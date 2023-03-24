@@ -1,9 +1,9 @@
 <template>
-  <progress class="test" value="80" max="100" style="--progress: 80"></progress>
+  <progress class="test" value="80" max="100" style="--progress: 70"></progress>
 
   <div
     class="circle"
-    :style="{ backgroundImage: 'conic-gradient(#b5838d 85%, #ffcdb2 0)' }"
+    :style="{ backgroundImage: 'conic-gradient(#b5838d 8%, #ffcdb2 0)' }"
   >
     <div class="inner">48%</div>
   </div>
@@ -41,14 +41,14 @@ meter {
   right: 10px;
   bottom: 10px;
   left: 10px;
-  background: white;
+  background: var(--primary);
   border-radius: 50%;
-  color: black;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 25px;
+  font-weight: 400;
 }
 
 /*using a conical gradient to create the doughnut chart  */
@@ -58,7 +58,7 @@ meter {
   height: 150px;
   border-radius: 50%;
   --fill: calc(var(--progress) * 1%);
-  background: conic-gradient(CornflowerBlue var(--fill), lightgrey 0);
+  background: conic-gradient(var(--secondary) var(--fill), var(--gray) 0);
   transition: all 1s ease-in-out;
   animation: fill-progress 1s ease-in-out forwards;
 }
