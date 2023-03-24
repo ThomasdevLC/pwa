@@ -1,6 +1,9 @@
 <template>
   <div class="total">
-    <h3 class="total__title">Total : {{ total }}</h3>
+    <h3 class="total__title">
+      VENTES TOTALES <br />
+      <span style="font-weight: 700">{{ total }}</span>
+    </h3>
     <div class="total__radial">
       <progress
         class="total__radial__score"
@@ -21,7 +24,9 @@ export default {
 <style scoped lang="scss">
 .total {
   &__title {
-    margin-bottom: 10px;
+    margin: 20px 0 20px 0;
+    text-align: center;
+    font-weight: 300;
   }
   &__radial {
     display: grid;

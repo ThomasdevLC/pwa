@@ -23,7 +23,10 @@
     <div v-if="data && !error">
       <div class="total">
         <div v-if="yearStat === 'year'">
-          <h3>Total : {{ stat.nb_total }}</h3>
+          <h3>
+            VENTES TOTALES <br />
+            <span style="font-weight: 700"> {{ stat.nb_total }} </span>
+          </h3>
         </div>
         <div v-if="yearStat !== 'year'">
           <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
@@ -152,6 +155,13 @@ export default {
   padding: 20px;
   background: var(--primary);
   min-height: 100vh;
+}
+
+.total {
+  text-align: center;
+}
+.total h3 {
+  font-weight: 300;
 }
 
 .separator {

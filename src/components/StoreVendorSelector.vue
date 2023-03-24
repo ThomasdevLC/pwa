@@ -9,7 +9,8 @@
     />
     <div class="search__box">
       <div class="search__box__icon">
-        <i class="fa-solid fa-warehouse"></i>
+        <!-- <i class="fa-solid fa-warehouse"></i> -->
+        <img :src="image" />
       </div>
       <vSelect
         class="search__box__select"
@@ -50,6 +51,8 @@
 
 <script>
 import vSelect from "vue-select";
+import warehouse from "../assets/photos/warehouse.svg";
+
 // import { vendorsApi, storesApi, userApi } from "../modules/api";
 import fetchData from "../modules/api3";
 
@@ -74,6 +77,7 @@ export default {
       selectedStore: null,
       vendorsList: null,
       error: null,
+      image: warehouse,
     };
   },
 
@@ -177,6 +181,12 @@ input {
     color: white;
     padding: 10px;
     border-radius: 6px 0 0 6px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__icon img {
+    height: 19px;
     display: flex;
     justify-content: center;
   }
