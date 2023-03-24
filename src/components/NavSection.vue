@@ -37,6 +37,6 @@ li {
 li:hover {
   cursor: pointer;
   color: white;
-  background: var(--gray-second);
+  background: var(--gray);
 }
 </style>

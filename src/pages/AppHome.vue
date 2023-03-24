@@ -20,7 +20,7 @@
     </div>
     <div class="error" v-if="error">{{ error }}</div>
 
-    <div v-if="data">
+    <div v-if="data && !error">
       <div class="total">
         <div v-if="yearStat === 'year'">
           <h3>Total : {{ stat.nb_total }}</h3>
@@ -126,7 +126,7 @@ export default {
         })
         .catch((err) => {
           console.log("err home", err);
-          this.error = "Aucune donnée disponible";
+          this.error = "Aucune donnée disponible  ¯\_(ツ)_/¯ ";
           // this.stat = null;
         });
     },
