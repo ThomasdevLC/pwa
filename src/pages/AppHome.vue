@@ -16,7 +16,7 @@
       />
     </div>
     <div>
-      <TimeSelector2 @date-change="getStat" :currentDate="currentDate" />
+      <TimeSelector @date-change="getStat" :currentDate="currentDate" />
     </div>
     <div v-if="error">{{ error }}</div>
 
@@ -64,7 +64,7 @@ import fetchData from "../modules/api3";
 import TopBar from "../components/TopBar.vue";
 import UserInfos from "../components/UserInfos.vue";
 import StoreVendorSelector from "../components/StoreVendorSelector.vue";
-import TimeSelector2 from "../components/TimeSelector2.vue";
+import TimeSelector from "../components/TimeSelector.vue";
 import NavSection from "../components/NavSection.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
@@ -76,7 +76,7 @@ export default {
     UserInfos,
     NavSection,
     StoreVendorSelector,
-    TimeSelector2,
+    TimeSelector,
     ChartsTotal,
     ChartsRates,
   },
