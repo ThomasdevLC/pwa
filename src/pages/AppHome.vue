@@ -18,7 +18,7 @@
     <div>
       <TimeSelector @date-change="getStat" :currentDate="currentDate" />
     </div>
-    <div v-if="error">{{ error }}</div>
+    <div class="error" v-if="error">{{ error }}</div>
 
     <div v-if="data">
       <div class="total">
@@ -39,7 +39,7 @@
         />
       </div>
 
-      <div class="separator" v-if="stat.nb_vo"></div>
+      <div class="separator" v-if="stat.nb_vo && stat.nb_vn"></div>
       <div v-if="stat.nb_vo">
         <ChartsRates
           title="Vo"
@@ -126,7 +126,7 @@ export default {
         })
         .catch((err) => {
           console.log("err home", err);
-          this.error = err.message;
+          this.error = "Aucune donnée disponible";
           // this.stat = null;
         });
     },
@@ -148,7 +148,7 @@ export default {
 <style lang="scss">
 .home {
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 920px;
   padding: 20px;
   background: var(--primary);
   min-height: 100vh;

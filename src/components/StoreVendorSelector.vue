@@ -18,6 +18,7 @@
         :options="stores"
         label="store_name"
         :reduce="(v) => v.store_id"
+        :clearable="false"
         placeholder="concession"
         @update:modelValue="storesChange"
       />
@@ -35,6 +36,7 @@
         label="fullName"
         :reduce="(v) => v.id"
         placeholder="vendeur"
+        :clearable="false"
         @update:modelValue="idChange"
       />
     </div>
@@ -186,8 +188,8 @@ input {
   --vs-border-width: 0px;
 
   --vs-dropdown-bg: black;
-  --vs-dropdown-color: var(--gray);
-  --vs-dropdown-option-color: var(--gray);
+  --vs-dropdown-color: white;
+  --vs-dropdown-option-color: white;
 
   --vs-selected-bg: var(--purple);
   --vs-selected-color: white;

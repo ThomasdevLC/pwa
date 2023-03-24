@@ -84,6 +84,5 @@ export default {
 <style>
 body {
   background: var(--primary) !important;
-  width: 100%;
 }
 </style>
