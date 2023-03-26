@@ -14,9 +14,9 @@ export default defineConfig({
             registerType: 'autoUpdate',
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
             manifest: {
-                name: 'GSTAT-APV',
-                short_name: 'gstatApv',
-                description: 'Suivi après vente',
+                name: 'GSTAT',
+                short_name: 'gstat-mobile',
+                description: 'Suivi ventes groupe GCA',
                 theme_color: '#1e1f22',
                 background_color: "#1e1f22",
                 display: "standalone",
