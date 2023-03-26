@@ -17,8 +17,8 @@ export default defineConfig({
                 name: 'GSTAT-APV',
                 short_name: 'gstatApv',
                 description: 'Suivi après vente',
-                theme_color: '#ffffff',
-                background_color: "#ffffff",
+                theme_color: '#1e1f22',
+                background_color: "#1e1f22",
                 display: "standalone",
                 icons: [
                     {
