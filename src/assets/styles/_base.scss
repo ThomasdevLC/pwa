@@ -1,0 +1,50 @@
+body {
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0;
+  font-family: var(--font-family);
+}
+
+img {
+  max-width: 100%;
+}
+
+input {
+  font-family: var(--font-family);
+}
+
+::placeholder {
+  font-family: var(--font-family);
+}
+
+span {
+  font-family: var(--font-family);
+}
+
+p {
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
