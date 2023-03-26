@@ -1,11 +1,16 @@
 <template>
-  <h3>TOTAL : {{ total }}</h3>
-  <div class="radial">
-    <div
-      class="pie animate no-round"
-      :style="{ '--p': percentage, '--c': 'orange' }"
-    >
-      {{ percentage }}%
+  <div class="total">
+    <h3 class="total__title">
+      VENTES TOTALES <br />
+      <span style="font-weight: 700">{{ total }}</span>
+    </h3>
+    <div class="total__radial">
+      <progress
+        class="total__radial__score"
+        :value="percentage"
+        max="100"
+        :style="{ '--progress': percentage }"
+      ></progress>
     </div>
   </div>
 </template>
@@ -16,64 +21,69 @@ export default {
 };
 </script>
 
-<style>
-.pie {
-  --p: 20;
-  --b: 22px;
-  --c: #ff8800;
-  --w: 150px;
+<style scoped lang="scss">
+.total {
+  &__title {
+    margin: 20px 0 20px 0;
+    text-align: center;
+    font-weight: 300;
+  }
+  &__radial {
+    display: grid;
+    place-items: center;
 
-  width: var(--w);
-  aspect-ratio: 1;
-  position: relative;
-  display: inline-grid;
-  margin: 5px;
-  place-content: center;
-  font-size: 25px;
-  font-weight: bold;
-  font-family: sans-serif;
-}
-.pie:before,
-.pie:after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-}
-.pie:before {
-  inset: 0;
-  background: radial-gradient(farthest-side, var(--c) 98%, #0000) top/var(--b)
-      var(--b) no-repeat,
-    conic-gradient(var(--c) calc(var(--p) * 1%), #0000 0);
-  -webkit-mask: radial-gradient(
-    farthest-side,
-    #0000 calc(99% - var(--b)),
-    #000 calc(100% - var(--b))
-  );
-  mask: radial-gradient(
-    farthest-side,
-    #0000 calc(99% - var(--b)),
-    #000 calc(100% - var(--b))
-  );
-}
-.pie:after {
-  inset: calc(50% - var(--b) / 2);
-  background: var(--c);
-  transform: rotate(calc(var(--p) * 3.6deg))
-    translateY(calc(50% - var(--w) / 2));
-}
-.animate {
-  animation: p 1s 0.5s both;
-}
-.no-round:before {
-  background-size: 0 0, auto;
-  border: 3px solid rgb(211, 198, 198);
-}
-.no-round:after {
-  content: none;
-}
-@keyframes p {
-  from {
-    --p: 0;
+    &__score {
+      /* Reset the default appearance */
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    /*gets rid of all pseudo elements*/
+    ::-webkit-progress-inner-element,
+    ::-webkit-progress-bar,
+    ::-webkit-progress-value {
+      display: none;
+    }
+
+    ::-moz-progress-bar,
+    ::-moz-meter-bar {
+      background: transparent;
+    }
+
+    /* text score*/
+    &__score:after {
+      content: attr(value) "%";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      font-weight: 400;
+    }
+
+    /*using a conical gradient to create the doughnut chart  */
+    &__score {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      --fill: calc(var(--progress) * 1%);
+      background: conic-gradient(var(--secondary) var(--fill), var(--gray) 0);
+      transition: all 1s ease-in-out;
+      animation: fill-progress 1s ease-in-out forwards;
+    }
+    @keyframes fill-progress {
+      to {
+        --fill: calc(var(--progress) * 1%);
+      }
+    }
   }
 }
 </style>

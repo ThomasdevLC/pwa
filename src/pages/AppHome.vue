@@ -1,56 +1,88 @@
 <template>
-  <div v-if="data">
-    <h2>{{ data.fullName }} {{ data.typeToString }} Mensuel</h2>
-    <h2>{{ data.storeToString }}</h2>
-  </div>
-  <div>
-    <TimeSelector @date-change="getStat" />
-  </div>
-  <div v-if="error">{{ error }}</div>
-
-  <div v-if="data">
-    <div class="total">
-      <div v-if="yearStat === 'year'" class="numbers">
-        <h3>TOTAL : {{ stat.nb_total }}</h3>
-      </div>
-      <div v-if="yearStat !== 'year'" class="numbers">
-        <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
-      </div>
-    </div>
-    <div class="numbers">
-      <ChartsRates
-        title="VN"
-        :total="stat.nb_vn"
-        :txPres="`${stat.tx_pres_fm_vn}%`"
-        :txFm="`${stat.tx_fm_vn}%`"
-        :txCe="`${stat.tx_ce_vn}%`"
+  <div class="home">
+    <TopBar />
+    <div v-if="SelectedUser">
+      <UserInfos
+        :name="SelectedUser.name"
+        :store="SelectedUser.storeToString"
       />
     </div>
-    <div class="numbers">
-      <ChartsRates
-        title="VO"
-        :total="stat.nb_vo"
-        :txPres="`${stat.tx_pres_fm_vo}%`"
-        :txFm="`${stat.tx_fm_vo}%`"
-        :txCe="`${stat.tx_ce_vo}%`"
+    <NavSection />
+
+    <div>
+      <StoreVendorSelector
+        @id-change="getVendorId"
+        @user-change="getSelectedUser"
       />
     </div>
-  </div>
+    <div>
+      <TimeSelector @date-change="getStat" :currentDate="currentDate" />
+    </div>
+    <div class="error" v-if="error">{{ error }}</div>
 
-  <!-- TEST -->
-  <div>
-    <pre> {{ data }}  </pre>
+    <div v-if="data && !error">
+      <div class="total">
+        <div v-if="yearStat === 'year'">
+          <h3>
+            VENTES TOTALES <br />
+            <span style="font-weight: 700"> {{ stat.nb_total }} </span>
+          </h3>
+        </div>
+        <div v-if="yearStat !== 'year'">
+          <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
+        </div>
+      </div>
+      <div v-if="stat.nb_vn">
+        <ChartsRates
+          title="Vn"
+          :total="stat.nb_vn"
+          :txPres="`${stat.tx_pres_fm_vn}%`"
+          :txFm="`${stat.tx_fm_vn}%`"
+          :txCe="`${stat.tx_ce_vn}%`"
+        />
+      </div>
+
+      <div class="separator" v-if="stat.nb_vo && stat.nb_vn"></div>
+      <div v-if="stat.nb_vo">
+        <ChartsRates
+          title="Vo"
+          :total="stat.nb_vo"
+          :txPres="`${stat.tx_pres_fm_vo}%`"
+          :txFm="`${stat.tx_fm_vo}%`"
+          :txCe="`${stat.tx_ce_vo}%`"
+        />
+      </div>
+    </div>
+
+    <!-- TEST -->
+    <!-- <div>
+      <pre> {{ data }}  </pre>
+    </div> -->
   </div>
 </template>
 
 <script>
-import { getData } from "../modules/api";
+// import { getData } from "../modules/api";
+import fetchData from "../modules/api3";
+import TopBar from "../components/TopBar.vue";
+import UserInfos from "../components/UserInfos.vue";
+import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 import TimeSelector from "../components/TimeSelector.vue";
+import NavSection from "../components/NavSection.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
+import Img1 from "../assets/photos/vendor.jpg";
 
 export default {
-  components: { TimeSelector, ChartsTotal, ChartsRates },
+  components: {
+    TopBar,
+    UserInfos,
+    NavSection,
+    StoreVendorSelector,
+    TimeSelector,
+    ChartsTotal,
+    ChartsRates,
+  },
   mounted() {},
   data() {
     return {
@@ -60,6 +92,13 @@ export default {
       objectives: null,
       total: null,
       yearStat: null,
+      vendorId: null,
+      image: Img1,
+      SelectedUser: null,
+      currentDate: {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
+      },
     };
   },
   computed: {
@@ -70,7 +109,8 @@ export default {
   },
   methods: {
     getStat(date) {
-      getData(date.year, date.month, date.id)
+      let data = [date.year, date.month, this.vendorId];
+      fetchData("vendorStat", data)
         .then((res) => {
           this.data = res;
           this.yearStat = date.month;
@@ -80,67 +120,60 @@ export default {
           date.month === "year"
             ? (this.objectives = null)
             : (this.objectives = res.month.objectives.total);
-          this.total = res.month.stat.nb_total;
+
+          date.month === "year"
+            ? (this.total = null)
+            : (this.total = res.month.stat.nb_total);
+
           this.error = null;
-          console.log(this.stat);
         })
         .catch((err) => {
           console.log("err home", err);
-          this.error = err.message;
+          this.error = "Aucune donnée disponible  ¯\_(ツ)_/¯ ";
           // this.stat = null;
         });
+    },
+
+    getSelectedUser(user) {
+      this.SelectedUser = user;
+      console.log("SelectedUser", this.SelectedUser);
+    },
+
+    getVendorId(selectedVendor) {
+      console.log("ID", selectedVendor);
+      this.vendorId = selectedVendor;
+      this.getStat(this.currentDate);
     },
   },
 };
 </script>
 
-<style>
-.search {
-  max-width: 480px;
+<style lang="scss">
+.home {
   margin: 0 auto;
-  text-align: left;
-  margin-bottom: 50px;
+  max-width: 920px;
+  padding: 20px;
+  background: var(--primary);
+  min-height: 100vh;
 }
-input,
-select {
+
+.total {
+  text-align: center;
+}
+.total h3 {
+  font-weight: 300;
+}
+
+.separator {
+  border-bottom: 1px solid var(--gray);
+  width: 70%;
+  margin: 30px auto;
+}
+
+input {
   display: block;
   margin: 10px 0;
   width: 100%;
   box-sizing: border-box;
-  padding: 10px;
-  border: 1px solid #eee;
-}
-
-.total {
-  display: flex;
-  flex-direction: row;
-}
-
-.numbers {
-  padding: 30px 30px;
-  padding-bottom: 30px;
-  border-bottom: 1px dashed #e7e7e7;
-  max-width: 700px;
-  margin: auto;
-}
-.numbers h3 {
-  display: inline-block;
-  position: relative;
-  font-size: 26px;
-  color: white;
-  margin-bottom: 10px;
-  width: 200px;
-}
-.numbers h3::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: #ff8800;
-  position: absolute;
-  z-index: -1;
-  padding-right: 130px;
-  left: -30px;
-  transform: rotateZ(-1deg);
 }
 </style>

@@ -1,9 +1,12 @@
 <template>
-  <div class="center">
-    <h3>{{ title }} : {{ total }}</h3>
-    <ChartsBar name="Prés FM" :score="txPres" :scale="txPres" />
-    <ChartsBar name="Pén FM" :score="txFm" :scale="txFm" />
-    <ChartsBar name="Pén CE" :score="txCe" :scale="txCe" />
+  <div class="charts">
+    <h3>
+      {{ title }}
+      <span style="font-weight: 700; margin-left: 10px"> {{ total }}</span>
+    </h3>
+    <ChartsBar name="Prés" :score="txPres" :scale="txPres" />
+    <ChartsBar name="Fm" :score="txFm" :scale="txFm" />
+    <ChartsBar name="Ce" :score="txCe" :scale="txCe" />
   </div>
 </template>
 
@@ -18,13 +21,13 @@ export default {
 </script>
 
 <style>
-.center {
-  width: 100%;
+.charts {
+  margin-top: 30px;
 }
 
-h3 {
-  margin: 0;
-  padding: 0;
-  color: #333;
+.charts h3 {
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 15px;
 }
 </style>
