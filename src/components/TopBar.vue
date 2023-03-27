@@ -3,7 +3,7 @@
     <img class="top__logo" :src="image" />
 
     <div class="top__buttons">
-      <div class="top__buttons__reload">
+      <div class="top__buttons__reload" @click="reloadData">
         <i class="fa-solid fa-rotate-right"></i>
       </div>
       <div class="top__buttons__connect">
@@ -19,6 +19,7 @@ export default {
   data() {
     return { image: logo };
   },
+  methods: {},
 };
 </script>
 
