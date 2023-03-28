@@ -16,10 +16,17 @@
 <script>
 import logo from "../assets/photos/logo.png";
 export default {
+  props: ["user"],
+
   data() {
     return { image: logo };
   },
-  methods: {},
+  methods: {
+    reloadData() {
+      this.$emit("reload", this.user.id);
+      console.log("reload", this.user.id);
+    },
+  },
 };
 </script>
 

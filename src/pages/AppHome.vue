@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <TopBar />
+    <TopBar :user="SelectedUser" @reload="getSelectedUser" />
     <div v-if="SelectedUser">
       <UserInfos
         :name="SelectedUser.name"
@@ -129,8 +129,8 @@ export default {
         })
         .catch((err) => {
           console.log("err home", err);
-          this.error = "Aucune donnée disponible  ¯\_(ツ)_/¯ ";
-          // this.stat = null;
+          this.error = "Aucune donnée disponible ";
+          this.stat = null;
         });
     },
 

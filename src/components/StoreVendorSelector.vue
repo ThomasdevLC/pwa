@@ -3,10 +3,11 @@
     <input
       v-model="userId"
       type="text"
-      @keydown.enter="getUser(userId)"
+      @change="getUser(userId)"
       required
       :clearable="true"
     />
+
     <div class="search__box">
       <div class="search__box__icon">
         <!-- <i class="fa-solid fa-warehouse"></i> -->
@@ -60,16 +61,16 @@ export default {
   components: { vSelect },
 
   mounted() {
+    this.$emit("user-change", this.user);
+    this.getUser();
     this.getVendors();
     this.getStores();
-    this.getUser();
-    this.$emit("user-change", this.user);
     this.$emit("id-change", this.selectedVendor);
   },
 
   data() {
     return {
-      userId: "1283",
+      userId: "",
       user: null,
       vendors: null,
       stores: null,
@@ -127,6 +128,7 @@ export default {
 
     getUser(userId) {
       let data = [userId];
+      console.log("userId", userId);
       fetchData("user", data)
         .then((res) => {
           this.user = res;
@@ -140,7 +142,7 @@ export default {
     },
 
     storesChange() {
-      console.log("storesChange", this.selectedStore);
+      console.log("storesSelectore", this.selectedStore);
 
       this.vendorsList = [...this.vendors].filter(
         (vendor) => this.selectedStore === vendor.store
