@@ -7,14 +7,12 @@ const fetchData = async (path, data) => {
     data.forEach((element) => {
       url = url + "/" + element;
     });
-
-    console.log(url);
   }
 
   try {
     const response = await axios.get(url);
     if (!response.data) {
-      throw new Error("No data available");
+      throw new Error("Utilisateur non reconnu");
     }
     return response.data;
   } catch (error) {
