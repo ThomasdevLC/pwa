@@ -2,7 +2,7 @@
   <div class="timeselect">
     <div class="search__box">
       <div class="search__box__icon">
-        <i class="fa-solid fa-calendar-days"></i>
+        <i class="material-icons">calendar_month</i>
       </div>
       <vSelect
         class="search__box__select search__box__select-month"
@@ -15,9 +15,6 @@
       />
     </div>
     <div class="search__box">
-      <!-- <div class="search__box__icon">
-        <i class="fa-solid fa-calendar-days"></i>
-      </div> -->
       <vSelect
         class="search__box__select search__box__select-year"
         :options="years"
@@ -103,7 +100,7 @@ export default {
     padding: 10px;
     border-radius: 6px 0 0 6px;
     display: flex;
-    justify-content: center;
+    place-items: center;
   }
 }
 

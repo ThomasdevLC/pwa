@@ -25,7 +25,7 @@ export default {
 <style lang="scss">
 .user {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 
   &__image {
     width: 72px;
