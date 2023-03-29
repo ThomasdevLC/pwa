@@ -3,7 +3,6 @@
     <div class="login__container">
       <form class="login__container__form">
         <img :src="image" />
-
         <div class="login__container__form__input">
           <i class="material-icons">mail_outline</i>
           <input
@@ -27,7 +26,7 @@
         </div>
 
         <button
-          class="btn btn--form"
+          class="login__container__form__btn"
           type="submit"
           value="Log in"
           @click="getUser"
@@ -82,7 +81,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .idvalid input {
   color: black;
   background: var(--gray-second);
@@ -94,70 +93,63 @@ export default {
   height: 100vh;
   display: grid;
   place-items: center;
-}
 
-.login__container {
-  width: 400px;
-  padding: 36px 48px 48px 48px;
-  background-color: var(--gray-second);
-  border-radius: 8px;
-}
+  &__container {
+    width: 400px;
+    padding: 36px 48px 48px 48px;
+    background-color: var(--gray-second);
+    border-radius: 8px;
 
-img {
-  height: 60px;
-  margin: auto;
-}
+    &__form {
+      display: grid;
+      grid-template-columns: 1fr;
+      row-gap: 16px;
 
-.login__container__form {
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 16px;
-}
+      img {
+        height: 60px;
+        margin: auto;
+      }
 
-.login__container__form__input {
-  display: flex;
-}
+      &__input {
+        display: flex;
+      }
 
-.login__container__form__input input {
-  padding: 10px;
-  border-radius: 0 6px 6px 0;
-  border: none;
-  outline: none;
-}
-.login__container__form__input i {
-  color: var(--gray);
-  background: white;
-  width: 40px;
-  padding: 10px;
-  border-radius: 6px 0 0 6px;
-  display: grid;
-  place-items: center;
-}
+      &__input input {
+        padding: 10px;
+        border-radius: 0 6px 6px 0;
+        border: none;
+        outline: none;
+      }
 
-.btn--form {
-  background-color: var(--purple);
-  color: #fdf2e9;
-  align-self: end;
-  padding: 8px;
-}
+      &__input i {
+        color: var(--gray);
+        background: white;
+        width: 40px;
+        padding: 10px;
+        border-radius: 6px 0 0 6px;
+        display: grid;
+        place-items: center;
+      }
 
-.btn,
-.btn:link,
-.btn:visited {
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: 600;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.2s;
-}
+      &__btn {
+        background-color: var(--purple);
+        color: #fff;
+        padding: 8px;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 6px;
+        border: none;
+        font-family: inherit;
+        text-decoration: none;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
 
-/*  */
-
-.btn--form:hover {
-  background-color: #fff;
-  color: var(--purple);
+      &__btn:hover {
+        background-color: #fff;
+        color: var(--purple);
+      }
+    }
+  }
 }
 </style>
