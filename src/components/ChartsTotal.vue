@@ -4,22 +4,27 @@
       VENTES TOTALES <br />
       <span style="font-weight: 700">{{ total }}</span>
     </h3>
-    <div class="total__radial">
+    <!-- <div class="total__radial">
       <progress
         class="total__radial__score"
         :value="percentage"
         max="100"
         :style="{ '--progress': percentage }"
       ></progress>
-    </div>
+    </div> -->
   </div>
 
   <!-- circle 2 -->
-  <div
-    class="circle"
-    :style="{ backgroundImage: 'conic-gradient(#2bebc8 55%, #60626c 0)' }"
-  >
-    <div class="inner">48%</div>
+
+  <div class="wrap-circles">
+    <div
+      class="circle"
+      :style="{
+        backgroundImage: `conic-gradient(#2bebc8 ${percentage}%, #60626c 0)`,
+      }"
+    >
+      <div class="inner">{{ percentage }} %</div>
+    </div>
   </div>
 </template>
 
@@ -32,7 +37,7 @@ export default {
 <style scoped lang="scss">
 .total {
   &__title {
-    margin: 20px 0 20px 0;
+    margin: 20px auto;
     text-align: center;
     font-weight: 300;
   }
@@ -99,12 +104,8 @@ export default {
 
 .wrap-circles {
   display: flex;
-  min-height: 100vh;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
-  background: #000;
 }
 
 .circle {
@@ -129,8 +130,8 @@ export default {
   height: 130px;
   background: var(--primary);
   border-radius: 50%;
-  font-size: 1.85em;
-  font-weight: 300;
+  font-size: 30px;
+  font-weight: 400;
   color: white;
 }
 </style>
