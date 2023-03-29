@@ -12,7 +12,7 @@
         ></div>
       </div>
     </div>
-    <p class="bar__score">{{ score }}</p>
+    <p class="bar__score">{{ score }} %</p>
   </div>
 </template>
 

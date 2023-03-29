@@ -106,12 +106,13 @@ export default {
       row-gap: 16px;
 
       img {
-        height: 60px;
+        height: 50px;
         margin: auto;
       }
 
       &__input {
         display: flex;
+        height: 36px;
       }
 
       &__input input {
@@ -132,22 +133,18 @@ export default {
       }
 
       &__btn {
-        background-color: var(--purple);
-        color: #fff;
+        font-family: var(--font-family) !important;
+        font-weight: 400 !important;
         padding: 8px;
         font-size: 20px;
         font-weight: 600;
         border-radius: 6px;
         border: none;
-        font-family: inherit;
+        background-color: var(--purple);
+        color: #fff;
         text-decoration: none;
         transition: all 0.2s;
         cursor: pointer;
-      }
-
-      &__btn:hover {
-        background-color: #fff;
-        color: var(--purple);
       }
     }
   }

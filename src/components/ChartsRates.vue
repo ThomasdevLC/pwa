@@ -4,9 +4,9 @@
       {{ title }}
       <span style="font-weight: 700; margin-left: 10px"> {{ total }}</span>
     </h3>
-    <ChartsBar name="Prés" :score="txPres" :scale="txPres" />
-    <ChartsBar name="Fm" :score="txFm" :scale="txFm" />
-    <ChartsBar name="Ce" :score="txCe" :scale="txCe" />
+    <ChartsBar name="Prés" :score="txPres" :scale="`${txPres}%`" />
+    <ChartsBar name="Fm" :score="txFm" :scale="`${txFm}%`" />
+    <ChartsBar name="Ce" :score="txCe" :scale="`${txCe}%`" />
   </div>
 </template>
 

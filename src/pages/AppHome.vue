@@ -31,9 +31,9 @@
         <ChartsRates
           title="Vn"
           :total="stat.nb_vn"
-          :txPres="`${stat.tx_pres_fm_vn} %`"
-          :txFm="`${stat.tx_fm_vn} %`"
-          :txCe="`${stat.tx_ce_vn} %`"
+          :txPres="stat.tx_pres_fm_vn"
+          :txFm="stat.tx_fm_vn"
+          :txCe="stat.tx_ce_vn"
         />
       </div>
 
@@ -42,9 +42,9 @@
         <ChartsRates
           title="Vo"
           :total="stat.nb_vo"
-          :txPres="`${stat.tx_pres_fm_vo} %`"
-          :txFm="`${stat.tx_fm_vo} %`"
-          :txCe="`${stat.tx_ce_vo} %`"
+          :txPres="stat.tx_pres_fm_vo"
+          :txFm="stat.tx_fm_vo"
+          :txCe="stat.tx_ce_vo"
         />
       </div>
     </div>
