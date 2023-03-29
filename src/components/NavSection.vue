@@ -30,7 +30,7 @@ a {
   text-align: center;
   border-radius: 6px;
   height: 45px;
-  min-width: 170px;
+  min-width: 155px;
   font-size: 20px;
   display: grid;
   place-items: center;

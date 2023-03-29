@@ -1,5 +1,5 @@
 <template>
-  <div class="home" v-if="store.stores && store.vendorsList">
+  <div class="home br" v-if="store.stores && store.vendorsList">
     <TopBar :user="store.user" @reload="handleReload" />
 
     <UserInfos :name="store.user.name" :store="store.user.storeToString" />
@@ -148,12 +148,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import "vue-select/dist/vue-select.css";
+@use "../assets/styles/mixins" as mixin;
 
 .home {
   margin: 0 auto;
-  max-width: 920px;
   padding: 20px;
+  max-width: 920px;
   background: var(--primary);
   min-height: 100vh;
 }
@@ -169,12 +169,5 @@ export default {
   border-bottom: 1px solid var(--gray);
   width: 70%;
   margin: 30px auto;
-}
-
-input {
-  display: block;
-  margin: 10px 0;
-  width: 100%;
-  box-sizing: border-box;
 }
 </style>

@@ -96,7 +96,7 @@ export default {
 
   &__container {
     min-width: 350px;
-    padding: 36px 48px 48px 48px;
+    padding: 30px 20px 30px 20px;
     background-color: var(--gray-second);
     border-radius: 8px;
 

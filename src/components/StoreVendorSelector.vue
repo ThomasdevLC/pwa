@@ -2,8 +2,7 @@
   <div class="search">
     <div class="search__box">
       <div class="search__box__icon">
-        <!-- <i class="fa-solid fa-warehouse"></i> -->
-        <img :src="image" />
+        <i class="material-icons">home</i>
       </div>
       <vSelect
         class="search__box__select"
@@ -20,7 +19,8 @@
 
     <div v-if="store.vendorsList" class="search__box">
       <div class="search__box__icon">
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+        <i class="material-icons">search </i>
       </div>
       <vSelect
         class="search__box__select"
@@ -98,7 +98,7 @@ input {
     padding: 10px;
     border-radius: 6px 0 0 6px;
     display: flex;
-    justify-content: center;
+    place-items: center;
   }
 
   &__icon img {
