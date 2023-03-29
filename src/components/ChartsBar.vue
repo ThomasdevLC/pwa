@@ -24,6 +24,10 @@ export default {
 
 <style scoped lang="scss">
 .bar {
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  gap: 6px;
   &__title {
     font-weight: 400;
     line-height: 1;

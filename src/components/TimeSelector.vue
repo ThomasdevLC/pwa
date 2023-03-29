@@ -15,9 +15,6 @@
       />
     </div>
     <div class="search__box">
-      <!-- <div class="search__box__icon">
-        <i class="fa-solid fa-calendar-days"></i>
-      </div> -->
       <vSelect
         class="search__box__select search__box__select-year"
         :options="years"
