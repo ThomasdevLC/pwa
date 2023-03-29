@@ -70,7 +70,7 @@ export default {
         .then((res) => {
           console.log("USER", res);
           this.store.user = res;
-          this.$router.push("/2");
+          this.$router.push("/");
         })
         .catch((err) => {
           console.log("err home", err);
@@ -95,7 +95,7 @@ export default {
   place-items: center;
 
   &__container {
-    width: 400px;
+    min-width: 350px;
     padding: 36px 48px 48px 48px;
     background-color: var(--gray-second);
     border-radius: 8px;

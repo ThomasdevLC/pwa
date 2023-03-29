@@ -6,7 +6,7 @@
       <div class="top__buttons__reload" @click="reloadData">
         <i class="fa-solid fa-rotate-right"></i>
       </div>
-      <div class="top__buttons__connect">
+      <div class="top__buttons__connect" @click="redirectToLogin">
         <i class="fa-solid fa-power-off"></i>
       </div>
     </div>
@@ -23,8 +23,11 @@ export default {
   },
   methods: {
     reloadData() {
-      this.$emit("reload", this.user.id);
-      console.log("reload", this.user.id);
+      this.$emit("reload");
+      console.log("reload");
+    },
+    redirectToLogin() {
+      this.$router.push("/login");
     },
   },
 };

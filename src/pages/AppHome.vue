@@ -48,35 +48,6 @@
         />
       </div>
     </div>
-
-    <div style="color: white">
-      <div class="row">
-        <!--        <div class="col col-3">
-                  <h3>USER</h3>
-                  <pre>{{store.user}}</pre>
-                </div>
-
-                <div class="col col-3">
-                  <h3>STORES</h3>
-                  <pre>{{store.stores}}</pre>
-                </div>
-
-                <div class="col col-3">
-                  <h3>VENDORS</h3>
-                  <pre>{{store.vendors}}</pre>
-                </div>-->
-
-        <div class="col col-3">
-          <h3>SelectedStore</h3>
-          <pre>{{ store.selectedStore }}</pre>
-        </div>
-
-        <div class="col col-3">
-          <h3>SelectedVendor</h3>
-          <pre>{{ store.selectedVendor }}</pre>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -128,6 +99,10 @@ export default {
   },
   methods: {
     dateChange(date) {
+      this.selectedDate = date;
+      this.getStat();
+    },
+    reload(date) {
       this.selectedDate = date;
       this.getStat();
     },

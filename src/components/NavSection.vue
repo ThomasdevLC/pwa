@@ -12,12 +12,15 @@ export default {};
 </script>
 
 <style scoped>
+.navigation {
+  margin-bottom: 30px;
+}
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: auto;
   padding: 0;
-  max-width: 350px;
+  max-width: 500px;
 }
 
 a {
