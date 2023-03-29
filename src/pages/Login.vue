@@ -5,8 +5,7 @@
         <img :src="image" />
 
         <div class="login__container__form__input">
-          <i class="fa-solid fa-envelope"></i>
-
+          <i class="material-icons">mail_outline</i>
           <input
             id="email"
             type="email"
@@ -17,8 +16,7 @@
         </div>
 
         <div class="login__container__form__input">
-          <i class="fa-solid fa-lock"></i>
-
+          <i class="material-icons">lock_outline</i>
           <input
             id="password"
             type="password"
