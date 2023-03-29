@@ -1,6 +1,6 @@
 <template>
   <div class="home" v-if="store.stores && store.vendorsList">
-    <TopBar :user="store.user" />
+    <TopBar :user="store.user" @reload="handleReload" />
 
     <UserInfos :name="store.user.name" :store="store.user.storeToString" />
     <div>
@@ -102,10 +102,14 @@ export default {
       this.selectedDate = date;
       this.getStat();
     },
-    reload(date) {
+
+    handleReload(date) {
+      console.log("reload");
+      this.store.initApp();
       this.selectedDate = date;
       this.getStat();
     },
+
     getStat() {
       let date = this.selectedDate;
       let data = [date.year, date.month, this.store.selectedVendor];

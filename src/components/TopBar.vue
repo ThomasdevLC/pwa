@@ -3,7 +3,7 @@
     <img class="top__logo" :src="image" />
 
     <div class="top__buttons">
-      <div class="top__buttons__reload" @click="reloadData">
+      <div class="top__buttons__reload" @click="$emit('reload', currentDate)">
         <i class="fa-solid fa-rotate-right"></i>
       </div>
       <div class="top__buttons__connect" @click="redirectToLogin">
@@ -19,13 +19,16 @@ export default {
   props: ["user"],
 
   data() {
-    return { image: logo };
+    return {
+      image: logo,
+
+      currentDate: {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
+      },
+    };
   },
   methods: {
-    reloadData() {
-      this.$emit("reload");
-      console.log("reload");
-    },
     redirectToLogin() {
       this.$router.push("/login");
     },

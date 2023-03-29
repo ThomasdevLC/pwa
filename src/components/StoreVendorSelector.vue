@@ -1,21 +1,20 @@
 <template>
   <div class="search">
-
     <div class="search__box">
       <div class="search__box__icon">
         <!-- <i class="fa-solid fa-warehouse"></i> -->
-        <img :src="image"/>
+        <img :src="image" />
       </div>
       <vSelect
-          class="search__box__select"
-          v-if="store.stores"
-          v-model="store.selectedStore"
-          :options="store.stores"
-          label="store_name"
-          :reduce="(v) => v.store_id"
-          :clearable="false"
-          placeholder="concession"
-          @update:modelValue="storesChange"
+        class="search__box__select"
+        v-if="store.stores"
+        v-model="store.selectedStore"
+        :options="store.stores"
+        label="store_name"
+        :reduce="(v) => v.store_id"
+        :clearable="false"
+        placeholder="concession"
+        @update:modelValue="storesChange"
       />
     </div>
 
@@ -24,38 +23,27 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
       <vSelect
-
-          class="search__box__select"
-          v-model="store.selectedVendor"
-          :options="store.vendorsList"
-          label="fullName"
-          :reduce="(v) => v.id"
-          placeholder="vendeur"
-          :clearable="false"
-          @update:modelValue="$emit('vendorChange')"
-
+        class="search__box__select"
+        v-model="store.selectedVendor"
+        :options="store.vendorsList"
+        label="fullName"
+        :reduce="(v) => v.id"
+        placeholder="vendeur"
+        :clearable="false"
+        @update:modelValue="$emit('vendorChange')"
       />
     </div>
-
-    <!-- <pre> user connecté {{ user }}</pre> -->
-    <!-- <pre> vendorsList {{ vendorsList }}</pre>
-    <pre> VENDEUR SELECTIONNE {{ selectedVendor }}</pre>
-    <pre> STORE SELECTIONNE {{ selectedStore }}</pre> -->
   </div>
 </template>
 
 <script>
 import vSelect from "vue-select";
 import warehouse from "../assets/photos/warehouse.svg";
-
-// import { vendorsApi, storesApi, userApi } from "../modules/api";
-import fetchData from "../modules/api3";
-import {useStore} from '../store'
+import { useStore } from "../store";
 
 export default {
-  components: {vSelect},
-  mounted() {
-  },
+  components: { vSelect },
+  mounted() {},
   data() {
     return {
       store: useStore(),
@@ -78,7 +66,6 @@ export default {
       this.store.getVendorsList();
       this.selectedVendor = null;
     },
-
   },
 };
 </script>

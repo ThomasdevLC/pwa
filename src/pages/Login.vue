@@ -127,7 +127,7 @@ export default {
         width: 40px;
         padding: 10px;
         border-radius: 6px 0 0 6px;
-        display: grid;
+        display: flex;
         place-items: center;
       }
 
