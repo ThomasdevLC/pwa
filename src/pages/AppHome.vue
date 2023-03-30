@@ -53,7 +53,7 @@
 
 <script>
 import { useStore } from "../store";
-import fetchData from "../modules/api3";
+import fetchData from "../modules/api";
 import TopBar from "../components/TopBar.vue";
 import UserInfos from "../components/UserInfos.vue";
 import StoreVendorSelector from "../components/StoreVendorSelector.vue";

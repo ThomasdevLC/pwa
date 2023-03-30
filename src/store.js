@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import fetchData from "./modules/api3";
+import fetchData from "./modules/api";
 
 export const useStore = defineStore("store", {
   state: () => ({

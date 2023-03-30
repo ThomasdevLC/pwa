@@ -1,13 +1,18 @@
 import axios from "axios";
 
-const getData = async (year, month, id) => {
+const fetchData = async (path, data) => {
+  let url = `https://test.gstat.fr/api/pwa/` + path;
+
+  if (data) {
+    data.forEach((element) => {
+      url = url + "/" + element;
+    });
+  }
+
   try {
-    const response = await axios.get(
-      `https://test.gstat.fr/api/pwa/vendorStat/${year}/${month}/${id}`
-    );
-    console.log("test api", response);
+    const response = await axios.get(url);
     if (!response.data) {
-      throw Error("Pas de données disponibles");
+      throw new Error("Utilisateur non reconnu");
     }
     return response.data;
   } catch (error) {
@@ -15,44 +20,4 @@ const getData = async (year, month, id) => {
   }
 };
 
-const vendorsApi = async () => {
-  try {
-    const response = await axios.get(`https://test.gstat.fr/api/pwa/vendors`);
-    if (!response.data) {
-      throw Error("Pas de données disponibles");
-    }
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-const storesApi = async () => {
-  try {
-    const response = await axios.get(`https://test.gstat.fr/api/pwa/stores`);
-    if (!response.data) {
-      throw Error("Pas de données disponibles");
-    }
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-const userApi = async (id) => {
-  try {
-    const response = await axios.get(
-      `https://test.gstat.fr/api/pwa/user/${id}`
-    );
-    console.log("test api", response);
-
-    if (!response.data) {
-      throw Error("Pas de données disponibles");
-    }
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export { getData, vendorsApi, storesApi, userApi };
+export default fetchData;
