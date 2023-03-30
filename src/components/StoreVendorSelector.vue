@@ -19,7 +19,6 @@
 
     <div v-if="store.vendorsList" class="search__box">
       <div class="search__box__icon">
-        <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
         <i class="material-icons">search </i>
       </div>
       <vSelect
