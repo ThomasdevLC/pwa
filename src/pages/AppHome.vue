@@ -12,7 +12,7 @@
     </div>
 
     <div>
-      <TimeSelector @date-change="dateChange" :currentDate="currentDate" />
+      <TimeSelector @date-change="dateChange" />
     </div>
 
     <div v-if="data && !error">
@@ -90,28 +90,22 @@ export default {
       yearStat: null,
       vendorId: null,
       image: Img1,
-      currentDate: {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-      },
-      selectedDate: this.currentDate,
     };
   },
   methods: {
-    dateChange(date) {
-      this.selectedDate = date;
+    dateChange() {
       this.getStat();
     },
 
-    handleReload(date) {
+    handleReload() {
       console.log("reload");
       this.store.initApp();
-      this.selectedDate = date;
       this.getStat();
     },
 
     getStat() {
-      let date = this.selectedDate;
+      console.log("getStat", this.store.date);
+      let date = this.store.date;
       let data = [date.year, date.month, this.store.selectedVendor];
       fetchData("vendorStat", data)
         .then((res) => {

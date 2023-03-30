@@ -3,7 +3,7 @@
     <img class="top__logo" :src="image" />
 
     <div class="top__buttons">
-      <div class="top__buttons__reload" @click="$emit('reload', currentDate)">
+      <div class="top__buttons__reload" @click="$emit('reload')">
         <i class="fa-solid fa-rotate-right"></i>
       </div>
       <div class="top__buttons__connect" @click="redirectToLogin">
@@ -21,11 +21,6 @@ export default {
   data() {
     return {
       image: logo,
-
-      currentDate: {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-      },
     };
   },
   methods: {

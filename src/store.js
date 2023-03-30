@@ -9,6 +9,11 @@ export const useStore = defineStore("store", {
     stores: null,
     vendors: null,
     vendorsList: null,
+    currentDate: {
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+    },
+    date: null,
   }),
   getters: {},
   actions: {
@@ -17,6 +22,7 @@ export const useStore = defineStore("store", {
 
       this.getStores();
       this.getVendors();
+      this.refreshDate();
 
       if (this.user.role === "Vendor") this.selectedVendor = this.user.id;
     },
@@ -45,12 +51,18 @@ export const useStore = defineStore("store", {
           console.log("err home", err);
           this.error = err.message;
         });
+
+      if (this.user.role == !"Vendor") this.selectedVendor = null;
     },
     getVendorsList() {
       // console.log("storesChange", this.vendors)
       this.vendorsList = [...this.vendors].filter(
         (vendor) => this.selectedStore === vendor.store
       );
+    },
+    refreshDate() {
+      console.log("refreshDate", this.currentDate);
+      this.date = { ...this.currentDate };
     },
   },
 });

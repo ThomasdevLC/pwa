@@ -23,7 +23,12 @@
         backgroundImage: `conic-gradient(#2bebc8 ${percentage}%, #60626c 0)`,
       }"
     >
-      <div class="inner">{{ percentage }} %</div>
+      <div class="inner">
+        {{ percentage }}
+        <span style="font-size: 22px; font-weight: 300; margin-left: 10px"
+          >%</span
+        >
+      </div>
     </div>
   </div>
 </template>

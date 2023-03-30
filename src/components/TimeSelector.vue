@@ -10,7 +10,7 @@
         label="name"
         :reduce="(v) => v.id"
         :clearable="false"
-        v-model="date.month"
+        v-model="store.date.month"
         @update:modelValue="changeDate"
       />
     </div>
@@ -21,7 +21,7 @@
         label="name"
         :reduce="(v) => v.id"
         :clearable="false"
-        v-model="date.year"
+        v-model="store.date.year"
         @update:modelValue="changeDate"
       />
     </div>
@@ -30,14 +30,14 @@
 
 <script>
 import vSelect from "vue-select";
+import { useStore } from "../store";
 
 export default {
   components: { vSelect },
-  props: ["currentDate"],
   emits: ["date-change"],
 
   mounted() {
-    this.$emit("date-change", this.date);
+    this.$emit("date-change");
   },
   data() {
     return {
@@ -56,19 +56,18 @@ export default {
         { id: 11, name: "Novembre" },
         { id: 12, name: "Décembre" },
       ],
-
       years: [
         { id: "2023", name: "2023" },
         { id: "2022", name: "2022" },
         { id: "2021", name: "2021" },
         { id: "2020", name: "2020" },
       ],
-      date: this.currentDate,
+      store: useStore(),
     };
   },
   methods: {
     changeDate() {
-      this.$emit("date-change", this.date);
+      this.$emit("date-change");
     },
   },
 };
