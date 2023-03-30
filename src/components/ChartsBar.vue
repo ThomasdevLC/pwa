@@ -24,7 +24,7 @@ export default {
 
 <style scoped lang="scss">
 .bar {
-  margin: 10px 0;
+  margin: 5px 0;
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   gap: 6px;
