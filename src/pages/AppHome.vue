@@ -52,7 +52,6 @@
 </template>
 
 <script>
-import vSelect from "vue-select";
 import { useStore } from "../store";
 import fetchData from "../modules/api3";
 import TopBar from "../components/TopBar.vue";
@@ -66,7 +65,6 @@ import Img1 from "../assets/photos/vendor.jpg";
 
 export default {
   components: {
-    vSelect,
     TopBar,
     UserInfos,
     NavSection,

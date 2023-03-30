@@ -6,22 +6,22 @@
       </div>
       <vSelect
         class="search__box__select search__box__select-month"
+        v-model="store.date.month"
         :options="months"
         label="name"
         :reduce="(v) => v.id"
         :clearable="false"
-        v-model="store.date.month"
         @update:modelValue="changeDate"
       />
     </div>
     <div class="search__box">
       <vSelect
         class="search__box__select search__box__select-year"
+        v-model="store.date.year"
         :options="years"
         label="name"
         :reduce="(v) => v.id"
         :clearable="false"
-        v-model="store.date.year"
         @update:modelValue="changeDate"
       />
     </div>
@@ -78,7 +78,7 @@ export default {
 
 .timeselect {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .search__box {
