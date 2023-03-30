@@ -32,8 +32,8 @@ export const useStore = defineStore("store", {
           this.stores = [...res].filter((store) =>
             this.user.stores.includes(store.store_id)
           );
-
-          this.selectedStore = this.user.singleStore ? this.user.store : null;
+          this.selectedStore =
+            this.user.role === "Vendor" ? this.user.store : null;
         })
         .catch((err) => {
           console.log("err home", err);
@@ -47,6 +47,7 @@ export const useStore = defineStore("store", {
           this.vendors = res;
           this.getVendorsList();
         })
+
         .catch((err) => {
           console.log("err home", err);
           this.error = err.message;

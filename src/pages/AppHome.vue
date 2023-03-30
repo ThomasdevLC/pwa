@@ -15,6 +15,8 @@
       <TimeSelector @date-change="dateChange" />
     </div>
 
+    <!-- <pre style="color: white">{{ this.store.user }}</pre> -->
+
     <div v-if="data && !error">
       <div class="total">
         <div v-if="yearStat === 'year'">
