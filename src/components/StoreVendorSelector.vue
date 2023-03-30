@@ -64,7 +64,8 @@ export default {
   methods: {
     storesChange() {
       this.store.getVendorsList();
-      this.selectedVendor = null;
+      this.store.selectedVendor = null;
+      if (this.store.user.role !== "Vendor") this.store.refreshDate();
     },
   },
 };

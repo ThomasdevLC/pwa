@@ -51,8 +51,6 @@ export const useStore = defineStore("store", {
           console.log("err home", err);
           this.error = err.message;
         });
-
-      if (this.user.role == !"Vendor") this.selectedVendor = null;
     },
     getVendorsList() {
       // console.log("storesChange", this.vendors)
@@ -63,6 +61,7 @@ export const useStore = defineStore("store", {
     refreshDate() {
       console.log("refreshDate", this.currentDate);
       this.date = { ...this.currentDate };
+      if (this.user.role !== "Vendor") this.selectedVendor = null;
     },
   },
 });
