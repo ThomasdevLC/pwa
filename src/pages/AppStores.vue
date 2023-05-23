@@ -18,6 +18,10 @@
     <div v-if="storeStat && storeStat.nb_vn"></div>
 
     <div v-if="storeStat && storeStat.nb_vn">
+      <h3>
+        VN <span> {{ storeStat.nb_vn }}</span>
+      </h3>
+
       <ChartsSemiStore
         title="CONST"
         :total="storeStat.nb_vn"
@@ -44,6 +48,9 @@
       v-if="storeStat && storeStat.nb_vo && storeStat.nb_vn"
     ></div>
     <div v-if="storeStat && storeStat.nb_vo">
+      <h3>
+        VO <span> {{ storeStat.nb_vo }}</span>
+      </h3>
       <ChartsRates
         title="Vo"
         :total="storeStat.nb_vo"
@@ -126,6 +133,16 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@use "../assets/styles/animations" as animations;
+<style lang="scss" scoped>
+// @use "../assets/styles/animations" as animations;
+
+h3 {
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+span {
+  font-weight: 700;
+  margin-left: 10px;
+}
 </style>

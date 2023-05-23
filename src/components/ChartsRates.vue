@@ -1,6 +1,6 @@
 <template>
   <div class="charts">
-    <h3>
+    <h3 v-if="$route.path === '/'">
       {{ title }}
       <span style="font-weight: 700; margin-left: 10px"> {{ total }}</span>
     </h3>
