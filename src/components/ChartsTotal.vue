@@ -42,7 +42,7 @@ export default {
   height: 150px;
   margin: 0.5rem;
   border-radius: 50%;
-  background: #ffcdb2;
+  // background: #ffcdb2;
   overflow: hidden;
 }
 

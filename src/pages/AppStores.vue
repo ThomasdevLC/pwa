@@ -15,7 +15,20 @@
       <TimeSelector @date-change="dateChange" />
     </div>
 
+    <div v-if="storeStat && storeStat.nb_vn"></div>
+
     <div v-if="storeStat && storeStat.nb_vn">
+      <ChartsSemiStore
+        title="CONST"
+        :total="storeStat.nb_vn"
+        :obj="storeObjectives.obj_vn_const"
+      />
+
+      <ChartsSemiStore
+        title="GCA"
+        :total="storeStat.nb_vn"
+        :obj="storeObjectives.obj_vn_gca"
+      />
       <ChartsRates
         title="Vn"
         :total="storeStat.nb_vn"
@@ -39,7 +52,7 @@
     </div>
   </div>
 
-  <pre style="color: white">{{ storeStat }}</pre>
+  <!-- <pre style="color: white">{{ storeStat }}</pre> -->
 </template>
 
 <script>
@@ -51,6 +64,7 @@ import NavSection from "../components/NavSection.vue";
 import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 import TimeSelector from "../components/TimeSelector.vue";
 import ChartsRates from "../components/ChartsRates.vue";
+import ChartsSemiStore from "../components/ChartsSemiStore.vue";
 
 export default {
   components: {
@@ -60,6 +74,7 @@ export default {
     StoreVendorSelector,
     TimeSelector,
     ChartsRates,
+    ChartsSemiStore,
   },
 
   created() {
@@ -107,4 +122,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>
