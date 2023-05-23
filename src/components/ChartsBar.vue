@@ -7,7 +7,7 @@
           class="bar__container__level"
           :style="{
             transform: `scale(calc(${scale}), 1)`,
-            backgroundColor: score < obj ? 'red' : 'var(--secondary)',
+            backgroundColor: score < obj ? 'var(--obj)' : 'var(--secondary)',
           }"
         ></div>
       </div>
