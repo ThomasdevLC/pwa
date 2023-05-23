@@ -45,3 +45,23 @@
     @content;
   }
 }
+
+@mixin animations {
+  @keyframes fillAnimation {
+    0% {
+      transform: rotate(-45deg);
+    }
+    50% {
+      transform: rotate(135deg);
+    }
+  }
+
+  @keyframes fillGraphAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+  }
+}

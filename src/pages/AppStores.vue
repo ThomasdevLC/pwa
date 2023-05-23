@@ -22,12 +22,14 @@
         title="CONST"
         :total="storeStat.nb_vn"
         :obj="storeObjectives.obj_vn_const"
+        :key="reloadKey"
       />
 
       <ChartsSemiStore
         title="GCA"
         :total="storeStat.nb_vn"
         :obj="storeObjectives.obj_vn_gca"
+        :key="reloadKey"
       />
       <ChartsRates
         title="Vn"
@@ -86,6 +88,7 @@ export default {
       store: useStore(),
       storeStat: null,
       storeObjectives: null,
+      reloadKey: 0, // Nouvelle propriété reloadKey
     };
   },
   methods: {
@@ -109,7 +112,8 @@ export default {
         .then((res) => {
           this.storeStat = res.stat;
           this.storeObjectives = res.objectives;
-          console.log(this.storeObjectives);
+          // Incrémenter la valeur de reloadKey pour déclencher un re-render du composant ChartsSemiStore
+          this.reloadKey += 1;
         })
         .catch((error) => {
           console.error(error);
@@ -122,4 +126,6 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@use "../assets/styles/animations" as animations;
+</style>

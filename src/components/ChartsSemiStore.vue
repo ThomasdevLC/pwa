@@ -21,6 +21,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use "../assets/styles/animations" as animations;
+
 .semi-donut {
   --percentage: 0;
   --fill: #ff0;
@@ -41,7 +43,7 @@ export default {
     content: "";
     width: 210px;
     height: 210px;
-    border: 16px solid;
+    border: 15px solid;
     border-color: var(--gray) var(--gray) var(--fill) var(--fill);
     position: absolute;
     border-radius: 50%;
@@ -52,22 +54,7 @@ export default {
     animation: fillAnimation 1s ease-in;
   }
 
-  @keyframes fillAnimation {
-    0% {
-      transform: rotate(-45deg);
-    }
-    50% {
-      transform: rotate(135deg);
-    }
-  }
-
-  @keyframes fillGraphAnimation {
-    0% {
-      transform: rotate(0deg);
-    }
-    50% {
-      transform: rotate(180deg);
-    }
-  }
+  @include animations.fillAnimation;
+  @include animations.fillGraphAnimation;
 }
 </style>
