@@ -124,5 +124,9 @@ input {
 
   --vs-dropdown-option--active-bg: var(--purple);
   --vs-dropdown-option--active-color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>

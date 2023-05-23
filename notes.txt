@@ -1,0 +1,22 @@
+VN
+nb_vn 
+CONST nb_vn / obj_vn_const
+GCA  nb_vn / obj_vn_gca
+// demi cercles
+
+tx_pres_fm_vn  => obj_tx_pres_fm
+tx_fm_vn    => obj_tx_fm
+tx_ce_vn    => obj_tx_ce
+// barres
+
+
+
+VO
+nb_vo
+GCA  nb_vo / obj_vo
+// demi cercles
+
+tx_pres_fm_vo  => obj_tx_pres_fm_vo
+tx_fm_vo   => obj_tx_fm_vo
+tx_ce_vo    => obj_tx_ce_vo
+// barres

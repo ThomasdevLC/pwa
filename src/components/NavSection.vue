@@ -2,7 +2,9 @@
   <div class="navigation">
     <nav>
       <router-link :to="{ name: 'home' }"><li>Vendeurs</li></router-link>
-      <router-link :to="{ name: 'home2' }"><li>Concessions</li></router-link>
+      <router-link :to="{ name: 'AppStores' }"
+        ><li>Concessions</li></router-link
+      >
     </nav>
   </div>
 </template>
