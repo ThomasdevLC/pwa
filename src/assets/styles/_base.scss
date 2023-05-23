@@ -54,3 +54,9 @@ p {
   color: red;
   text-align: center;
 }
+
+.separator {
+  border-bottom: 1px solid var(--gray);
+  width: 70%;
+  margin: 30px auto;
+}

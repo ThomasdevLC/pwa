@@ -14,10 +14,32 @@
     <div>
       <TimeSelector @date-change="dateChange" />
     </div>
-  </div>
-  <h1>hello</h1>
 
-  <pre style="color: white">{{ test }}</pre>
+    <div v-if="storeStat && storeStat.nb_vn">
+      <ChartsRates
+        title="Vn"
+        :total="storeStat.nb_vn"
+        :txPres="storeStat.tx_pres_fm_vn"
+        :txFm="storeStat.tx_fm_vn"
+        :txCe="storeStat.tx_ce_vn"
+      />
+    </div>
+    <div
+      class="separator"
+      v-if="storeStat && storeStat.nb_vo && storeStat.nb_vn"
+    ></div>
+    <div v-if="storeStat && storeStat.nb_vo">
+      <ChartsRates
+        title="Vo"
+        :total="storeStat.nb_vo"
+        :txPres="storeStat.tx_pres_fm_vo"
+        :txFm="storeStat.tx_fm_vo"
+        :txCe="storeStat.tx_ce_vo"
+      />
+    </div>
+  </div>
+
+  <pre style="color: white">{{ storeStat }}</pre>
 </template>
 
 <script>
@@ -28,6 +50,7 @@ import UserInfos from "../components/UserInfos.vue";
 import NavSection from "../components/NavSection.vue";
 import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 import TimeSelector from "../components/TimeSelector.vue";
+import ChartsRates from "../components/ChartsRates.vue";
 
 export default {
   components: {
@@ -36,6 +59,7 @@ export default {
     NavSection,
     StoreVendorSelector,
     TimeSelector,
+    ChartsRates,
   },
 
   created() {
@@ -45,7 +69,8 @@ export default {
   data() {
     return {
       store: useStore(),
-      test: null,
+      storeStat: null,
+      storeObjectives: null,
     };
   },
   methods: {
@@ -67,7 +92,9 @@ export default {
       console.log("data", data);
       fetchData("storeStat", data)
         .then((res) => {
-          this.test = res;
+          this.storeStat = res.stat;
+          this.storeObjectives = res.objectives;
+          console.log(this.storeObjectives);
         })
         .catch((error) => {
           console.error(error);

@@ -15,7 +15,7 @@
       <TimeSelector @date-change="dateChange" />
     </div>
 
-    <!-- <pre style="color: white">{{ this.store.user }}</pre> -->
+    <!-- <pre style="color: white">{{ this.data }}</pre> -->
 
     <div v-if="data && !error">
       <div class="total">
@@ -157,11 +157,5 @@ export default {
 }
 .total h3 {
   font-weight: 300;
-}
-
-.separator {
-  border-bottom: 1px solid var(--gray);
-  width: 70%;
-  margin: 30px auto;
 }
 </style>
