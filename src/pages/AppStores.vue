@@ -41,6 +41,9 @@
         :txPres="storeStat.tx_pres_fm_vn"
         :txFm="storeStat.tx_fm_vn"
         :txCe="storeStat.tx_ce_vn"
+        :objPres="storeObjectives.obj_tx_pres_fm"
+        :objFm="storeObjectives.obj_tx_fm"
+        :objCe="storeObjectives.obj_tx_ce"
       />
     </div>
     <div
@@ -63,11 +66,14 @@
         :txPres="storeStat.tx_pres_fm_vo"
         :txFm="storeStat.tx_fm_vo"
         :txCe="storeStat.tx_ce_vo"
+        :objPres="storeObjectives.obj_tx_pres_fm_vo"
+        :objFm="storeObjectives.obj_tx_fm_vo"
+        :objCe="storeObjectives.obj_tx_ce_vo"
       />
     </div>
   </div>
 
-  <!-- <pre style="color: white">{{ storeStat }}</pre> -->
+  <!-- <pre style="color: white">{{ storeObjectives.obj_tx_ce_vo }}</pre> -->
 </template>
 
 <script>

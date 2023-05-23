@@ -2,11 +2,18 @@
   <div class="charts">
     <h3 v-if="$route.path === '/'">
       {{ title }}
-      <span style="font-weight: 700; margin-left: 10px"> {{ total }}</span>
+      <span style="font-weight: 700; margin-left: 10px">
+        {{ total }}
+      </span>
     </h3>
-    <ChartsBar name="Prés" :score="txPres" :scale="`${txPres}%`" />
-    <ChartsBar name="Fm" :score="txFm" :scale="`${txFm}%`" />
-    <ChartsBar name="Ce" :score="txCe" :scale="`${txCe}%`" />
+    <ChartsBar
+      name="Prés"
+      :score="txPres"
+      :scale="`${txPres}%`"
+      :obj="objPres"
+    />
+    <ChartsBar name="Fm" :score="txFm" :scale="`${txFm}%`" :obj="objFm" />
+    <ChartsBar name="Ce" :score="txCe" :scale="`${txCe}%`" :obj="objCe" />
   </div>
 </template>
 
@@ -16,7 +23,16 @@ import ChartsBar from "../components/ChartsBar.vue";
 export default {
   components: { ChartsBar },
 
-  props: ["title", "total", "txPres", "txFm", "txCe"],
+  props: [
+    "title",
+    "total",
+    "txPres",
+    "txFm",
+    "txCe",
+    "objPres",
+    "objFm",
+    "objCe",
+  ],
 };
 </script>
 

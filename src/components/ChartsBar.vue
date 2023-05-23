@@ -7,7 +7,7 @@
           class="bar__container__level"
           :style="{
             transform: `scale(calc(${scale}), 1)`,
-            backgroundColor: `var(--secondary)`,
+            backgroundColor: score < obj ? 'red' : 'var(--secondary)',
           }"
         ></div>
       </div>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  props: ["name", "score", "scale"],
+  props: ["name", "score", "scale", "obj"],
 };
 </script>
 
