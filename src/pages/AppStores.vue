@@ -51,6 +51,12 @@
       <h3>
         VO <span> {{ storeStat.nb_vo }}</span>
       </h3>
+      <ChartsSemiStore
+        title="GCA"
+        :total="storeStat.nb_vo"
+        :obj="storeObjectives.obj_vo"
+        :key="reloadKey"
+      />
       <ChartsRates
         title="Vo"
         :total="storeStat.nb_vo"
@@ -134,8 +140,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @use "../assets/styles/animations" as animations;
-
 h3 {
   font-weight: 300;
   margin-bottom: 15px;
