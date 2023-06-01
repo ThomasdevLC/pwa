@@ -40,6 +40,8 @@ export default {
     this.$emit("date-change");
   },
   data() {
+    const currentYear = new Date().getFullYear();
+
     return {
       months: [
         { id: "year", name: "Annuel" },
@@ -57,10 +59,10 @@ export default {
         { id: 12, name: "Décembre" },
       ],
       years: [
-        { id: "2023", name: "2023" },
-        { id: "2022", name: "2022" },
-        { id: "2021", name: "2021" },
-        { id: "2020", name: "2020" },
+        { id: String(currentYear), name: String(currentYear) },
+        { id: String(currentYear - 1), name: String(currentYear - 1) },
+        { id: String(currentYear - 2), name: String(currentYear - 2) },
+        { id: String(currentYear - 3), name: String(currentYear - 3) },
       ],
       store: useStore(),
     };

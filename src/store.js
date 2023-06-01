@@ -63,7 +63,6 @@ export const useStore = defineStore("store", {
     getVendors() {
       fetchData("vendors")
         .then((res) => {
-          // console.log(" vendorsApi res", res);
           this.vendors = res;
           this.getVendorsList();
         })
