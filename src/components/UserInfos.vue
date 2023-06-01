@@ -2,20 +2,20 @@
   <div class="user">
     <img class="user__image" :src="image" />
     <div class="user__infos">
-      <p class="user__infos__name">Bonjour, {{ name }} <br /></p>
-      <p class="user__infos__store">{{ store }}</p>
+      <p class="user__infos__name">Bonjour, {{ store.user.name }} <br /></p>
+      <p class="user__infos__store">{{ store.user.storeToString }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import Img1 from "../assets/photos/vendor.jpg";
+import { useStore } from "../store";
 
 export default {
-  props: ["name", "store"],
-
   data() {
     return {
+      store: useStore(),
       image: Img1,
     };
   },

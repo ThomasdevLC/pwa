@@ -9,8 +9,8 @@
         v-if="store.stores"
         v-model="store.selectedStore"
         :options="store.stores"
-        label="store_name"
-        :reduce="(v) => v.store_id"
+        label="name"
+        :reduce="(v) => v.id"
         :clearable="false"
         placeholder="concession"
         @update:modelValue="storesChange"
@@ -32,6 +32,18 @@
         @update:modelValue="$emit('vendorChange')"
       />
     </div>
+
+    <!-- <pre>
+<div style="color:white">
+  {{ store.selectedVendor }}
+  {{ store.selectedStore }}
+  {{ store.stores }}
+  {{ store.vendorsList }}
+
+
+
+</div>
+    </pre> -->
   </div>
 </template>
 
@@ -57,8 +69,6 @@ export default {
       image: warehouse,
     };
   },
-
-  watch: {},
 
   methods: {
     storesChange() {

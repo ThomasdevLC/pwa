@@ -24,22 +24,42 @@ export const useStore = defineStore("store", {
       this.getVendors();
       this.refreshDate();
 
-      if (this.user.role === "Vendor") this.selectedVendor = this.user.id;
+      // if (this.user.role === "Vendor") this.selectedVendor = this.user.id;
+      this.selectedVendor = this.user.id;
     },
+    // getStores() {
+    //   fetchData("stores")
+    //     .then((res) => {
+    //       this.stores = [...res].filter(
+    //         (store) => this.user.stores.includes(store.store_id),
+
+    //         console.log("stores", this.stores)
+    //       );
+    //       this.selectedStore =
+    //         this.user.role === "Vendor" ? this.user.store : null;
+    //     })
+    //     .catch((err) => {
+    //       console.log("err home", err);
+    //       this.error = err.message;
+    //     });
+    // },
+
     getStores() {
       fetchData("stores")
         .then((res) => {
-          this.stores = [...res].filter((store) =>
-            this.user.stores.includes(store.store_id)
+          this.stores = [...res].filter(
+            (store) => this.user.stores.includes(store.id),
+
+            console.log("stores", this.stores)
           );
-          this.selectedStore =
-            this.user.role === "Vendor" ? this.user.store : null;
+          this.selectedStore = this.user.store;
         })
         .catch((err) => {
           console.log("err home", err);
           this.error = err.message;
         });
     },
+
     getVendors() {
       fetchData("vendors")
         .then((res) => {
