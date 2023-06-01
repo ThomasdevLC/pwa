@@ -32,18 +32,6 @@
         @update:modelValue="$emit('vendorChange')"
       />
     </div>
-
-    <!-- <pre>
-<div style="color:white">
-  {{ store.selectedVendor }}
-  {{ store.selectedStore }}
-  {{ store.stores }}
-  {{ store.vendorsList }}
-
-
-
-</div>
-    </pre> -->
   </div>
 </template>
 
@@ -58,13 +46,6 @@ export default {
   data() {
     return {
       store: useStore(),
-      userId: "",
-      user: null,
-      vendors: null,
-      stores: null,
-      selectedVendor: null,
-      selectedStore: null,
-      vendorsList: null,
       error: null,
       image: warehouse,
     };
@@ -74,7 +55,7 @@ export default {
     storesChange() {
       this.store.getVendorsList();
       this.store.selectedVendor = null;
-      // if (this.store.user.role !== "Vendor") this.store.refreshDate();
+      if (this.store.user.role !== "Vendor") this.store.refreshDate();
     },
   },
 };

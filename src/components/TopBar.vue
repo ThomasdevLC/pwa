@@ -16,8 +16,6 @@
 <script>
 import logo from "../assets/photos/logo.png";
 export default {
-  props: ["user"],
-
   data() {
     return {
       image: logo,

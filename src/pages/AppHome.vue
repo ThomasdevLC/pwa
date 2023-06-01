@@ -1,8 +1,8 @@
 <template>
   <div class="home" v-if="store.stores && store.vendorsList">
-    <TopBar :user="store.user" @reload="handleReload" />
+    <TopBar @reload="handleReload" />
 
-    <UserInfos :name="store.user.name" :store="store.user.storeToString" />
+    <UserInfos />
     <div>
       <NavSection />
     </div>
@@ -49,6 +49,9 @@
           :txCe="stat.tx_ce_vo"
         />
       </div>
+    </div>
+    <div class="error" v-else>
+      {{ error }}
     </div>
   </div>
 </template>
