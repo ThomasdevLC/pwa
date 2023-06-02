@@ -14,6 +14,8 @@ export const useStore = defineStore("store", {
       month: new Date().getMonth() + 1,
     },
     date: null,
+    storeStat: null,
+    error: null,
   }),
   getters: {},
   actions: {
@@ -23,9 +25,7 @@ export const useStore = defineStore("store", {
       this.getStores();
       this.getVendors();
       this.refreshDate();
-
-      this.selectedVendor = this.user.id;
-      // if (this.user.role !== "Vendor") this.selectedVendor = null;
+      this.checkSelections();
     },
 
     getStores() {
@@ -50,23 +50,35 @@ export const useStore = defineStore("store", {
         .then((res) => {
           this.vendors = res;
           this.getVendorsList();
+          this.selectedVendor = this.user.id;
+          if (this.user.role !== "Vendor") this.selectedVendor = null;
         })
-
         .catch((err) => {
           console.log("err home", err);
           this.error = err.message;
         });
     },
+
     getVendorsList() {
-      // console.log("storesChange", this.vendors)
       this.vendorsList = [...this.vendors].filter(
         (vendor) => this.selectedStore === vendor.store
       );
     },
+
     refreshDate() {
       console.log("refreshDate", this.currentDate);
       this.date = { ...this.currentDate };
       if (this.user.role !== "Vendor") this.selectedVendor = null;
+    },
+
+    checkSelections() {
+      if (this.selectedVendor === null && this.selectedStore === null) {
+        this.error = "Veuillez sélectionner une concession et un vendeur";
+      } else if (this.selectedVendor === null) {
+        this.error = "Veuillez sélectionner un vendeur";
+      } else if (this.selectedStore === null) {
+        this.error = "Veuillez sélectionner une concession";
+      }
     },
   },
 });

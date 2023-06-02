@@ -51,7 +51,10 @@
       </div>
     </div>
     <div class="error" v-else>
-      {{ error }}
+      <div v-if="error">{{ error }}</div>
+      <div v-if="store.error">
+        {{ store.error }}
+      </div>
     </div>
   </div>
 </template>

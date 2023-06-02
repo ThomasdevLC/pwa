@@ -130,6 +130,7 @@ export default {
       fetchData("storeStat", data)
         .then((res) => {
           this.storeStat = res.stat;
+          this.store.storeStat = res.stat;
           this.storeObjectives = res.objectives;
           // Incrémenter la valeur de reloadKey pour déclencher un re-render du composant ChartsSemiStore
           this.reloadKey += 1;
