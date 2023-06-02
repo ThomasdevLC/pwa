@@ -6,3 +6,6 @@ AppHome /
 ligne 113 :            this.statData = res;
 ligne 131 :              this.stat = null;
 
+AppHome /
+request failed with code 429" 
+getStat(),  setTimeout

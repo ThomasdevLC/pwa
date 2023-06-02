@@ -15,7 +15,7 @@
       <TimeSelector @date-change="getStat" />
     </div>
 
-    <div v-if="storeStat && storeStat.nb_vn"></div>
+    <LoaderComponent class="loader" v-if="!storeStat && !error" />
 
     <div v-if="storeStat && storeStat.nb_vn">
       <h3>
@@ -71,6 +71,12 @@
         :objCe="storeObjectives.obj_tx_ce_vo"
       />
     </div>
+    <div class="error" v-else>
+      <div v-if="error">{{ error }}</div>
+      <div v-if="store.error">
+        {{ store.error }}
+      </div>
+    </div>
   </div>
 
   <!-- <pre style="color: white">{{ storeObjectives.obj_tx_ce_vo }}</pre> -->
@@ -86,6 +92,7 @@ import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 import TimeSelector from "../components/TimeSelector.vue";
 import ChartsRates from "../components/ChartsRates.vue";
 import ChartsSemiStore from "../components/ChartsSemiStore.vue";
+import LoaderComponent from "../components/LoaderComponent.vue";
 
 export default {
   components: {
@@ -96,6 +103,7 @@ export default {
     TimeSelector,
     ChartsRates,
     ChartsSemiStore,
+    LoaderComponent,
   },
 
   created() {
@@ -107,6 +115,7 @@ export default {
       store: useStore(),
       storeStat: null,
       storeObjectives: null,
+      error: null,
       reloadKey: 0, // Nouvelle propriété reloadKey
     };
   },
@@ -129,6 +138,7 @@ export default {
         })
         .catch((error) => {
           console.error(error);
+          this.error = "Aucune donnée disponible ";
         });
     },
   },

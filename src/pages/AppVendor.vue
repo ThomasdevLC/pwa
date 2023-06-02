@@ -21,6 +21,7 @@
     </div>
 
     <!-- <pre style="color: white">{{ this.data }}</pre> -->
+    <LoaderComponent class="loader" v-if="!statData && !error" />
 
     <div v-if="statData && !error">
       <div class="total">
@@ -57,9 +58,9 @@
     </div>
     <div class="error" v-else>
       <div v-if="error">{{ error }}</div>
-      <div v-if="store.error">
+      <!-- <div v-if="store.error">
         {{ store.error }}
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -74,6 +75,7 @@ import StoreVendorSelector from "../components/StoreVendorSelector.vue";
 import TimeSelector from "../components/TimeSelector.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
+import LoaderComponent from "../components/LoaderComponent.vue";
 import Img1 from "../assets/photos/vendor.jpg";
 
 export default {
@@ -85,6 +87,7 @@ export default {
     TimeSelector,
     ChartsTotal,
     ChartsRates,
+    LoaderComponent,
   },
   created() {
     if (!this.store.user) this.$router.push("/login");
@@ -113,28 +116,30 @@ export default {
       console.log("getStat", this.store.date);
       let date = this.store.date;
       let data = [date.year, date.month, this.store.selectedVendor];
-      fetchData("vendorStat", data)
-        .then((res) => {
-          this.statData = res;
-          this.yearStat = date.month;
-          date.month === "year"
-            ? (this.stat = res.select.stat)
-            : (this.stat = res.month.stat);
-          date.month === "year"
-            ? (this.objectives = null)
-            : (this.objectives = res.month.objectives.total);
+      setTimeout(() => {
+        fetchData("vendorStat", data)
+          .then((res) => {
+            this.statData = res;
+            this.yearStat = date.month;
+            date.month === "year"
+              ? (this.stat = res.select.stat)
+              : (this.stat = res.month.stat);
+            date.month === "year"
+              ? (this.objectives = null)
+              : (this.objectives = res.month.objectives.total);
 
-          date.month === "year"
-            ? (this.total = null)
-            : (this.total = res.month.stat.nb_total);
+            date.month === "year"
+              ? (this.total = null)
+              : (this.total = res.month.stat.nb_total);
 
-          this.error = null;
-        })
-        .catch((err) => {
-          console.log("err home", err);
-          this.error = "Aucune donnée disponible ";
-          this.stat = null;
-        });
+            this.error = null;
+          })
+          .catch((err) => {
+            console.log("err home", err);
+            this.error = "Aucune donnée disponible ";
+            this.stat = null;
+          });
+      }, 100);
     },
   },
   computed: {
@@ -163,5 +168,11 @@ export default {
 }
 .total h3 {
   font-weight: 300;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

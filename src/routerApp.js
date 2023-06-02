@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import AppHome from "./pages/AppHome.vue";
-import AppStores from "./pages/AppStores.vue";
 import Login from "./pages/Login.vue";
+import AppVendor from "./pages/AppVendor.vue";
+import AppStores from "./pages/AppStores.vue";
 import AppHome2 from "./pages/AppHome2.vue";
 
 const routerApp = createRouter({
@@ -10,7 +10,7 @@ const routerApp = createRouter({
     {
       path: "/",
       name: "home",
-      component: AppHome,
+      component: AppVendor,
     },
     {
       path: "/appstores",
