@@ -14,7 +14,6 @@ export const useStore = defineStore("store", {
       month: new Date().getMonth() + 1,
     },
     date: null,
-    storeStat: null,
     error: null,
   }),
   getters: {},

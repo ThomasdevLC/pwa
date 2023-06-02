@@ -6,14 +6,9 @@
         {{ total }}
       </span>
     </h3>
-    <ChartsBar
-      name="Prés"
-      :score="txPres"
-      :scale="`${txPres}%`"
-      :obj="objPres"
-    />
-    <ChartsBar name="Fm" :score="txFm" :scale="`${txFm}%`" :obj="objFm" />
-    <ChartsBar name="Ce" :score="txCe" :scale="`${txCe}%`" :obj="objCe" />
+    <ChartsBar name="Prés" :score="txPres" :obj="objPres" />
+    <ChartsBar name="Fm" :score="txFm" :obj="objFm" />
+    <ChartsBar name="Ce" :score="txCe" :obj="objCe" />
   </div>
 </template>
 

@@ -1,6 +1,11 @@
 <template>
   <div class="home" v-if="store.stores && store.vendorsList">
-    <TopBar @reload="handleReload" />
+    <TopBar
+      @reload="
+        this.store.initApp();
+        this.getStat();
+      "
+    />
 
     <UserInfos />
     <div>
@@ -12,12 +17,12 @@
     </div>
 
     <div>
-      <TimeSelector @date-change="dateChange" />
+      <TimeSelector @date-change="getStat" />
     </div>
 
     <!-- <pre style="color: white">{{ this.data }}</pre> -->
 
-    <div v-if="data && !error">
+    <div v-if="statData && !error">
       <div class="total">
         <div v-if="yearStat === 'year'">
           <h3>
@@ -88,21 +93,16 @@ export default {
   data() {
     return {
       store: useStore(),
-      data: null,
+      statData: null,
       error: null,
       stat: null,
       objectives: null,
       total: null,
       yearStat: null,
-      vendorId: null,
       image: Img1,
     };
   },
   methods: {
-    dateChange() {
-      this.getStat();
-    },
-
     handleReload() {
       console.log("reload");
       this.store.initApp();
@@ -115,7 +115,7 @@ export default {
       let data = [date.year, date.month, this.store.selectedVendor];
       fetchData("vendorStat", data)
         .then((res) => {
-          this.data = res;
+          this.statData = res;
           this.yearStat = date.month;
           date.month === "year"
             ? (this.stat = res.select.stat)

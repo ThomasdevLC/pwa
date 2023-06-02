@@ -12,7 +12,7 @@
     </div>
 
     <div>
-      <TimeSelector @date-change="dateChange" />
+      <TimeSelector @date-change="getStat" />
     </div>
 
     <div v-if="storeStat && storeStat.nb_vn"></div>
@@ -111,10 +111,6 @@ export default {
     };
   },
   methods: {
-    dateChange() {
-      this.getStat();
-    },
-
     handleReload() {
       console.log("reload");
       this.store.initApp();
@@ -122,15 +118,11 @@ export default {
     },
 
     getStat() {
-      console.log("Fetching", this.store.user);
-      console.log("getStat", this.store.date);
       let date = this.store.date;
       let data = [date.year, date.month, this.store.selectedStore];
-      console.log("data", data);
       fetchData("storeStat", data)
         .then((res) => {
           this.storeStat = res.stat;
-          this.store.storeStat = res.stat;
           this.storeObjectives = res.objectives;
           // Incrémenter la valeur de reloadKey pour déclencher un re-render du composant ChartsSemiStore
           this.reloadKey += 1;

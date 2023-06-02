@@ -2,4 +2,7 @@
 LOGIN
 ligne 67 :       let data = [this.userId];
 
+AppHome /
+ligne 113 :            this.statData = res;
+ligne 131 :              this.stat = null;
 
