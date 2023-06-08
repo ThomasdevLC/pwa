@@ -69,15 +69,5 @@ export const useStore = defineStore("store", {
       this.date = { ...this.currentDate };
       if (this.user.role !== "Vendor") this.selectedVendor = null;
     },
-
-    checkSelections() {
-      if (this.selectedVendor === null && this.selectedStore === null) {
-        this.error = "Veuillez sélectionner une concession et un vendeur";
-      } else if (this.selectedVendor === null) {
-        this.error = "Veuillez sélectionner un vendeur";
-      } else if (this.selectedStore === null) {
-        this.error = "Veuillez sélectionner une concession";
-      }
-    },
   },
 });
