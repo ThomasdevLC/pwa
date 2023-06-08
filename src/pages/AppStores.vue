@@ -73,7 +73,7 @@
     </div>
     <div class="error" v-else>
       <div v-if="error">{{ error }}</div>
-      <div v-if="store.error">
+      <div v-if="store.user.role !== 'Vendor' && store.error">
         {{ store.error }}
       </div>
     </div>
@@ -135,6 +135,8 @@ export default {
           this.storeObjectives = res.objectives;
           // Incrémenter la valeur de reloadKey pour déclencher un re-render du composant ChartsSemiStore
           this.reloadKey += 1;
+
+          console.log("store.selectedStore", this.store.selectedStore);
         })
         .catch((error) => {
           console.error(error);

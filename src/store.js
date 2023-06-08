@@ -37,6 +37,7 @@ export const useStore = defineStore("store", {
           );
           this.selectedStore = this.user.store;
           if (this.user.role !== "Vendor") this.selectedStore = null;
+          console.log("selectedStore", this.selectedStore);
         })
         .catch((err) => {
           console.log("err home", err);

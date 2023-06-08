@@ -58,9 +58,9 @@
     </div>
     <div class="error" v-else>
       <div v-if="error">{{ error }}</div>
-      <!-- <div v-if="store.error">
+      <div v-if="store.user.role !== 'Vendor' && store.error">
         {{ store.error }}
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
