@@ -55,8 +55,8 @@ export default {
     storesChange() {
       this.store.getVendorsList();
       this.store.selectedVendor = null;
-      // if (this.store.user.role !== "Vendor") this.store.refreshDate();
       this.$emit("store-change");
+      // if (this.store.user.role !== "Vendor") this.store.refreshDate();
     },
   },
 };

@@ -116,30 +116,29 @@ export default {
       console.log("getStat", this.store.date);
       let date = this.store.date;
       let data = [date.year, date.month, this.store.selectedVendor];
-      setTimeout(() => {
-        fetchData("vendorStat", data)
-          .then((res) => {
-            this.statData = res;
-            this.yearStat = date.month;
-            date.month === "year"
-              ? (this.stat = res.select.stat)
-              : (this.stat = res.month.stat);
-            date.month === "year"
-              ? (this.objectives = null)
-              : (this.objectives = res.month.objectives.total);
 
-            date.month === "year"
-              ? (this.total = null)
-              : (this.total = res.month.stat.nb_total);
+      fetchData("vendorStat", data)
+        .then((res) => {
+          this.statData = res;
+          this.yearStat = date.month;
+          date.month === "year"
+            ? (this.stat = res.select.stat)
+            : (this.stat = res.month.stat);
+          date.month === "year"
+            ? (this.objectives = null)
+            : (this.objectives = res.month.objectives.total);
 
-            this.error = null;
-          })
-          .catch((err) => {
-            console.log("err home", err);
-            this.error = "Aucune donnée disponible ";
-            this.stat = null;
-          });
-      }, 100);
+          date.month === "year"
+            ? (this.total = null)
+            : (this.total = res.month.stat.nb_total);
+
+          this.error = null;
+        })
+        .catch((err) => {
+          console.log("err home", err);
+          this.error = "Aucune donnée disponible ";
+          this.stat = null;
+        });
     },
   },
   computed: {

@@ -71,11 +71,11 @@
         :objCe="storeObjectives.obj_tx_ce_vo"
       />
     </div>
-    <div class="error" v-else>
-      <div v-if="error">{{ error }}</div>
-      <div v-if="store.user.role !== 'Vendor' && store.error">
-        {{ store.error }}
-      </div>
+  </div>
+  <div class="error" v-else>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="store.user.role !== 'Vendor' && store.error">
+      {{ store.error }}
     </div>
   </div>
 
