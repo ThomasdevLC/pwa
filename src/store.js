@@ -20,7 +20,6 @@ export const useStore = defineStore("store", {
   actions: {
     initApp() {
       console.log("INIT APP");
-
       this.getStores();
       this.getVendors();
       this.refreshDate();

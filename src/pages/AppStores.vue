@@ -8,7 +8,7 @@
     </div>
 
     <div>
-      <StoreVendorSelector @vendorChange="getStat" />
+      <StoreVendorSelector @vendorChange="getStat" @store-change="getStat" />
     </div>
 
     <div>
