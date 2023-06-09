@@ -38,7 +38,8 @@ export default {
   align-items: flex-end;
   justify-content: center;
   box-sizing: border-box;
-  margin: 30px auto;
+  margin: auto;
+  margin-bottom: 40px;
   &:after {
     content: "";
     width: 210px;

@@ -156,7 +156,7 @@ export default {
 
 .home {
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px 20px;
   max-width: 920px;
   background: var(--primary);
   min-height: 100vh;

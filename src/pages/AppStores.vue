@@ -148,6 +148,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home {
+  margin: 0 auto;
+  padding: 30px 20px;
+  max-width: 920px;
+  background: var(--primary);
+  min-height: 100vh;
+}
+
 h3 {
   font-weight: 300;
   margin-bottom: 15px;

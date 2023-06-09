@@ -74,7 +74,11 @@ export const useStore = defineStore("store", {
     checkSelections() {
       const route = useRoute();
 
-      if (this.selectedVendor === null && route.path !== "/appstores") {
+      if (
+        this.selectedStore === null &&
+        this.selectedVendor === null &&
+        route.path !== "/appstores"
+      ) {
         this.errorSelect = "Veuillez sélectionner une concession et un vendeur";
       } else if (this.selectedStore === null) {
         this.errorSelect = "Veuillez sélectionner une concession";
