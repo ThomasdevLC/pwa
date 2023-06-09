@@ -1,5 +1,5 @@
 <template>
-  <div class="home" v-if="store.stores && store.vendorsList">
+  <div class="home" v-if="store.stores">
     <TopBar
       @reload="
         this.store.initApp();
@@ -58,8 +58,8 @@
     </div>
     <div class="error" v-else>
       <div v-if="error">{{ error }}</div>
-      <div v-if="store.user.role !== 'Vendor' && store.error">
-        {{ store.error }}
+      <div v-if="store.user.role !== 'Vendor' && store.errorSelect">
+        {{ store.errorSelect }}
       </div>
     </div>
   </div>

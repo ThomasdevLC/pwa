@@ -1,5 +1,5 @@
 <template>
-  <div class="home" v-if="store.stores && store.vendorsList">
+  <div class="home" v-if="store.stores">
     <TopBar @reload="handleReload" />
 
     <UserInfos />
@@ -17,67 +17,66 @@
 
     <LoaderComponent class="loader" v-if="!storeStat && !error" />
 
-    <div v-if="storeStat && storeStat.nb_vn">
-      <h3>
-        VN <span> {{ storeStat.nb_vn }}</span>
-      </h3>
+    <div v-if="store.selectedStore">
+      <div v-if="storeStat && storeStat.nb_vn">
+        <h3>
+          VN <span> {{ storeStat.nb_vn }}</span>
+        </h3>
 
-      <ChartsSemiStore
-        title="CONST"
-        :total="storeStat.nb_vn"
-        :obj="storeObjectives.obj_vn_const"
-        :key="reloadKey"
-      />
+        <ChartsSemiStore
+          title="CONST"
+          :total="storeStat.nb_vn"
+          :obj="storeObjectives.obj_vn_const"
+          :key="reloadKey"
+        />
 
-      <ChartsSemiStore
-        title="GCA"
-        :total="storeStat.nb_vn"
-        :obj="storeObjectives.obj_vn_gca"
-        :key="reloadKey"
-      />
-      <ChartsRates
-        title="Vn"
-        :total="storeStat.nb_vn"
-        :txPres="storeStat.tx_pres_fm_vn"
-        :txFm="storeStat.tx_fm_vn"
-        :txCe="storeStat.tx_ce_vn"
-        :objPres="storeObjectives.obj_tx_pres_fm"
-        :objFm="storeObjectives.obj_tx_fm"
-        :objCe="storeObjectives.obj_tx_ce"
-      />
+        <ChartsSemiStore
+          title="GCA"
+          :total="storeStat.nb_vn"
+          :obj="storeObjectives.obj_vn_gca"
+          :key="reloadKey"
+        />
+        <ChartsRates
+          title="Vn"
+          :total="storeStat.nb_vn"
+          :txPres="storeStat.tx_pres_fm_vn"
+          :txFm="storeStat.tx_fm_vn"
+          :txCe="storeStat.tx_ce_vn"
+          :objPres="storeObjectives.obj_tx_pres_fm"
+          :objFm="storeObjectives.obj_tx_fm"
+          :objCe="storeObjectives.obj_tx_ce"
+        />
+      </div>
+      <div
+        class="separator"
+        v-if="storeStat && storeStat.nb_vo && storeStat.nb_vn"
+      ></div>
+      <div v-if="storeStat && storeStat.nb_vo">
+        <h3>
+          VO <span> {{ storeStat.nb_vo }}</span>
+        </h3>
+        <ChartsSemiStore
+          title="GCA"
+          :total="storeStat.nb_vo"
+          :obj="storeObjectives.obj_vo"
+          :key="reloadKey"
+        />
+        <ChartsRates
+          title="Vo"
+          :total="storeStat.nb_vo"
+          :txPres="storeStat.tx_pres_fm_vo"
+          :txFm="storeStat.tx_fm_vo"
+          :txCe="storeStat.tx_ce_vo"
+          :objPres="storeObjectives.obj_tx_pres_fm_vo"
+          :objFm="storeObjectives.obj_tx_fm_vo"
+          :objCe="storeObjectives.obj_tx_ce_vo"
+        />
+      </div>
     </div>
-    <div
-      class="separator"
-      v-if="storeStat && storeStat.nb_vo && storeStat.nb_vn"
-    ></div>
-    <div v-if="storeStat && storeStat.nb_vo">
-      <h3>
-        VO <span> {{ storeStat.nb_vo }}</span>
-      </h3>
-      <ChartsSemiStore
-        title="GCA"
-        :total="storeStat.nb_vo"
-        :obj="storeObjectives.obj_vo"
-        :key="reloadKey"
-      />
-      <ChartsRates
-        title="Vo"
-        :total="storeStat.nb_vo"
-        :txPres="storeStat.tx_pres_fm_vo"
-        :txFm="storeStat.tx_fm_vo"
-        :txCe="storeStat.tx_ce_vo"
-        :objPres="storeObjectives.obj_tx_pres_fm_vo"
-        :objFm="storeObjectives.obj_tx_fm_vo"
-        :objCe="storeObjectives.obj_tx_ce_vo"
-      />
-    </div>
-    <div
-      class="error"
-      v-if="error || (store.user.role !== 'Vendor' && store.error)"
-    >
+    <div class="error" v-else>
       <div v-if="error">{{ error }}</div>
-      <div v-if="store.user.role !== 'Vendor' && store.error">
-        {{ store.error }}
+      <div v-if="store.user.role !== 'Vendor' && store.errorSelect">
+        {{ store.errorSelect }}
       </div>
     </div>
   </div>
@@ -144,9 +143,6 @@ export default {
           this.error = "Aucune donnée disponible ";
         });
     },
-  },
-  mounted() {
-    this.getStat();
   },
 };
 </script>

@@ -58,16 +58,6 @@ export default {
       this.$emit("store-change");
       // if (this.store.user.role !== "Vendor") this.store.refreshDate();
     },
-
-    checkSelections() {
-      if (this.selectedVendor === null && this.selectedStore === null) {
-        this.store.error = "Veuillez sélectionner une concession et un vendeur";
-      } else if (this.selectedVendor === null) {
-        this.store.error = "Veuillez sélectionner un vendeur";
-      } else if (this.selectedStore === null) {
-        this.store.error = "Veuillez sélectionner une concession";
-      }
-    },
   },
 };
 </script>

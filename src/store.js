@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { useRoute } from "vue-router";
 import fetchData from "./modules/api";
 
 export const useStore = defineStore("store", {
@@ -14,7 +15,7 @@ export const useStore = defineStore("store", {
       month: new Date().getMonth() + 1,
     },
     date: null,
-    error: null,
+    errorSelect: null,
   }),
   getters: {},
   actions: {
@@ -68,6 +69,16 @@ export const useStore = defineStore("store", {
       console.log("refreshDate", this.currentDate);
       this.date = { ...this.currentDate };
       if (this.user.role !== "Vendor") this.selectedVendor = null;
+    },
+
+    checkSelections() {
+      const route = useRoute();
+
+      if (this.selectedVendor === null && route.path !== "/appstores") {
+        this.errorSelect = "Veuillez sélectionner une concession et un vendeur";
+      } else if (this.selectedStore === null) {
+        this.errorSelect = "Veuillez sélectionner une concession";
+      }
     },
   },
 });
