@@ -67,7 +67,7 @@
 
 <script>
 import { useStore } from "../store";
-import fetchData from "../modules/api";
+import {fetchData} from "../api";
 import TopBar from "../components/TopBar.vue";
 import UserInfos from "../components/UserInfos.vue";
 import NavSection from "../components/NavSection.vue";

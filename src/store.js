@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { useRoute } from "vue-router";
-import fetchData from "./modules/api";
+import {fetchData} from "./api";
 
 export const useStore = defineStore("store", {
   state: () => ({

@@ -14,35 +14,35 @@
 
     <div class="login__container">
       <form class="login__container__form">
-        <img :src="image" />
+        <img :src="image"/>
         <div class="login__container__form__input">
           <i class="material-icons">mail_outline</i>
           <input
-            id="email"
-            type="email"
-            placeholder="email"
-            name="email"
-            v-model="email"
-            required
+              id="email"
+              type="email"
+              placeholder="email"
+              name="email"
+              v-model="email"
+              required
           />
         </div>
 
         <div class="login__container__form__input">
           <i class="material-icons">lock_outline</i>
           <input
-            id="password"
-            type="password"
-            placeholder="mot de passe"
-            name="password"
-            v-model="password"
-            required
+              id="password"
+              type="password"
+              placeholder="mot de passe"
+              name="password"
+              v-model="password"
+              required
           />
         </div>
 
         <button
-          class="login__container__form__btn"
-          value="Log in"
-          @click="auth"
+            class="login__container__form__btn"
+            value="Log in"
+            @click="auth"
         >
           connexion
         </button>
@@ -58,8 +58,8 @@
 
 <script>
 import logo from "../assets/photos/logo.png";
-import { useStore } from "../store";
-import fetchData from "../modules/api";
+import {useStore} from "../store";
+import {fetchData} from "../api";
 
 export default {
   mounted() {
@@ -78,15 +78,13 @@ export default {
     };
   },
   methods: {
-    auth() {
-      fetchData("auth", [this.email])
-          .then((user) => {
-            this.store.user = user;
-            this.$router.push("/");
-          })
-          .catch((err) => {
-            this.error = err;
-          });
+    async auth() {
+      try {
+        this.store.user = await fetchData("auth", [this.email]);
+        this.$router.push("/");
+      } catch (err) {
+        this.error = err;
+      }
     }
   },
 };
