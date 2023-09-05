@@ -1,5 +1,17 @@
 <template>
   <div class="login">
+
+    <div class="login__container">
+      <input v-model="email">
+      <input v-model="password">
+      <button @click="auth">Valider</button>
+      <div class="idvalid" style="color: white">
+        <div class="mt-3">
+          <p v-if="error">{{ error }}</p>
+        </div>
+      </div>
+    </div>
+
     <div class="login__container">
       <form class="login__container__form">
         <img :src="image" />
@@ -10,6 +22,7 @@
             type="email"
             placeholder="email"
             name="email"
+            v-model="email"
             required
           />
         </div>
@@ -21,22 +34,21 @@
             type="password"
             placeholder="mot de passe"
             name="password"
+            v-model="password"
             required
           />
         </div>
 
         <button
           class="login__container__form__btn"
-          type="submit"
           value="Log in"
-          @click="getUser"
+          @click="auth"
         >
           connexion
         </button>
       </form>
       <div class="idvalid" style="color: white">
         <div class="mt-3">
-          <input v-model="userId" />
           <p v-if="error">{{ error }}</p>
         </div>
       </div>
@@ -50,33 +62,32 @@ import { useStore } from "../store";
 import fetchData from "../modules/api";
 
 export default {
+  mounted() {
+    if (this.$route.params.email) {
+      this.email = `${this.$route.params.email.replace("_", ".")}@groupegca.com`
+      this.password = Math.floor(Math.random() * 90000) + 10000;
+    }
+  },
   data() {
     return {
       store: useStore(),
-      userId: 1283,
+      email: null,
+      password: null,
       error: null,
       image: logo,
     };
   },
   methods: {
-    submit() {
-      console.log("SUBMIT");
-      console.log(this.store.user);
-    },
-    getUser() {
-      let data = [this.userId];
-      console.log("userId", data);
-      fetchData("user", data)
-        .then((res) => {
-          console.log("USER", res);
-          this.store.user = res;
-          this.$router.push("/");
-        })
-        .catch((err) => {
-          console.log("err home", err);
-          this.error = err.message;
-        });
-    },
+    auth() {
+      fetchData("auth", [this.email])
+          .then((user) => {
+            this.store.user = user;
+            this.$router.push("/");
+          })
+          .catch((err) => {
+            this.error = err;
+          });
+    }
   },
 };
 </script>

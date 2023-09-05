@@ -19,6 +19,11 @@ const routerApp = createRouter({
     },
 
     {
+      path: "/login/:email",
+      name: "login_auth",
+      component: Login,
+    },
+    {
       path: "/login",
       name: "login",
       component: Login,
