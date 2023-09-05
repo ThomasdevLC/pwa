@@ -1,8 +1,7 @@
 import axios from "axios";
 
 export const fetchData = async (path, data) => {
-    // let url = `https://test.gstat.fr/api/pwa/` + path;
-    let url = `http://localhost:8099/api/pwa/` + path;
+    let url = import.meta.env.VITE_API_URI + path;
 
     if (data) {
         data.forEach((element) => {
