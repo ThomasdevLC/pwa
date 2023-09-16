@@ -1,5 +1,11 @@
 <template>
   <div class="login">
+    <div class="smartphone">
+      <div class="camera"></div>
+      <div class="screen"></div>
+      <div class="button"></div>
+    </div>
+
     <div class="login__container">
       <div class="login__container__form">
         <img :src="image" />
@@ -146,6 +152,45 @@ export default {
         cursor: pointer;
       }
     }
+  }
+
+  .smartphone {
+    width: 300px;
+    height: 500px;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .screen {
+    width: 100%;
+    height: 80%;
+    background: #ffffff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+
+  .button {
+    width: 40px;
+    height: 5px;
+    background: #333;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+  }
+
+  .camera {
+    width: 20px;
+    height: 20px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 </style>
