@@ -1,51 +1,41 @@
 <template>
   <div class="login">
-
     <div class="login__container">
-      <input v-model="email">
-      <input v-model="password">
-      <button @click="auth">Valider</button>
-      <div class="idvalid" style="color: white">
-        <div class="mt-3">
-          <p v-if="error">{{ error }}</p>
+      <div class="login__container__form">
+        <img :src="image" />
+        <div class="login__container__form__input">
+          <i class="material-icons">mail_outline</i>
+
+          <input id="email" type="email" placeholder="email" name="email" v-model="email" required />
+        </div>
+
+        <div class="login__container__form__input">
+          <i class="material-icons">lock_outline</i>
+          <input id="password" type="password" placeholder="mot de passe" name="password" v-model="password" required />
+        </div>
+        <button class="login__container__form__btn" value="Log in" @click="auth">connexion</button>
+        <div class="idvalid" style="color: white">
+          <div class="mt-3">
+            <p v-if="error">{{ error }}</p>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="login__container">
-      <form class="login__container__form">
-        <img :src="image"/>
+      <form class="login__container__form" @submit.prevent="auth">
+        <img :src="image" />
         <div class="login__container__form__input">
           <i class="material-icons">mail_outline</i>
-          <input
-              id="email"
-              type="email"
-              placeholder="email"
-              name="email"
-              v-model="email"
-              required
-          />
+          <input id="email" type="email" placeholder="email" name="email" v-model="email" required />
         </div>
 
         <div class="login__container__form__input">
           <i class="material-icons">lock_outline</i>
-          <input
-              id="password"
-              type="password"
-              placeholder="mot de passe"
-              name="password"
-              v-model="password"
-              required
-          />
+          <input id="password" type="password" placeholder="mot de passe" name="password" v-model="password" required />
         </div>
 
-        <button
-            class="login__container__form__btn"
-            value="Log in"
-            @click="auth"
-        >
-          connexion
-        </button>
+        <button class="login__container__form__btn" type="submit">connexion</button>
       </form>
       <div class="idvalid" style="color: white">
         <div class="mt-3">
@@ -58,13 +48,13 @@
 
 <script>
 import logo from "../assets/photos/logo.png";
-import {useStore} from "../store";
-import {fetchData} from "../api";
+import { useStore } from "../store";
+import { fetchData } from "../api";
 
 export default {
   mounted() {
     if (this.$route.params.email) {
-      this.email = `${this.$route.params.email.replace("_", ".")}@groupegca.com`
+      this.email = `${this.$route.params.email.replace("_", ".")}@groupegca.com`;
       this.password = Math.floor(Math.random() * 90000) + 10000;
     }
   },
@@ -85,7 +75,7 @@ export default {
       } catch (err) {
         this.error = err;
       }
-    }
+    },
   },
 };
 </script>
