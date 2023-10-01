@@ -1,88 +1,86 @@
-import { defineStore } from "pinia";
-import { useRoute } from "vue-router";
+import {defineStore} from "pinia";
 import {fetchData} from "./api";
 
 export const useStore = defineStore("store", {
-  state: () => ({
-    user: null,
-    selectedVendor: null,
-    selectedStore: null,
-    stores: null,
-    vendors: null,
-    vendorsList: null,
-    currentDate: {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1,
-    },
-    date: null,
-    errorSelect: null,
-  }),
-  getters: {},
-  actions: {
-    initApp() {
-      console.log("INIT APP");
-      this.getStores();
-      this.getVendors();
-      this.refreshDate();
-      this.checkSelections();
-    },
+    state: () => ({
+        user: null,
+        selectedVendor: null,
+        selectedStore: null,
+        stores: null,
+        vendors: null,
+        vendorsList: null,
+        currentDate: {
+            year: new Date().getFullYear(),
+            month: new Date().getMonth(),
+        },
+        date: null,
+        errorSelect: null,
+        isInit: false
+    }),
+    getters: {},
+    actions: {
+        async initApp() {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    await Promise.all([this.getStores(), this.getVendors()]);
+                    this.initDate();
+                    this.isInit = true
+                    resolve()
+                } catch (error) {
+                    console.error('initApp', error)
+                    reject(error);
+                }
+            });
+        },
 
-    getStores() {
-      fetchData("stores")
-        .then((res) => {
-          this.stores = [...res].filter(
-            (store) => this.user.stores.includes(store.id),
+        async getStores() {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    let stores = await fetchData("stores");
+                    this.stores = [...stores].filter(
+                        (store) => this.user.stores.includes(store.id)
+                    );
 
-            console.log("stores", this.stores)
-          );
-          this.selectedStore = this.user.store;
-          if (this.user.role !== "Vendor") this.selectedStore = null;
-          console.log("selectedStore", this.selectedStore);
-        })
-        .catch((err) => {
-          console.log("err home", err);
-          this.error = err.message;
-        });
+                    if (this.user.hasStore)
+                        this.selectedStore = this.user.store;
+
+                    resolve();
+                } catch (error) {
+                    console.error('getStores', error)
+                    reject(error);
+                }
+            });
+        },
+
+        async getVendors() {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    this.vendors = await fetchData("vendors");
+                    this.getVendorsList();
+                    this.selectedVendor = this.user.role === "Vendor" ? this.user.id : null;
+                    if (this.user.role !== "Vendor") this.selectedVendor = null;
+                    resolve();
+                } catch (error) {
+                    console.error('getStores', error)
+                    reject(error);
+                }
+            });
+        },
+
+        getVendorsList() {
+            this.vendorsList = [...this.vendors].filter(
+                (vendor) => this.selectedStore === vendor.store
+            );
+        },
+
+        initDate() {
+            const today = new Date();
+            const month = today.getMonth()
+            const day = today.getDate()
+            this.date = {
+                year: today.getFullYear(),
+                month: day < 5 ? month : month + 1,
+            };
+        },
     },
-
-    getVendors() {
-      fetchData("vendors")
-        .then((res) => {
-          this.vendors = res;
-          this.getVendorsList();
-          this.selectedVendor = this.user.id;
-          if (this.user.role !== "Vendor") this.selectedVendor = null;
-        })
-        .catch((err) => {
-          console.log("err home", err);
-          this.error = err.message;
-        });
-    },
-
-    getVendorsList() {
-      this.vendorsList = [...this.vendors].filter(
-        (vendor) => this.selectedStore === vendor.store
-      );
-    },
-
-    refreshDate() {
-      console.log("refreshDate", this.currentDate);
-      this.date = { ...this.currentDate };
-      if (this.user.role !== "Vendor") this.selectedVendor = null;
-    },
-
-    checkSelections() {
-      const route = useRoute();
-
-      if (
-        this.selectedStore === null &&
-        this.selectedVendor === null &&
-        route.path !== "/appstores"
-      ) {
-        this.errorSelect = "Veuillez sélectionner une concession et un vendeur";
-      } else if (this.selectedStore === null) {
-        this.errorSelect = "Veuillez sélectionner une concession";
-      }
-    },
-  },
 });

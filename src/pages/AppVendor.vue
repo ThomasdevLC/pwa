@@ -1,13 +1,14 @@
 <template>
   <div class="home" v-if="store.stores">
     <TopBar
-      @reload="
+        @reload="
         this.store.initApp();
         this.getStat();
       "
     />
 
     <UserInfos />
+
     <div>
       <NavSection />
     </div>
@@ -21,9 +22,9 @@
     </div>
 
     <!-- <pre style="color: white">{{ this.data }}</pre> -->
-    <LoaderComponent class="loader" v-if="!statData && !error" />
+    <LoaderComponent class="loader" v-if="!stat && !error" />
 
-    <div v-if="statData && !error">
+    <div v-if="stat && !error">
       <div class="total">
         <div v-if="yearStat === 'year'">
           <h3>
@@ -37,35 +38,39 @@
       </div>
       <div v-if="stat.nb_vn">
         <ChartsRates
-          title="Vn"
-          :total="stat.nb_vn"
-          :txPres="stat.tx_pres_fm_vn"
-          :txFm="stat.tx_fm_vn"
-          :txCe="stat.tx_ce_vn"
+            title="Vn"
+            :total="stat.nb_vn"
+            :txPres="stat.tx_pres_fm_vn"
+            :txFm="stat.tx_fm_vn"
+            :txCe="stat.tx_ce_vn"
         />
       </div>
 
       <div class="separator" v-if="stat.nb_vo && stat.nb_vn"></div>
       <div v-if="stat.nb_vo">
         <ChartsRates
-          title="Vo"
-          :total="stat.nb_vo"
-          :txPres="stat.tx_pres_fm_vo"
-          :txFm="stat.tx_fm_vo"
-          :txCe="stat.tx_ce_vo"
+            title="Vo"
+            :total="stat.nb_vo"
+            :txPres="stat.tx_pres_fm_vo"
+            :txFm="stat.tx_fm_vo"
+            :txCe="stat.tx_ce_vo"
         />
       </div>
     </div>
+
     <div class="error" v-else>
       <div v-if="error">{{ error }}</div>
       <div v-if="store.user.role !== 'Vendor' && store.errorSelect">
         {{ store.errorSelect }}
       </div>
     </div>
+
   </div>
+
 </template>
 
-<script>
+<script setup>
+import { ref, computed } from "vue";
 import { useStore } from "../store";
 import {fetchData} from "../api";
 import TopBar from "../components/TopBar.vue";
@@ -76,79 +81,63 @@ import TimeSelector from "../components/TimeSelector.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
 import LoaderComponent from "../components/LoaderComponent.vue";
-import Img1 from "../assets/photos/vendor.jpg";
+import {useRouter} from "vue-router";
+const $router = useRouter();
 
-export default {
-  components: {
-    TopBar,
-    UserInfos,
-    NavSection,
-    StoreVendorSelector,
-    TimeSelector,
-    ChartsTotal,
-    ChartsRates,
-    LoaderComponent,
-  },
-  created() {
-    if (!this.store.user) this.$router.push("/login");
-    else this.store.initApp();
-  },
-  data() {
-    return {
-      store: useStore(),
-      statData: null,
-      error: null,
-      stat: null,
-      objectives: null,
-      total: null,
-      yearStat: null,
-      image: Img1,
-    };
-  },
-  methods: {
-    handleReload() {
-      console.log("reload");
-      this.store.initApp();
-      this.getStat();
-    },
+const store = useStore()
 
-    getStat() {
-      console.log("getStat", this.store.date);
-      let date = this.store.date;
-      let data = [date.year, date.month, this.store.selectedVendor];
+if (!store.user)
+  $router.push("/login")
 
-      fetchData("vendorStat", data)
-        .then((res) => {
-          this.statData = res;
-          this.yearStat = date.month;
-          date.month === "year"
-            ? (this.stat = res.select.stat)
-            : (this.stat = res.month.stat);
-          date.month === "year"
-            ? (this.objectives = null)
-            : (this.objectives = res.month.objectives.total);
 
-          date.month === "year"
-            ? (this.total = null)
-            : (this.total = res.month.stat.nb_total);
+const stat = ref()
+const objectives = ref()
+const total = ref()
+const yearStat = ref()
+const error = ref()
 
-          this.error = null;
-        })
-        .catch((err) => {
-          console.log("err home", err);
-          this.error = "Aucune donnée disponible ";
-          this.stat = null;
-        });
-    },
-  },
-  computed: {
-    percentage() {
-      let percentage = Math.round((this.total / this.objectives) * 100);
-      return Math.min(percentage, 100);
-    },
-  },
-  watch() {},
-};
+const getStat = async () => {
+  if (!check())
+    return
+
+  let date = store.date
+  let dateType = date.month === 'year' ? 'year' : 'month'
+  let data = [date.year, date.month, store.selectedVendor];
+
+  try {
+    const res = await fetchData("vendorStat", data);
+    console.log("vendors getStat dateType", dateType)
+    console.log("vendors getStat fetchData", res)
+
+    stat.value = dateType === 'year' ? res.select.stat : res.month.stat
+    objectives.value = dateType === 'year' ? null : res.month.objectives.total
+    total.value = dateType === 'year' ? null : res.month.stat.nb_total
+  } catch (error) {
+    console.error("fetchData vendorStat" + error);
+    error.value = "Aucune donnée disponible";
+  }
+}
+
+const check = () => {
+  if (store.selectedStore === null) {
+    error.value = "Veuillez sélectionner une concession"
+    return false
+  }
+
+  if (store.selectedVendor === null) {
+    error.value = "Veuillez sélectionner un vendeur"
+    return false
+  }
+
+  error.value = null
+  return  true
+}
+
+const percentage = computed(() => {
+  let percentage = Math.round((total.value / objectives.value) * 100);
+  return Math.min(percentage, 100);
+})
+
 </script>
 
 <style lang="scss">

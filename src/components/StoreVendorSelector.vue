@@ -17,7 +17,7 @@
       />
     </div>
 
-    <div v-if="store.vendorsList && $route.path === '/'" class="search__box">
+    <div v-if="store.vendorsList && $route.path === '/vendors'" class="search__box">
       <div class="search__box__icon">
         <i class="material-icons">search </i>
       </div>
