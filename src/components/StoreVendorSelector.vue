@@ -86,7 +86,6 @@ input {
   &__icon {
     height: 32px;
     background: black;
-    color: white;
     padding: 10px;
     border-radius: 6px 0 0 6px;
     display: flex;
@@ -104,18 +103,10 @@ input {
   --vs-controls-color: var(--gray);
   --vs-search-input-bg: black;
   --vs-border-width: 0px;
-
   --vs-dropdown-bg: black;
-  --vs-dropdown-color: white;
-  --vs-dropdown-option-color: white;
-
   --vs-selected-bg: var(--purple);
-  --vs-selected-color: white;
-
-  --vs-search-input-color: white;
-
+  --vs-selected-color: var(--text-color);
   --vs-dropdown-option--active-bg: var(--purple);
-  --vs-dropdown-option--active-color: white;
 
   &:hover {
     cursor: pointer;

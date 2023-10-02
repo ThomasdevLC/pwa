@@ -2,6 +2,7 @@
   <div class="bar">
     <p class="bar__title">{{ name }}</p>
     <div class="bar__container">
+      <div class="bar__container__objective" :style="{ left: `${obj}%` }"></div>
       <div class="bar__container__rate">
         <div
           class="bar__container__level"
@@ -28,6 +29,8 @@ export default {
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   gap: 6px;
+  position: relative;
+  z-index: 0;
 
   &__title {
     font-weight: 400;
@@ -40,6 +43,14 @@ export default {
   }
 
   &__container {
+    &__objective {
+      height: 80%;
+      border-left: 2px solid var(--text-color);
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      position: absolute;
+      // z-index: 99;
+    }
     &__rate {
       background: var(--gray);
       border-radius: 0 6px 6px 0px;
