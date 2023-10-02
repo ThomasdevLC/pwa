@@ -1,11 +1,4 @@
 <template>
-  <div class="total">
-    <h3 class="total__title">
-      VENTES TOTALES <br />
-      <span style="font-weight: 700">{{ total }}</span>
-    </h3>
-  </div>
-
   <div class="wrap-circles">
     <div
       class="circle"
@@ -15,9 +8,7 @@
     >
       <div class="inner">
         {{ percentage }}
-        <span style="font-size: 22px; font-weight: 300; margin-left: 10px"
-          >%</span
-        >
+        <span style="font-size: 22px; font-weight: 300; margin-left: 10px">%</span>
       </div>
     </div>
   </div>

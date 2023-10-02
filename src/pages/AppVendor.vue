@@ -25,13 +25,13 @@
 
     <div v-if="stat && !error">
       <div class="total">
-        <div v-if="yearStat === 'year'">
+        <div>
           <h3>
-            VENTES TOTALES
+            VENTES TOTALES <br />
             <span style="font-weight: 700"> {{ stat.nb_total }} </span>
           </h3>
         </div>
-        <div v-if="yearStat !== 'year'">
+        <div v-if="objectives">
           <ChartsTotal :total="stat.nb_total" :percentage="percentage" />
         </div>
       </div>
@@ -54,6 +54,7 @@
 
     <pre>{{ stat }}</pre>
     <pre>{{ objectives }}</pre>
+    <pre>{{ total }}</pre>
   </div>
 </template>
 
@@ -132,6 +133,7 @@ const percentage = computed(() => {
 }
 .total h3 {
   font-weight: 300;
+  padding-bottom: 10px;
 }
 
 .loader {
