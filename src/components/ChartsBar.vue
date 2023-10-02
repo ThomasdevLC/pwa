@@ -2,12 +2,12 @@
   <div class="bar">
     <p class="bar__title">{{ name }}</p>
     <div class="bar__container">
-      <div class="bar__container__objective" :style="{ left: `${obj}%` }"></div>
+      <div class="bar__container__objective" :style="{ left: `${obj}%` }" v-if="score < obj"></div>
       <div class="bar__container__rate">
         <div
           class="bar__container__level"
           :style="{
-            transform: `scale(calc(${score}%), 1)`,
+            width: `${score}%`,
             backgroundColor: score < obj ? 'var(--obj)' : 'var(--secondary)',
           }"
         ></div>
@@ -25,6 +25,8 @@ export default {
 
 <style scoped lang="scss">
 .bar {
+  box-sizing: border-box;
+
   margin: 15px 0;
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
@@ -49,7 +51,7 @@ export default {
       top: 50%;
       transform: translateX(-50%) translateY(-50%);
       position: absolute;
-      // z-index: 99;
+      z-index: 99;
     }
     &__rate {
       background: var(--gray);
@@ -61,7 +63,7 @@ export default {
       border-radius: 0 6px 6px 0px;
       transform-origin: left;
       transition: all 0.5s ease-in-out;
-      transform: scale(0, 1);
+      transform: width(0, 1);
     }
   }
 }
