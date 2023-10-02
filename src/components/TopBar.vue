@@ -50,6 +50,9 @@ export default {
       display: grid;
       place-items: center;
       cursor: pointer;
+      &:hover {
+        background-color: var(--purple-second);
+      }
     }
 
     &__connect {
