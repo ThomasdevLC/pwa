@@ -39,11 +39,11 @@ a {
 a:hover {
   cursor: pointer;
   background: var(--gray);
-  color: white;
+  color: var(--text-color);
 }
 
 a.router-link-active {
   background: var(--gray);
-  color: white;
+  color: var(--text-color);
 }
 </style>

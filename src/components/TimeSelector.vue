@@ -76,6 +76,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@use "../assets/styles/mixins" as mixin;
 @import "vue-select/dist/vue-select.css";
 
 .timeselect {
@@ -93,6 +94,10 @@ export default {
     background: black;
     margin-bottom: 10px;
     font-weight: 300;
+
+    @include mixin.xs {
+      font-size: 14px;
+    }
   }
   &__icon {
     height: 32px;

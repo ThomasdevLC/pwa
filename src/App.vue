@@ -19,9 +19,13 @@ body {
     padding: 20px;
   }
   @include mixin.lg-lt {
-    padding: 40px 80px;
+    padding: 20px 80px;
   }
+
   @include mixin.sm-lt {
+    padding: 20px 80px;
+  }
+  @include mixin.xs {
     padding: 0px;
   }
 }

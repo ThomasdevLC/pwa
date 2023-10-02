@@ -51,6 +51,9 @@
         {{ store.errorSelect }}
       </div>
     </div>
+
+    <pre>{{ stat }}</pre>
+    <pre>{{ objectives }}</pre>
   </div>
 </template>
 
