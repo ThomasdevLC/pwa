@@ -41,7 +41,7 @@ export default {
 
     &__name {
       font-size: 16px;
-      margin: 0;
+      margin-bottom: 5px;
     }
 
     &__store {
