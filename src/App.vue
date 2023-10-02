@@ -14,14 +14,18 @@ const store = useStore();
 
 body {
   background: var(--primary) !important;
+  padding: 20px;
 }
 
 .home {
   margin: 0 auto;
-  max-width: 920px;
   padding: 20px;
   background: var(--primary);
   min-height: 100vh;
+  // max-width: 920px;
+  max-width: 400px;
+  border: 1px solid var(--text-color);
+  border-radius: 10px;
 }
 
 .total {
