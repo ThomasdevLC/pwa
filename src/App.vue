@@ -14,7 +14,7 @@ const store = useStore();
 @import "vue-select/dist/vue-select.css";
 
 body {
-  background: var(--primary) !important;
+  background: var(--primary);
   @include mixin.xl {
     padding: 20px;
   }
@@ -43,6 +43,7 @@ body {
 }
 
 .total h3 {
+  font-size: 24px;
   font-weight: 300;
 }
 

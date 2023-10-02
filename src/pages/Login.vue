@@ -86,7 +86,7 @@ const auth = async () => {
 
       &__input {
         display: flex;
-        height: 36px;
+        height: 40px;
       }
 
       &__input input {
@@ -94,6 +94,7 @@ const auth = async () => {
         border-radius: 0 6px 6px 0;
         border: none;
         outline: none;
+        margin: 0;
       }
 
       &__input i {

@@ -117,6 +117,7 @@ const check = () => {
 
 <style lang="scss" scoped>
 h3 {
+  font-size: 24px;
   font-weight: 300;
   margin-bottom: 15px;
 }

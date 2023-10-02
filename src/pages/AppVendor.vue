@@ -21,14 +21,13 @@
       <TimeSelector @date-change="getStat" />
     </div>
 
-    <!-- <pre style="color: white">{{ this.data }}</pre> -->
     <LoaderComponent class="loader" v-if="!stat && !error" />
 
     <div v-if="stat && !error">
       <div class="total">
         <div v-if="yearStat === 'year'">
           <h3>
-            VENTES TOTALES <br />
+            VENTES TOTALES
             <span style="font-weight: 700"> {{ stat.nb_total }} </span>
           </h3>
         </div>

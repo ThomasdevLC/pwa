@@ -24,10 +24,11 @@ export default {
 
 <style scoped lang="scss">
 .bar {
-  margin: 5px 0;
+  margin: 15px 0;
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   gap: 6px;
+
   &__title {
     font-weight: 400;
     line-height: 1;
@@ -36,7 +37,6 @@ export default {
     margin-left: auto;
     font-weight: 400;
     line-height: 1;
-    // margin: 0;
   }
 
   &__container {
