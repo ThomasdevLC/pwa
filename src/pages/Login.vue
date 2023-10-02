@@ -1,18 +1,17 @@
 <template>
   <div class="login">
-
     <div class="login__container">
       <div class="login__container__form">
-        <img :src="image"/>
+        <img :src="image" />
         <div class="login__container__form__input">
           <i class="material-icons">mail_outline</i>
 
-          <input id="email" type="email" placeholder="email" name="email" v-model="email" required/>
+          <input id="email" type="email" placeholder="email" name="email" v-model="email" required />
         </div>
 
         <div class="login__container__form__input">
           <i class="material-icons">lock_outline</i>
-          <input id="password" type="password" placeholder="mot de passe" name="password" v-model="password" required/>
+          <input id="password" type="password" placeholder="mot de passe" name="password" v-model="password" required />
         </div>
         <button class="login__container__form__btn" value="Log in" @click="auth">connexion</button>
         <div class="idvalid" style="color: white">
@@ -22,22 +21,21 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script setup>
-import {ref, onMounted} from "vue";
+import { ref, onMounted } from "vue";
 import image from "../assets/photos/logo.png";
-import {useStore} from "../store";
-import {fetchData} from "../api";
-import {useRoute, useRouter} from 'vue-router';
+import { useStore } from "../store";
+import { fetchData } from "../api";
+import { useRoute, useRouter } from "vue-router";
 
 const $router = useRouter();
 const $route = useRoute();
-const store = useStore()
+const store = useStore();
 
-const email = ref('');
+const email = ref("");
 const password = ref();
 const error = ref();
 
@@ -49,15 +47,12 @@ onMounted(() => {
 });
 
 const auth = async () => {
-  store.user = await fetchData("auth", [email.value])
-  await store.initApp()
+  store.user = await fetchData("auth", [email.value]);
+  await store.initApp();
 
-  if (store.user.role === 'Vendor')
-    $router.push('/vendors')
-  else
-    $router.push('/stores')
-}
-
+  if (store.user.role === "Vendor") $router.push("/vendors");
+  else $router.push("/stores");
+};
 </script>
 
 <style scoped lang="scss">
@@ -126,45 +121,6 @@ const auth = async () => {
         cursor: pointer;
       }
     }
-  }
-
-  .smartphone {
-    width: 300px;
-    height: 500px;
-    background: #000;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .screen {
-    width: 100%;
-    height: 80%;
-    background: #ffffff;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  }
-
-  .button {
-    width: 40px;
-    height: 5px;
-    background: #333;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 5px;
-  }
-
-  .camera {
-    width: 20px;
-    height: 20px;
-    background: #333;
-    border-radius: 50%;
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
 </style>

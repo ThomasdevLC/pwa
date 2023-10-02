@@ -36,6 +36,7 @@ export default {
     margin-left: auto;
     font-weight: 400;
     line-height: 1;
+    // margin: 0;
   }
 
   &__container {

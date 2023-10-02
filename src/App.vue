@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="body body-desktop">
     <RouterView />
   </div>
 </template>
@@ -10,11 +10,20 @@ const store = useStore();
 </script>
 
 <style lang="scss">
+@use "./assets/styles/mixins" as mixin;
 @import "vue-select/dist/vue-select.css";
 
 body {
   background: var(--primary) !important;
-  padding: 20px;
+  @include mixin.xl {
+    padding: 20px;
+  }
+  @include mixin.lg-lt {
+    padding: 40px 80px;
+  }
+  @include mixin.sm-lt {
+    padding: 0px;
+  }
 }
 
 .home {
@@ -22,10 +31,11 @@ body {
   padding: 20px;
   background: var(--primary);
   min-height: 100vh;
-  // max-width: 920px;
-  max-width: 400px;
-  border: 1px solid var(--text-color);
-  border-radius: 10px;
+  @include mixin.xl {
+    max-width: 400px;
+    border: 1px solid var(--text-color);
+    border-radius: 10px;
+  }
 }
 
 .total {
