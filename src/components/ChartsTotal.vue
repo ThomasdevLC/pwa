@@ -50,6 +50,5 @@ export default {
   border-radius: 50%;
   font-size: 30px;
   font-weight: 400;
-  color: white;
 }
 </style>

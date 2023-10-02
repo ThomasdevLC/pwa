@@ -1,21 +1,23 @@
 <template>
-  <div
-    class="semi-donut margin"
-    :style="`--percentage: ${result}; --fill: var(--secondary)`"
-  >
-    <span>{{ title }}</span> <br />
-    <!-- <span>{{ result.toFixed(2) }}</span> -->
+  <div class="semi-donut margin" :style="`--percentage: ${result}; --fill: var(--secondary)`">
+    <span>{{ title }}</span> <br /><span class="objectives">{{ obj }}</span>
   </div>
 </template>
 
 <script>
+import { computed } from "vue";
+
 export default {
   props: ["title", "total", "obj"],
-  computed: {
-    result() {
-      const calcResult = (this.total / this.obj) * 100;
+  setup(props) {
+    const result = computed(() => {
+      const calcResult = (props.total / props.obj) * 100;
       return Math.min(calcResult, 100);
-    },
+    });
+
+    return {
+      result,
+    };
   },
 };
 </script>
@@ -25,15 +27,12 @@ export default {
 
 .semi-donut {
   --percentage: 0;
-  --fill: #ff0;
   width: 210px;
   height: 105px;
   position: relative;
-  color: #fff;
   font-size: 22px;
   font-weight: 500;
   overflow: hidden;
-  //   color: var(--fill);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -57,5 +56,11 @@ export default {
 
   @include animations.fillAnimation;
   @include animations.fillGraphAnimation;
+}
+
+.objectives {
+  font-size: 20px;
+  font-weight: 300;
+  padding-left: 10px;
 }
 </style>
