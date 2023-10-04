@@ -62,8 +62,6 @@
         {{ store.errorSelect }}
       </div>
     </div>
-    <pre>{{ storeStat }}</pre>
-    <pre>{{ storeObjectives }}</pre>
   </div>
 </template>
 

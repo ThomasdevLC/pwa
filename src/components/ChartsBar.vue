@@ -2,7 +2,6 @@
   <div class="bar">
     <p class="bar__title">{{ name }}</p>
     <div class="bar__container">
-      <div class="bar__container__objective" :style="{ left: `${obj}%` }" v-if="score < obj"></div>
       <div class="bar__container__rate">
         <div
           class="bar__container__level"
@@ -45,14 +44,6 @@ export default {
   }
 
   &__container {
-    &__objective {
-      height: 80%;
-      border-left: 2px solid var(--text-color);
-      top: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      position: absolute;
-      z-index: 99;
-    }
     &__rate {
       background: var(--gray);
       border-radius: 0 6px 6px 0px;
