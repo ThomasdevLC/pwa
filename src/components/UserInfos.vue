@@ -9,14 +9,30 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import Img1 from "../assets/photos/vendor.jpg";
+import Img3 from "../assets/photos/bd.jpg";
+import Img2 from "../assets/photos/db.jpg";
 import { useStore } from "../store";
 
 export default {
-  data() {
+  setup() {
+    const store = useStore();
+    const image = computed(() => getImageBasedOnName(store));
+
+    const getImageBasedOnName = (store) => {
+      if (store.user.name === "Benoit") {
+        return Img2;
+      } else if (store.user.name === "David") {
+        return Img3;
+      } else {
+        return Img1;
+      }
+    };
+
     return {
-      store: useStore(),
-      image: Img1,
+      store,
+      image,
     };
   },
 };

@@ -3,7 +3,7 @@
     <img class="top__logo" :src="image" />
 
     <div class="top__buttons">
-      <div class="top__buttons__reload" @click="$emit('reload')">
+      <div class="top__buttons__reload" @click="reload">
         <i class="fa-solid fa-rotate-right"></i>
       </div>
       <div class="top__buttons__connect" @click="redirectToLogin">
@@ -15,13 +15,19 @@
 
 <script>
 import logo from "../assets/photos/logo.png";
+
 export default {
   data() {
     return {
       image: logo,
     };
   },
+
   methods: {
+    reload() {
+      this.$emit("custom-reload");
+      console.log("custom");
+    },
     redirectToLogin() {
       this.$router.push("/login");
     },

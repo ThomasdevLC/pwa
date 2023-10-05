@@ -1,11 +1,6 @@
 <template>
   <div class="home" v-if="store.stores">
-    <TopBar
-      @reload="
-        this.store.initApp();
-        this.getStat();
-      "
-    />
+    <TopBar @custom-reload="callInitApp" />
 
     <UserInfos />
 
@@ -88,8 +83,6 @@ const getStat = async () => {
 
   try {
     const res = await fetchData("vendorStat", data);
-    console.log("vendors getStat dateType", dateType);
-    console.log("vendors getStat fetchData", res);
 
     stat.value = dateType === "year" ? res.select.stat : res.month.stat;
     objectives.value = dateType === "year" ? null : res.month.objectives.total;
@@ -119,6 +112,11 @@ const percentage = computed(() => {
   let percentage = Math.round((total.value / objectives.value) * 100);
   return Math.min(percentage, 100);
 });
+
+const callInitApp = () => {
+  store.initApp();
+  console.log("store");
+};
 </script>
 
 <style lang="scss">
