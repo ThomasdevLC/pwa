@@ -31,11 +31,17 @@
         </div>
       </div>
       <div v-if="stat.nb_vn">
+        <h3>
+          VN <span class="vhtype"> {{ stat.nb_vn }}</span>
+        </h3>
         <ChartsRates title="Vn" :total="stat.nb_vn" :txPres="stat.tx_pres_fm_vn" :txFm="stat.tx_fm_vn" :txCe="stat.tx_ce_vn" />
       </div>
 
       <div class="separator" v-if="stat.nb_vo && stat.nb_vn"></div>
       <div v-if="stat.nb_vo">
+        <h3>
+          VO <span class="vhtype"> {{ stat.nb_vo }}</span>
+        </h3>
         <ChartsRates title="Vo" :total="stat.nb_vo" :txPres="stat.tx_pres_fm_vo" :txFm="stat.tx_fm_vo" :txCe="stat.tx_ce_vo" />
       </div>
     </div>
@@ -117,21 +123,3 @@ const callInitApp = () => {
   store.initApp();
 };
 </script>
-
-<style lang="scss">
-@use "../assets/styles/mixins" as mixin;
-
-.total {
-  text-align: center;
-}
-.total h3 {
-  font-weight: 300;
-  padding-bottom: 10px;
-}
-
-.loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>

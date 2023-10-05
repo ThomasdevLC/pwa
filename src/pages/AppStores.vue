@@ -21,7 +21,7 @@
     <div v-if="storeStat">
       <div v-if="storeStat && storeStat.nb_vn">
         <h3>
-          VN <span> {{ storeStat.nb_vn }}</span>
+          VN <span class="vhtype"> {{ storeStat.nb_vn }}</span>
         </h3>
 
         <ChartsSemiStore title="CONST" :total="storeStat.nb_vn" :obj="storeObjectives.obj_vn_const" :key="reloadKey" />
@@ -41,7 +41,7 @@
       <div class="separator" v-if="storeStat && storeStat.nb_vo && storeStat.nb_vn"></div>
       <div v-if="storeStat && storeStat.nb_vo">
         <h3>
-          VO <span> {{ storeStat.nb_vo }}</span>
+          VO <span class="vhtype"> {{ storeStat.nb_vo }}</span>
         </h3>
         <ChartsSemiStore title="GCA" :total="storeStat.nb_vo" :obj="storeObjectives.obj_vo" :key="reloadKey" />
         <ChartsRates
@@ -114,16 +114,3 @@ const check = () => {
   return true;
 };
 </script>
-
-<style lang="scss" scoped>
-h3 {
-  font-size: 24px;
-  font-weight: 300;
-  margin-bottom: 15px;
-}
-
-span {
-  font-weight: 700;
-  margin-left: 10px;
-}
-</style>

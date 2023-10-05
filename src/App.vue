@@ -51,6 +51,17 @@ body {
   font-weight: 300;
 }
 
+h3 {
+  font-size: 24px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.vhtype {
+  font-weight: 500;
+  margin-left: 10px;
+}
+
 .separator {
   border-bottom: 1px solid var(--gray);
   width: 70%;
@@ -62,5 +73,11 @@ input {
   margin: 10px 0;
   width: 100%;
   box-sizing: border-box;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

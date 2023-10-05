@@ -18,16 +18,7 @@ import ChartsBar from "../components/ChartsBar.vue";
 export default {
   components: { ChartsBar },
 
-  props: [
-    "title",
-    "total",
-    "txPres",
-    "txFm",
-    "txCe",
-    "objPres",
-    "objFm",
-    "objCe",
-  ],
+  props: ["title", "total", "txPres", "txFm", "txCe", "objPres", "objFm", "objCe"],
 };
 </script>
 
