@@ -26,7 +26,6 @@ export default {
   methods: {
     reload() {
       this.$emit("custom-reload");
-      console.log("custom");
     },
     redirectToLogin() {
       this.$router.push("/login");

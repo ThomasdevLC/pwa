@@ -115,7 +115,6 @@ const percentage = computed(() => {
 
 const callInitApp = () => {
   store.initApp();
-  console.log("store");
 };
 </script>
 
