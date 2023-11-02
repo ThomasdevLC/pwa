@@ -66,6 +66,7 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { useStore } from "../store";
 import { fetchData } from "../api";
@@ -77,7 +78,6 @@ import TimeSelector from "../components/TimeSelector.vue";
 import ChartsRates from "../components/ChartsRates.vue";
 import ChartsSemiStore from "../components/ChartsSemiStore.vue";
 import LoaderComponent from "../components/LoaderComponent.vue";
-import { useRouter } from "vue-router";
 const $router = useRouter();
 
 const store = useStore();

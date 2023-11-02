@@ -58,6 +58,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useStore } from "../store";
+import { useRouter } from "vue-router";
 import { fetchData } from "../api";
 import TopBar from "../components/TopBar.vue";
 import UserInfos from "../components/UserInfos.vue";
@@ -67,7 +68,6 @@ import TimeSelector from "../components/TimeSelector.vue";
 import ChartsTotal from "../components/ChartsTotal.vue";
 import ChartsRates from "../components/ChartsRates.vue";
 import LoaderComponent from "../components/LoaderComponent.vue";
-import { useRouter } from "vue-router";
 const $router = useRouter();
 
 const store = useStore();
@@ -119,7 +119,10 @@ const percentage = computed(() => {
   return Math.min(percentage, 100);
 });
 
-const callInitApp = () => {
-  store.initApp();
+const callInitApp = async () => {
+  stat.value = null;
+  error.value = null;
+  await store.initApp();
+  getStat();
 };
 </script>

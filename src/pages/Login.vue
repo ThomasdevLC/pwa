@@ -65,8 +65,9 @@ const auth = async () => {
 
 .login {
   height: 100vh;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &__container {
     min-width: 350px;
@@ -99,7 +100,7 @@ const auth = async () => {
 
       &__input i {
         color: var(--gray);
-        background: white;
+        background: #fff;
         width: 40px;
         padding: 10px;
         border-radius: 6px 0 0 6px;
