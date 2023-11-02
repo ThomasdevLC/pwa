@@ -1,6 +1,6 @@
 <template>
   <div class="home" v-if="store.stores">
-    <TopBar @reload="getStat" />
+    <TopBar @custom-reload="callInitApp" />
 
     <UserInfos />
 
@@ -93,7 +93,8 @@ const getStat = async () => {
   if (!check()) return;
 
   let data = [store.date.year, store.date.month, store.selectedStore];
-
+  storeStat.value = null;
+  error.value = null;
   try {
     const res = await fetchData("storeStat", data);
     storeStat.value = res.stat;
@@ -112,5 +113,12 @@ const check = () => {
   }
 
   return true;
+};
+
+const callInitApp = async () => {
+  storeStat.value = null;
+  error.value = null;
+  await store.initApp();
+  getStat();
 };
 </script>
