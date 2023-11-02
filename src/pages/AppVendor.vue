@@ -60,6 +60,8 @@ import { ref, computed } from "vue";
 import { useStore } from "../store";
 import { useRouter } from "vue-router";
 import { fetchData } from "../api";
+import { onBeforeRouteUpdate, onBeforeRouteLeave } from "vue-router";
+
 import TopBar from "../components/TopBar.vue";
 import UserInfos from "../components/UserInfos.vue";
 import NavSection from "../components/NavSection.vue";
@@ -86,6 +88,9 @@ const getStat = async () => {
   let date = store.date;
   let dateType = date.month === "year" ? "year" : "month";
   let data = [date.year, date.month, store.selectedVendor];
+
+  stat.value = null;
+  error.value = null;
 
   try {
     const res = await fetchData("vendorStat", data);
